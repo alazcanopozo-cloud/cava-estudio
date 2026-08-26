@@ -1,0 +1,5 @@
+{
+  "rewrites": [
+    { "source": "/", "destination": "/CAVA%20Estudio.dc.html" }
+  ]
+}
