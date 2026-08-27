@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -28,6 +28,32 @@
 <x-dc>
 <helmet>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100'><text x='50' y='78' font-size='80' text-anchor='middle'>🖤</text></svg>">
+<title>Diseño de Packaging para Marcas | CAVA Estudio</title>
+<meta name="description" content="Diseñamos packaging que comunica valor y hace destacar tu producto en el punto de venta. Estrategia, diseño y producción para marcas en Chile.">
+<link rel="canonical" href="https://cava-estudio-web.vercel.app/packaging">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="CAVA Estudio">
+<meta property="og:title" content="Diseño de Packaging para Marcas | CAVA Estudio">
+<meta property="og:description" content="Diseñamos packaging que comunica valor y hace destacar tu producto en el punto de venta. Estrategia, diseño y producción.">
+<meta property="og:url" content="https://cava-estudio-web.vercel.app/packaging">
+<meta property="og:image" content="https://cava-estudio-web.vercel.app/assets/logos/cava-horizontal.png">
+<meta property="og:locale" content="es_CL">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Diseño de Packaging para Marcas | CAVA Estudio">
+<meta name="twitter:description" content="Diseñamos packaging que comunica valor y hace destacar tu producto en el punto de venta. Estrategia, diseño y producción.">
+<meta name="twitter:image" content="https://cava-estudio-web.vercel.app/assets/logos/cava-horizontal.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "serviceType": "Packaging Design",
+  "name": "Diseño de Packaging",
+  "url": "https://cava-estudio-web.vercel.app/packaging",
+  "provider": { "@type": "ProfessionalService", "name": "CAVA Estudio", "url": "https://cava-estudio-web.vercel.app/" },
+  "areaServed": "CL",
+  "description": "Diseño de packaging que comunica valor y hace destacar el producto en el punto de venta."
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet">
@@ -77,12 +103,12 @@
 
   <!-- NAV -->
   <nav style="position:sticky; top:0; z-index:100; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; padding:clamp(20px,3vw,32px) clamp(24px,5vw,64px); background:var(--nav-bg, rgba(255,255,255,.92)); backdrop-filter:blur(6px); border-bottom:1px solid var(--line);">
-    <img src="assets/logos/cava-horizontal.png" alt="CAVA Estudio" class="theme-invert" style="display:block; height:44px; width:auto;">
+    <a href="/" style="display:block; line-height:0;"><img src="assets/logos/cava-horizontal.png" alt="CAVA Estudio" class="theme-invert" style="display:block; height:44px; width:auto;"></a>
     <div style="display:flex; align-items:center; gap:clamp(18px,2.6vw,32px); flex-wrap:wrap; font-size:10px; letter-spacing:0.06em; color:var(--secondary);">
-      <a href="CAVA Estudio.dc.html#servicios" style="text-decoration:none;" style-hover="color:var(--text);">SERVICIOS</a>
+      <a href="/#servicios" style="text-decoration:none;" style-hover="color:var(--text);">SERVICIOS</a>
       <a href="#proyectos" onClick="{{ navToProyectos }}" style="text-decoration:none;" style-hover="color:var(--text);">PROYECTOS</a>
-      <a href="CAVA Estudio.dc.html" style="text-decoration:none;" style-hover="color:var(--text);">INICIO</a>
-      <a href="CAVA Branding.dc.html" style="text-decoration:none;" style-hover="color:var(--text);">BRANDING</a>
+      <a href="/" style="text-decoration:none;" style-hover="color:var(--text);">INICIO</a>
+      <a href="/branding" style="text-decoration:none;" style-hover="color:var(--text);">BRANDING</a>
       <a href="#contacto" onClick="{{ navToContacto }}" style="text-decoration:none;" style-hover="color:var(--text);">CONTACTO</a>
       <button onClick="{{ toggleTheme }}" aria-label="Cambiar tema" style="display:flex; align-items:center; gap:8px; background:none; border:none; padding:0; margin:0; cursor:pointer; font-size:10px; letter-spacing:0.06em; color:var(--secondary); font-family:inherit;" style-hover="color:var(--text);">
         <span style="position:relative; width:26px; height:15px; border-radius:999px; border:1px solid var(--line); display:inline-block; flex-shrink:0;">
@@ -195,7 +221,7 @@
       <h2 style="font-size:clamp(32px,4vw,64px); line-height:0.95; letter-spacing:-0.035em; font-weight:400; margin:0 0 clamp(40px,6vw,72px);">Proyectos.</h2>
       <div class="work-grid">
         <sc-for list="{{ packagingWork }}" as="p" hint-placeholder-count="6">
-          <a href="CAVA Estudio.dc.html#trabajos" style="display:block; text-decoration:none; color:inherit;">
+          <a href="/#trabajos" style="display:block; text-decoration:none; color:inherit;">
             <image-slot id="{{ p.id }}" src="{{ p.img }}" shape="rect" fit="cover" placeholder="{{ p.name }}" style="display:block; width:100%; aspect-ratio:3/2; background:var(--subtle); transition:opacity 300ms cubic-bezier(.22,.61,.36,1);" style-hover="opacity:0.85;"></image-slot>
             <div style="margin-top:16px; font-size:15px; font-weight:500;">{{ p.name }}</div>
             <div style="margin-top:4px; font-size:13px; line-height:1.45; color:var(--secondary);">{{ p.desc }}</div>
@@ -289,6 +315,20 @@ class Component extends DCLogic {
       if (!el) return;
       const r = el.getBoundingClientRect();
       if (r.top < window.innerHeight && r.bottom > 0) this.setState((s) => ({ visible: { ...s.visible, [k]: true } }));
+    });
+
+    [0, 300, 1000].forEach((ms) => setTimeout(() => this._fixImageSlotAlt(), ms));
+  }
+
+  // <image-slot>'s internal <img> always renders alt="" (it's a design-tool
+  // placeholder component, not meant to carry page content) — copy the
+  // slot's own `placeholder` text (already a real caption) into the shadow
+  // img's alt so photos aren't invisible to SEO/screen readers.
+  _fixImageSlotAlt() {
+    document.querySelectorAll('image-slot[placeholder]').forEach((slot) => {
+      const img = slot.shadowRoot && slot.shadowRoot.querySelector('.frame img');
+      const label = slot.getAttribute('placeholder');
+      if (img && label && img.alt !== label) img.alt = label;
     });
   }
 

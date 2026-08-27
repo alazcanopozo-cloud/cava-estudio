@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -28,6 +28,43 @@
 <x-dc>
 <helmet>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100'><text x='50' y='78' font-size='80' text-anchor='middle'>🖤</text></svg>">
+<title>CAVA Estudio | Branding, Packaging y Comunicación de Marca</title>
+<meta name="description" content="Estudio de branding en Chile: identidad de marca, packaging, marketing y desarrollo web. Ayudamos a marcas a comunicar con claridad desde 2010.">
+<link rel="canonical" href="https://cava-estudio-web.vercel.app/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="CAVA Estudio">
+<meta property="og:title" content="CAVA Estudio | Branding, Packaging y Comunicación de Marca">
+<meta property="og:description" content="Estudio de branding en Chile: identidad de marca, packaging, marketing y desarrollo web. Ayudamos a marcas a comunicar con claridad desde 2010.">
+<meta property="og:url" content="https://cava-estudio-web.vercel.app/">
+<meta property="og:image" content="https://cava-estudio-web.vercel.app/assets/logos/cava-horizontal.png">
+<meta property="og:locale" content="es_CL">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="CAVA Estudio | Branding, Packaging y Comunicación de Marca">
+<meta name="twitter:description" content="Estudio de branding en Chile: identidad de marca, packaging, marketing y desarrollo web. Ayudamos a marcas a comunicar con claridad desde 2010.">
+<meta name="twitter:image" content="https://cava-estudio-web.vercel.app/assets/logos/cava-horizontal.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "CAVA Estudio",
+  "url": "https://cava-estudio-web.vercel.app/",
+  "logo": "https://cava-estudio-web.vercel.app/assets/logos/cava-horizontal.png",
+  "image": "https://cava-estudio-web.vercel.app/assets/logos/cava-horizontal.png",
+  "description": "Estudio de branding en Chile: identidad de marca, packaging, marketing y desarrollo web.",
+  "areaServed": "CL",
+  "foundingDate": "2010",
+  "sameAs": [
+    "https://www.instagram.com/cava_estudio",
+    "https://www.linkedin.com/company/cava-estudio/"
+  ],
+  "makesOffer": [
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Branding" } },
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Packaging" } },
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Marketing y Comunicación" } },
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Desarrollo Web" } }
+  ]
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,700;0,900;1,400&display=swap" rel="stylesheet">
@@ -233,7 +270,7 @@
   <section data-key="hero-video" ref="{{ refHeroVideo }}" style="border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
     <div class="reveal {{ revealClsHeroVideo }}" style="{{ revealHeroVideo }}">
       <video autoplay="autoplay" muted="muted" loop="loop" playsinline="playsinline" style="display:block; width:100%; height:clamp(280px,60vw,640px); object-fit:cover;">
-        <source src="uploads/cava-estudio-hero.mp4" type="video/mp4">
+        <source src="uploads/cava-estudio-hero-v2.mp4" type="video/mp4">
       </video>
     </div>
   </section>
@@ -428,7 +465,7 @@
       <div class="stagger-grid" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:28px 20px; align-items:start;">
         <sc-for list="{{ team }}" as="t" hint-placeholder-count="9">
           <div>
-            <image-slot id="{{ t.id }}" src="{{ t.img }}" shape="rect" placeholder="{{ t.role }}" style="display:block; width:100%; aspect-ratio:4/5; background:var(--subtle);"></image-slot>
+            <image-slot id="{{ t.id }}" src="{{ t.img }}" shape="rect" placeholder="{{ t.altText }}" style="display:block; width:100%; aspect-ratio:4/5; background:var(--subtle);"></image-slot>
             <div style="font-size:12px; margin-top:12px;">{{ t.name }}</div>
             <div style="font-size:11px; color:var(--secondary); margin-top:1px;">{{ t.role }}</div>
           </div>
@@ -587,6 +624,20 @@ class Component extends DCLogic {
       if (e.key === 'ArrowLeft') this.moveLightbox(-1);
     };
     window.addEventListener('keydown', this._onKeyDown);
+
+    [0, 300, 1000].forEach((ms) => setTimeout(() => this._fixImageSlotAlt(), ms));
+  }
+
+  // <image-slot>'s internal <img> always renders alt="" (it's a design-tool
+  // placeholder component, not meant to carry page content) — copy the
+  // slot's own `placeholder` text (already a real caption: a name, a role)
+  // into the shadow img's alt so photos aren't invisible to SEO/screen readers.
+  _fixImageSlotAlt() {
+    document.querySelectorAll('image-slot[placeholder]').forEach((slot) => {
+      const img = slot.shadowRoot && slot.shadowRoot.querySelector('.frame img');
+      const label = slot.getAttribute('placeholder');
+      if (img && label && img.alt !== label) img.alt = label;
+    });
   }
 
   componentWillUnmount() {
@@ -730,7 +781,7 @@ class Component extends DCLogic {
         { id: 't-fabio', name: 'Fabio Lazcano', role: 'Artista visual & audiovisual', img: 'assets/t-fabio.jpg' },
         { id: 't-rodrigo', name: 'Rodrigo Muñoz', role: 'Desarrollador Web', img: 'assets/t-rodrigo.jpg' },
         { id: 't-jose', name: 'José Donoso', role: 'Asesor Legal', img: 'assets/t-jose.jpg' }
-      ],
+      ].map((m) => ({ ...m, altText: m.name + ' — ' + m.role })),
       testimonials: [
         { company: 'Cerveza Del Puerto', quote: 'CAVA logró traducir la esencia de la Cerveza Del Puerto en una identidad sólida y un packaging con carácter, coherente con nuestra historia y pensado para destacar.', who: 'Matías Elton / Branding y Packaging' },
         { company: 'Valle Secreto', quote: 'Con CAVA encontramos un equipo creativo, ordenado y comprometido. Entienden nuestras necesidades y conocen de la industria en la que interactuamos.', who: 'Jefry Pitronello / Gerente de Marketing y Desarrollo' },
