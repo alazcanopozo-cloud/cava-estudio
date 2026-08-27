@@ -142,6 +142,10 @@
     .logo-strip-track { animation: none !important; }
     .wm-cava, .wm-estudio, .wm-word { animation: none !important; }
   }
+  @media (max-width: 680px) {
+    .nav-links { display: none !important; }
+    .nav-burger { display: flex !important; align-items:center; justify-content:center; }
+  }
 </style>
 </helmet>
 
@@ -150,7 +154,7 @@
   <!-- NAV -->
   <nav style="position:sticky; top:0; z-index:100; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; padding:clamp(20px,3vw,32px) clamp(24px,5vw,64px); background:var(--nav-bg, rgba(255,255,255,.92)); backdrop-filter:blur(6px); border-bottom:1px solid var(--line);">
     <img src="assets/logos/cava-horizontal.png" alt="CAVA Estudio" class="theme-invert" style="display:block; height:44px; width:auto;">
-    <div style="display:flex; align-items:center; gap:clamp(18px,2.6vw,32px); flex-wrap:wrap; font-size:10px; letter-spacing:0.06em; color:var(--secondary);">
+    <div class="nav-links" style="display:flex; align-items:center; gap:clamp(18px,2.6vw,32px); flex-wrap:wrap; font-size:10px; letter-spacing:0.06em; color:var(--secondary);">
       <a href="#servicios" onClick="{{ navToServicios }}" style="text-decoration:none;" style-hover="color:var(--text);">SERVICIOS</a>
       <a href="#trabajos" onClick="{{ navToTrabajos }}" style="text-decoration:none;" style-hover="color:var(--text);">PORTAFOLIO</a>
       <a href="#metodo" onClick="{{ navToMetodo }}" style="text-decoration:none;" style-hover="color:var(--text);">MÉTODO</a>
@@ -162,7 +166,22 @@
         {{ themeLabel }}
       </button>
     </div>
+    <button class="nav-burger" onClick="{{ toggleMobileMenu }}" aria-label="Abrir menú" style="display:none; background:none; border:none; padding:4px; cursor:pointer; font-size:20px; line-height:1; color:var(--text);">{{ mobileMenuIcon }}</button>
   </nav>
+  <sc-if value="{{ mobileMenuOpen }}" hint-placeholder-val="{{ false }}">
+    <div class="mobile-menu" style="position:sticky; top:0; z-index:99; display:flex; flex-direction:column; gap:20px; padding:20px clamp(24px,5vw,64px) 28px; background:var(--nav-bg, rgba(255,255,255,.92)); backdrop-filter:blur(6px); border-bottom:1px solid var(--line); font-size:13px; letter-spacing:0.04em; color:var(--secondary);">
+      <a href="#servicios" onClick="{{ navToServicios }}" style="text-decoration:none;" style-hover="color:var(--text);">SERVICIOS</a>
+      <a href="#trabajos" onClick="{{ navToTrabajos }}" style="text-decoration:none;" style-hover="color:var(--text);">PORTAFOLIO</a>
+      <a href="#metodo" onClick="{{ navToMetodo }}" style="text-decoration:none;" style-hover="color:var(--text);">MÉTODO</a>
+      <a href="#contacto" onClick="{{ navToContacto }}" style="text-decoration:none;" style-hover="color:var(--text);">CONTACTO</a>
+      <button onClick="{{ toggleTheme }}" aria-label="Cambiar tema" style="display:flex; align-items:center; gap:8px; background:none; border:none; padding:0; margin:0; cursor:pointer; font-size:13px; letter-spacing:0.04em; color:var(--secondary); font-family:inherit;" style-hover="color:var(--text);">
+        <span style="position:relative; width:26px; height:15px; border-radius:999px; border:1px solid var(--line); display:inline-block; flex-shrink:0;">
+          <span style="position:absolute; top:1px; left:{{ themeDotLeft }}; width:11px; height:11px; border-radius:999px; background:var(--text); transition:left 300ms cubic-bezier(.22,.61,.36,1);"></span>
+        </span>
+        {{ themeLabel }}
+      </button>
+    </div>
+  </sc-if>
 
   <!-- 01 HERO -->
   <section id="home" data-key="home" ref="{{ refHome }}" style="padding:clamp(64px,12vw,140px) clamp(24px,5vw,64px) clamp(56px,8vw,96px);">
@@ -174,7 +193,7 @@
         <p style="font-size:14px; line-height:1.5; max-width:340px; color:var(--secondary); margin:0;">
           Estrategia, creatividad y diseño para marcas que necesitan ordenar lo que son, comunicar mejor y avanzar con coherencia.
         </p>
-        <div style="display:flex; flex-direction:column; gap:6px; font-size:10px; letter-spacing:0.04em; color:var(--secondary); text-align:right;">
+        <div style="display:flex; flex-direction:column; gap:6px; font-size:10px; letter-spacing:0.04em; color:var(--secondary); text-align:right; margin-left:auto;">
           <span>Branding</span><span>Packaging</span><span>Marketing &amp; Comunicación</span><span>Desarrollo Web</span>
         </div>
       </div>
@@ -481,7 +500,7 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
-  state = { visible: { home: true }, openPanels: {}, lightboxOpen: false, lightboxIdx: 0, lightboxImgIdx: 0, theme: (typeof localStorage !== 'undefined' && localStorage.getItem('cava-theme')) || (typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') };
+  state = { visible: { home: true }, openPanels: {}, lightboxOpen: false, lightboxIdx: 0, lightboxImgIdx: 0, mobileMenuOpen: false, theme: (typeof localStorage !== 'undefined' && localStorage.getItem('cava-theme')) || (typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') };
   _portfolioData = [
     { id: 'p-nat100', name: 'Nutz', cat: 'Branding + Packaging', year: '2026', desc: 'Identidad de marca y sistema de packaging para una nueva línea de producto.', img: 'assets/p-nutz-cover.jpg', video: 'assets/p-nutz.mp4', images: ['assets/p-nutz-cover.jpg','assets/p-nutz-2.jpg','assets/p-nutz-3.jpg','assets/p-nutz-4.jpg','assets/p-nutz-5.jpg','assets/p-nutz.jpg'] },
     { id: 'p-awkagin', name: 'Awka Gin', cat: 'Branding + Packaging', year: '2025', desc: 'Identidad de marca y packaging para un gin premium.', img: 'assets/p-awkagin.jpg', video: 'assets/p-awkagin.mp4', images: ['assets/p-awkagin.jpg','assets/p-awkagin-1.jpg','assets/p-awkagin-2.jpg','assets/p-awkagin-3.jpg','assets/p-awkagin-4.jpg','assets/p-awkagin-5.jpg','assets/p-awkagin-6.jpg','assets/p-awkagin-7.jpg'] },
@@ -641,10 +660,13 @@ class Component extends DCLogic {
       refCasoDestacado: this.mkRef('casoDestacado'),
       refTestimonios: this.mkRef('testimonios'),
       refContacto: this.mkRef('contacto'),
-      navToServicios: (e) => { e.preventDefault(); this.scrollToKey('servicios'); },
-      navToTrabajos: (e) => { e.preventDefault(); this.scrollToKey('trabajos'); },
-      navToMetodo: (e) => { e.preventDefault(); this.scrollToKey('metodo'); },
-      navToContacto: (e) => { e.preventDefault(); this.scrollToKey('contacto'); },
+      navToServicios: (e) => { e.preventDefault(); this.setState({ mobileMenuOpen: false }); this.scrollToKey('servicios'); },
+      navToTrabajos: (e) => { e.preventDefault(); this.setState({ mobileMenuOpen: false }); this.scrollToKey('trabajos'); },
+      navToMetodo: (e) => { e.preventDefault(); this.setState({ mobileMenuOpen: false }); this.scrollToKey('metodo'); },
+      navToContacto: (e) => { e.preventDefault(); this.setState({ mobileMenuOpen: false }); this.scrollToKey('contacto'); },
+      mobileMenuOpen: this.state.mobileMenuOpen,
+      mobileMenuIcon: this.state.mobileMenuOpen ? '✕' : '☰',
+      toggleMobileMenu: () => this.setState((s) => ({ mobileMenuOpen: !s.mobileMenuOpen })),
       clientLogos: (() => {
         const base = [
           { name: 'Alam Beauty', srcLight: 'assets/logos/client-alam-beauty-black.png', srcDark: 'assets/logos/client-alam-beauty-white.png' },
