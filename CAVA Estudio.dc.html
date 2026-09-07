@@ -234,6 +234,57 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     .nav-burger { display: flex !important; align-items:center; justify-content:center; }
     .presence-break { display: none; }
   }
+
+  /* --- Botón flotante de WhatsApp --- */
+  @keyframes cava-wa-heartbeat {
+    0%, 82%, 100% { transform: scale(1); }
+    86% { transform: scale(1.12); }
+    89% { transform: scale(0.96); }
+    92% { transform: scale(1.04); }
+    95% { transform: scale(1); }
+  }
+  #cava-wa-float {
+    position: fixed;
+    right: clamp(16px, 4vw, 32px);
+    bottom: clamp(16px, 4vw, 32px);
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.28), 0 2px 8px rgba(0,0,0,0.18);
+    cursor: pointer;
+    border: none;
+    z-index: 9998;
+    animation: cava-wa-heartbeat 7s ease-in-out infinite;
+    transition: transform 200ms ease;
+  }
+  #cava-wa-float:hover { transform: scale(1.08); }
+  #cava-wa-float svg { width: 30px; height: 30px; }
+
+  /* --- Modal de calificación previa a WhatsApp --- */
+  #cava-wa-modal-backdrop {
+    position: fixed; inset: 0; background: rgba(0,0,0,0.55);
+    display: flex; align-items: center; justify-content: center;
+    z-index: 9999; padding: 20px;
+  }
+  #cava-wa-modal {
+    background: var(--paper); color: var(--text);
+    width: 100%; max-width: 440px; max-height: 88vh; overflow-y: auto;
+    border-radius: 16px; padding: clamp(24px,4vw,36px);
+    border: 1px solid var(--line);
+  }
+  .cava-wa-field { display:flex; flex-direction:column; gap:6px; margin-bottom:16px; }
+  .cava-wa-field label { font-size: 11px; letter-spacing:0.04em; color: var(--secondary); }
+  .cava-wa-input {
+    background: transparent; border: 1px solid var(--line); border-radius: 8px;
+    padding: 12px 14px; font-family: 'Inter', sans-serif; font-size: 14px;
+    color: var(--text); width: 100%; box-sizing: border-box;
+  }
+  .cava-wa-input:focus { outline: none; border-color: var(--text); }
+  select.cava-wa-input { appearance: none; cursor: pointer; }
 </style>
 </helmet>
 
@@ -286,7 +337,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
       </div>
       <div style="margin-top:clamp(32px,5vw,56px); display:flex; align-items:center; gap:24px; flex-wrap:wrap;">
-        <a href="https://wa.me/56954621640" target="_blank" style="background:var(--text); color:var(--paper); border-radius:999px; padding:9px 16px; font-size:10px; letter-spacing:0.03em; text-decoration:none; display:inline-block; transition:opacity 400ms cubic-bezier(.22,.61,.36,1);" style-hover="opacity:0.7;">Hablemos →</a>
+        <a href="https://wa.me/56954621640" target="_blank" onClick="{{ openWaModal }}" style="background:var(--text); color:var(--paper); border-radius:999px; padding:9px 16px; font-size:10px; letter-spacing:0.03em; text-decoration:none; display:inline-block; transition:opacity 400ms cubic-bezier(.22,.61,.36,1);" style-hover="opacity:0.7;">Hablemos →</a>
         <span style="font-size:10px; letter-spacing:0.05em; color:var(--subtle);">ESTRATEGIA + DISEÑO — DESDE 2010</span>
       </div>
     </div>
@@ -564,7 +615,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <h2 style="font-size:clamp(48px,7vw,110px); line-height:0.9; letter-spacing:-0.04em; font-weight:400; margin:0 0 28px;">Hablemos.</h2>
       <div style="display:flex; gap:clamp(24px,5vw,64px); flex-wrap:wrap; align-items:flex-end; justify-content:space-between;">
         <p style="font-size:14px; line-height:1.55; max-width:420px; color:var(--secondary); margin:0;">Cuéntanos qué está pasando en tu negocio, tu marca o tu comunicación. Podemos ayudarte a ordenar el desafío, detectar oportunidades y definir una dirección clara para avanzar.</p>
-        <a href="https://wa.me/56954621640" target="_blank" style="background:var(--text); color:var(--paper); border-radius:999px; padding:9px 16px; font-size:10px; letter-spacing:0.03em; text-decoration:none; display:inline-block; white-space:nowrap; transition:opacity 400ms cubic-bezier(.22,.61,.36,1);" style-hover="opacity:0.7;">Hablemos de tu marca →</a>
+        <a href="https://wa.me/56954621640" target="_blank" onClick="{{ openWaModal }}" style="background:var(--text); color:var(--paper); border-radius:999px; padding:9px 16px; font-size:10px; letter-spacing:0.03em; text-decoration:none; display:inline-block; white-space:nowrap; transition:opacity 400ms cubic-bezier(.22,.61,.36,1);" style-hover="opacity:0.7;">Hablemos de tu marca →</a>
       </div>
     </div>
   </section>
@@ -583,12 +634,66 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div style="font-size:clamp(64px,14vw,260px); line-height:0.82; letter-spacing:-0.03em; white-space:nowrap; color:var(--text); margin:0; padding:0 clamp(12px,2vw,24px);"><span class="wm-cava">CAVA</span><span class="wm-estudio">ESTUDIO</span></div>
   </div>
 
+  <button id="cava-wa-float" onClick="{{ openWaModal }}" aria-label="Hablemos por WhatsApp">
+    <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M16.01 3C9.38 3 4 8.37 4 15c0 2.22.61 4.3 1.67 6.08L4 29l8.13-1.63A11.9 11.9 0 0 0 16.01 27C22.64 27 28 21.63 28 15S22.64 3 16.01 3Z" fill="#000000"/>
+      <path d="M22.1 18.02c-.34-.17-2-.99-2.31-1.1-.31-.11-.53-.17-.76.17-.22.34-.87 1.1-1.07 1.32-.2.22-.39.25-.73.08-.34-.17-1.44-.53-2.74-1.69-1.01-.9-1.7-2.02-1.9-2.36-.2-.34-.02-.52.15-.69.15-.15.34-.39.5-.59.17-.2.22-.34.34-.56.11-.22.06-.42-.03-.59-.08-.17-.76-1.83-1.04-2.51-.27-.65-.55-.56-.76-.57-.2-.01-.42-.01-.64-.01-.22 0-.59.08-.9.42-.31.34-1.18 1.15-1.18 2.81 0 1.66 1.21 3.26 1.38 3.48.17.22 2.38 3.64 5.77 5.1.81.35 1.44.56 1.93.71.81.26 1.55.22 2.13.13.65-.1 2-.82 2.28-1.6.28-.79.28-1.46.2-1.6-.08-.14-.31-.22-.65-.39Z" fill="#ffffff"/>
+    </svg>
+  </button>
+
+  <sc-if value="{{ waModalOpen }}" hint-placeholder-val="{{ false }}">
+    <div id="cava-wa-modal-backdrop" onClick="{{ closeWaModalBackdrop }}">
+      <div id="cava-wa-modal" onClick="{{ stopProp }}">
+        <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:6px;">
+          <h3 style="font-size:20px; font-weight:600; margin:0; letter-spacing:-0.01em;">Hablemos.</h3>
+          <span onClick="{{ closeWaModal }}" style="cursor:pointer; font-size:20px; line-height:1; color:var(--secondary); padding:2px 6px;">×</span>
+        </div>
+        <p style="font-size:13px; color:var(--secondary); line-height:1.5; margin:0 0 22px;">Contanos un poco de tu proyecto y te escribimos directo por WhatsApp.</p>
+        <form onSubmit="{{ submitWaModal }}">
+          <div class="cava-wa-field">
+            <label>Nombre y apellido</label>
+            <input class="cava-wa-input" type="text" name="nombre" required="{{ true }}" />
+          </div>
+          <div class="cava-wa-field">
+            <label>Nombre de la empresa</label>
+            <input class="cava-wa-input" type="text" name="empresa" required="{{ true }}" />
+          </div>
+          <div class="cava-wa-field">
+            <label>Tamaño del equipo</label>
+            <select class="cava-wa-input" name="equipo" required="{{ true }}">
+              <option value="">Selecciona una opción</option>
+              <option value="0 a 9 personas">0 a 9 personas</option>
+              <option value="10 a 20 personas">10 a 20 personas</option>
+              <option value="más de 20 personas">Más de 20 personas</option>
+              <option value="más de 100 personas">Más de 100 personas</option>
+            </select>
+          </div>
+          <div class="cava-wa-field">
+            <label>Rubro de la empresa</label>
+            <input class="cava-wa-input" type="text" name="rubro" required="{{ true }}" />
+          </div>
+          <div class="cava-wa-field">
+            <label>Presupuesto estimado para el proyecto</label>
+            <select class="cava-wa-input" name="presupuesto" required="{{ true }}">
+              <option value="">Selecciona una opción</option>
+              <option value="$450.000 a $800.000">$450.000 a $800.000</option>
+              <option value="$1.000.000 a $1.500.000">$1.000.000 a $1.500.000</option>
+              <option value="más de $1.500.000">Más de $1.500.000</option>
+              <option value="no tenemos un piso definido">No tenemos un piso definido</option>
+            </select>
+          </div>
+          <button type="submit" style="width:100%; background:var(--text); color:var(--paper); border:none; border-radius:999px; padding:14px; font-size:13px; letter-spacing:0.03em; cursor:pointer; margin-top:8px; transition:opacity 300ms ease;" style-hover="opacity:0.8;">Enviar por WhatsApp →</button>
+        </form>
+      </div>
+    </div>
+  </sc-if>
+
 </div>
 
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
-  state = { visible: { home: true }, openPanels: {}, lightboxOpen: false, lightboxIdx: 0, lightboxImgIdx: 0, mobileMenuOpen: false, theme: (typeof localStorage !== 'undefined' && localStorage.getItem('cava-theme')) || (typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') };
+  state = { visible: { home: true }, openPanels: {}, lightboxOpen: false, lightboxIdx: 0, lightboxImgIdx: 0, mobileMenuOpen: false, waModalOpen: false, theme: (typeof localStorage !== 'undefined' && localStorage.getItem('cava-theme')) || (typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') };
   _portfolioData = [
     { id: 'p-nat100', name: 'Nutz', cat: 'Branding + Packaging', year: '2026', desc: 'Identidad de marca y sistema de packaging para una nueva línea de producto.', img: 'assets/p-nutz-cover.jpg', video: 'assets/p-nutz.mp4', images: ['assets/p-nutz-cover.jpg','assets/p-nutz-2.jpg','assets/p-nutz-3.jpg','assets/p-nutz-4.jpg','assets/p-nutz-5.jpg','assets/p-nutz.jpg'] },
     { id: 'p-awkagin', name: 'Awka Gin', cat: 'Branding + Packaging', year: '2025', desc: 'Identidad de marca y packaging para un gin premium.', img: 'assets/p-awkagin.jpg', video: 'assets/p-awkagin.mp4', images: ['assets/p-awkagin.jpg','assets/p-awkagin-1.jpg','assets/p-awkagin-2.jpg','assets/p-awkagin-3.jpg','assets/p-awkagin-4.jpg','assets/p-awkagin-5.jpg','assets/p-awkagin-6.jpg','assets/p-awkagin-7.jpg'] },
@@ -714,6 +819,33 @@ class Component extends DCLogic {
       openLightbox: (e) => { e.preventDefault(); const idx = Number(e.currentTarget.dataset.idx); this.setState({ lightboxOpen: true, lightboxIdx: idx, lightboxImgIdx: 0 }); },
       closeLightbox: () => this.setState({ lightboxOpen: false }),
       stopProp: (e) => e.stopPropagation(),
+      waModalOpen: this.state.waModalOpen,
+      openWaModal: (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ waModalOpen: true }); },
+      closeWaModal: () => this.setState({ waModalOpen: false }),
+      closeWaModalBackdrop: (e) => { if (e.target === e.currentTarget) this.setState({ waModalOpen: false }); },
+      submitWaModal: (e) => {
+        e.preventDefault();
+        const form = e.target;
+        const data = Object.fromEntries(new FormData(form).entries());
+        const lines = [
+          'Hola CAVA Estudio! Vengo desde la web 👋',
+          '',
+          `Nombre: ${data.nombre}`,
+          `Empresa: ${data.empresa}`,
+          `Tamaño del equipo: ${data.equipo}`,
+          `Rubro: ${data.rubro}`,
+          `Presupuesto estimado: ${data.presupuesto}`
+        ];
+        const msg = encodeURIComponent(lines.join('\n'));
+        const url = `https://wa.me/56954621640?text=${msg}`;
+        this.setState({ waModalOpen: false });
+        try {
+          if (typeof gtag === 'function') {
+            gtag('event', 'conversion', { send_to: 'AW-18175229677/x22tCPOYw-0cEO39z9pD' });
+          }
+        } catch (err) {}
+        window.open(url, '_blank');
+      },
       prevLightbox: (e) => { e.stopPropagation(); this.moveLightbox(-1); },
       nextLightbox: (e) => { e.stopPropagation(); this.moveLightbox(1); },
       lightboxImageId: `${this._lbProj ? this._lbProj.id : ''}-${this.state.lightboxImgIdx}`,
