@@ -1,5 +1,6 @@
 {
   "rewrites": [
-    { "source": "/", "destination": "/CAVA%20Estudio.dc.html" }
+    { "source": "/", "destination": "/CAVA%20Estudio.dc.html" },
+    { "source": "/agro", "destination": "/CAVA%20Agro.dc.html" }
   ]
 }

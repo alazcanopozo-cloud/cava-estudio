@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+<script src="./image-slot.js"></script>
+<script>
+(function(){
+  var DARK_VARS = { '--paper':'#0d0d0d', '--text':'#f2f2f0', '--secondary':'#9a9a9a', '--subtle':'#555555', '--line':'rgba(255,255,255,.12)', '--num':'#4d4d4d', '--nav-bg':'rgba(13,13,13,.85)' };
+  var PROPS = ['--paper','--text','--secondary','--subtle','--line','--num','--nav-bg'];
+  window.__cavaApplyTheme = function(t){
+    var root = document.documentElement;
+    root.setAttribute('data-theme', t);
+    PROPS.forEach(function(p){
+      if (t === 'dark') root.style.setProperty(p, DARK_VARS[p]);
+      else root.style.removeProperty(p);
+    });
+  };
+  try {
+    var t = localStorage.getItem('cava-theme') || ((window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light');
+    window.__cavaApplyTheme(t);
+  } catch (e) {}
+})();
+</script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100'><text x='50' y='78' font-size='80' text-anchor='middle'>🖤</text></svg>">
+<title>CAVA para la industria Agro | Estrategia, Diseño y Soporte Creativo</title>
+<meta name="description" content="Conoce cómo CAVA acompaña a empresas del agro con comunicación técnica, herramientas comerciales, diseño, contenido, audiovisual y soporte creativo continuo.">
+<link rel="canonical" href="https://cava-estudio-web.vercel.app/agro">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="CAVA Estudio">
+<meta property="og:title" content="CAVA para la industria Agro | Estrategia, Diseño y Soporte Creativo">
+<meta property="og:description" content="Conoce cómo CAVA acompaña a empresas del agro con comunicación técnica, herramientas comerciales, diseño, contenido, audiovisual y soporte creativo continuo.">
+<meta property="og:url" content="https://cava-estudio-web.vercel.app/agro">
+<meta property="og:image" content="https://cava-estudio-web.vercel.app/assets/logos/cava-horizontal.png">
+<meta property="og:locale" content="es_CL">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="CAVA para la industria Agro | Estrategia, Diseño y Soporte Creativo">
+<meta name="twitter:description" content="Conoce cómo CAVA acompaña a empresas del agro con comunicación técnica, herramientas comerciales, diseño, contenido, audiovisual y soporte creativo continuo.">
+<meta name="twitter:image" content="https://cava-estudio-web.vercel.app/assets/logos/cava-horizontal.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,700;0,900;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper: #ffffff;
+    --text: #111111;
+    --secondary: #777777;
+    --subtle: #b0b0ab;
+    --line: rgba(0,0,0,.09);
+    --num: #BABABA;
+  }
+  html[data-theme="dark"] {
+    --paper: #0d0d0d;
+    --text: #f2f2f0;
+    --secondary: #9a9a9a;
+    --subtle: #555555;
+    --line: rgba(255,255,255,.12);
+    --num: #4d4d4d;
+    --nav-bg: rgba(13,13,13,.85);
+  }
+  html[data-theme="dark"] .theme-invert { filter: invert(1); }
+  #rol-cava, #video-mix {
+    --paper: #0d0d0d;
+    --text: #f2f2f0;
+    --secondary: #9a9a9a;
+    --subtle: #555555;
+    --line: rgba(255,255,255,.12);
+    --num: #4d4d4d;
+    background: var(--paper);
+    color: var(--text);
+  }
+  html[data-theme="dark"] #rol-cava, html[data-theme="dark"] #video-mix {
+    --paper: #ffffff;
+    --text: #111111;
+    --secondary: #777777;
+    --subtle: #b0b0ab;
+    --line: rgba(0,0,0,.09);
+    --num: #BABABA;
+  }
+  body { margin: 0; background: var(--paper); scroll-behavior: smooth; font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif; }
+  * { box-sizing: border-box; }
+  ::selection { background: rgba(0,0,0,.12); color: var(--text); }
+  .reveal { opacity: 0; transform: translateY(16px); transition: opacity 600ms cubic-bezier(.22,.61,.36,1), transform 600ms cubic-bezier(.22,.61,.36,1); }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+  .reveal > * { opacity: 0; transform: translateY(14px); transition: opacity 550ms cubic-bezier(.22,.61,.36,1), transform 550ms cubic-bezier(.22,.61,.36,1); }
+  .reveal.in > * { opacity: 1; transform: translateY(0); }
+  .reveal.in > *:nth-child(1) { transition-delay: 0ms; }
+  .reveal.in > *:nth-child(2) { transition-delay: 90ms; }
+  .reveal.in > *:nth-child(3) { transition-delay: 180ms; }
+  .reveal.in > *:nth-child(4) { transition-delay: 270ms; }
+  .reveal.in > *:nth-child(n+5) { transition-delay: 360ms; }
+  .stagger-grid > * { opacity: 0; transform: translateY(12px); transition: opacity 500ms cubic-bezier(.22,.61,.36,1), transform 500ms cubic-bezier(.22,.61,.36,1); }
+  .reveal.in .stagger-grid > * { opacity: 1; transform: translateY(0); }
+  .stagger-grid > *:nth-child(1) { transition-delay: 0ms; }
+  .stagger-grid > *:nth-child(2) { transition-delay: 60ms; }
+  .stagger-grid > *:nth-child(3) { transition-delay: 120ms; }
+  .stagger-grid > *:nth-child(4) { transition-delay: 180ms; }
+  .stagger-grid > *:nth-child(5) { transition-delay: 240ms; }
+  .stagger-grid > *:nth-child(n+6) { transition-delay: 300ms; }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal > *, .stagger-grid > * { transition: none !important; opacity: 1 !important; transform: none !important; }
+  }
+  a { color: inherit; }
+  /* image-slot's dashed empty-state ring is a design-tool affordance, not
+     meant for a published case study — suppress it everywhere on this page. */
+  image-slot::part(ring) { display: none !important; }
+  .split-grid { display:grid; }
+  @media (max-width: 760px) {
+    .split-grid { grid-template-columns: minmax(0,1fr) !important; gap: 24px !important; }
+  }
+  .services-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:40px 32px; }
+  @media (max-width: 900px) {
+    .services-grid { grid-template-columns:repeat(2,1fr); }
+  }
+  @media (max-width: 600px) {
+    .services-grid { grid-template-columns:1fr; }
+  }
+  .services-grid ul { list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:10px; }
+  .flow-chain { display:flex; flex-wrap:wrap; align-items:center; gap:10px 14px; }
+  .flow-chain span.step { font-size:11px; letter-spacing:0.05em; color:var(--text); border:1px solid var(--line); border-radius:999px; padding:7px 14px; white-space:nowrap; }
+  .flow-chain span.arrow { color:var(--subtle); font-size:13px; }
+  @media (max-width: 680px) {
+    .nav-links { display: none !important; }
+    .nav-burger { display: flex !important; align-items:center; justify-content:center; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    a { transition: none !important; }
+  }
+</style>
+</helmet>
+
+<div class="theme-root" style="position:relative; background:var(--paper); color:var(--text); overflow-x:hidden;">
+
+  <!-- NAV -->
+  <nav style="position:sticky; top:0; z-index:100; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; padding:clamp(20px,3vw,32px) clamp(24px,5vw,64px); background:var(--nav-bg, rgba(255,255,255,.92)); backdrop-filter:blur(6px); border-bottom:1px solid var(--line);">
+    <a href="/" style="display:block; line-height:0;"><img src="assets/logos/cava-horizontal.png" alt="CAVA Estudio" class="theme-invert" style="display:block; height:44px; width:auto;"></a>
+    <div class="nav-links" style="display:flex; align-items:center; gap:clamp(18px,2.6vw,32px); flex-wrap:wrap; font-size:10px; letter-spacing:0.06em; color:var(--secondary);">
+      <a href="/" style="text-decoration:none;" style-hover="color:var(--text);">INICIO</a>
+      <a href="#chemie" onClick="{{ navToChemie }}" style="text-decoration:none;" style-hover="color:var(--text);">CHEMIE</a>
+      <a href="#soporte-continuo" onClick="{{ navToSoporte }}" style="text-decoration:none;" style-hover="color:var(--text);">SOPORTE</a>
+      <a href="#contacto" onClick="{{ navToContacto }}" style="text-decoration:none;" style-hover="color:var(--text);">CONTACTO</a>
+      <button onClick="{{ toggleTheme }}" aria-label="Cambiar tema" style="display:flex; align-items:center; gap:8px; background:none; border:none; padding:0; margin:0; cursor:pointer; font-size:10px; letter-spacing:0.06em; color:var(--secondary); font-family:inherit;" style-hover="color:var(--text);">
+        <span style="position:relative; width:26px; height:15px; border-radius:999px; border:1px solid var(--line); display:inline-block; flex-shrink:0;">
+          <span style="position:absolute; top:1px; left:{{ themeDotLeft }}; width:11px; height:11px; border-radius:999px; background:var(--text); transition:left 300ms cubic-bezier(.22,.61,.36,1);"></span>
+        </span>
+        {{ themeLabel }}
+      </button>
+    </div>
+    <button class="nav-burger" onClick="{{ toggleMobileMenu }}" aria-label="Abrir menú" style="display:none; background:none; border:none; padding:4px; cursor:pointer; font-size:20px; line-height:1; color:var(--text);">{{ mobileMenuIcon }}</button>
+  </nav>
+  <sc-if value="{{ mobileMenuOpen }}" hint-placeholder-val="{{ false }}">
+    <div class="mobile-menu" style="position:sticky; top:0; z-index:99; display:flex; flex-direction:column; align-items:flex-end; gap:20px; padding:20px clamp(24px,5vw,64px) 28px; background:var(--nav-bg, rgba(255,255,255,.92)); backdrop-filter:blur(6px); border-bottom:1px solid var(--line); font-size:13px; letter-spacing:0.04em; color:var(--secondary);">
+      <a href="/" style="text-decoration:none;" style-hover="color:var(--text);">INICIO</a>
+      <a href="#chemie" onClick="{{ navToChemie }}" style="text-decoration:none;" style-hover="color:var(--text);">CHEMIE</a>
+      <a href="#soporte-continuo" onClick="{{ navToSoporte }}" style="text-decoration:none;" style-hover="color:var(--text);">SOPORTE</a>
+      <a href="#contacto" onClick="{{ navToContacto }}" style="text-decoration:none;" style-hover="color:var(--text);">CONTACTO</a>
+      <button onClick="{{ toggleTheme }}" aria-label="Cambiar tema" style="display:flex; align-items:center; gap:8px; background:none; border:none; padding:0; margin:0; cursor:pointer; font-size:13px; letter-spacing:0.04em; color:var(--secondary); font-family:inherit;" style-hover="color:var(--text);">
+        <span style="position:relative; width:26px; height:15px; border-radius:999px; border:1px solid var(--line); display:inline-block; flex-shrink:0;">
+          <span style="position:absolute; top:1px; left:{{ themeDotLeft }}; width:11px; height:11px; border-radius:999px; background:var(--text); transition:left 300ms cubic-bezier(.22,.61,.36,1);"></span>
+        </span>
+        {{ themeLabel }}
+      </button>
+    </div>
+  </sc-if>
+
+  <!-- 01 HERO -->
+  <section id="hero" data-key="hero" ref="{{ refHero }}" style="padding:clamp(48px,9vw,110px) clamp(24px,5vw,64px) clamp(40px,6vw,64px);">
+    <div class="reveal {{ revealClsHero }}" style="{{ revealHero }}">
+      <div style="font-size:10px; letter-spacing:0.08em; color:var(--secondary); margin-bottom:20px;">CAVA × AGRO</div>
+      <h1 style="font-size:clamp(40px,6vw,88px); line-height:1; letter-spacing:-0.04em; font-weight:400; margin:0 0 clamp(24px,3.5vw,32px); max-width:960px;">Comunicación para una industria que ocurre en terreno.</h1>
+      <div style="display:flex; gap:clamp(32px,6vw,96px); flex-wrap:wrap; align-items:flex-end; justify-content:space-between;">
+        <p style="font-size:15px; line-height:1.5; max-width:480px; color:var(--secondary); margin:0;">Equipo estratégico-creativo externo para empresas del agro con necesidades de comunicación constantes: técnicas, comerciales y audiovisuales.</p>
+        <div style="display:flex; flex-direction:column; gap:10px; align-items:flex-end;">
+          <div style="font-size:10px; letter-spacing:0.04em; color:var(--secondary); text-align:right; max-width:280px;">Estrategia · Diseño · Contenido · Audiovisual · Herramientas comerciales · Soporte continuo</div>
+          <a href="https://wa.me/56954621640?text={{ waMessageAgro }}" target="_blank" style="background:var(--text); color:var(--paper); border-radius:999px; padding:9px 16px; font-size:10px; letter-spacing:0.03em; text-decoration:none; display:inline-block; white-space:nowrap; transition:opacity 400ms cubic-bezier(.22,.61,.36,1);" style-hover="opacity:0.7;">Conversemos →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 01B HERO VISUAL -->
+  <section data-key="heroVideo" ref="{{ refHeroVideo }}" style="border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+    <div class="reveal {{ revealClsHeroVideo }}" style="{{ revealHeroVideo }}">
+      <sc-if value="{{ heroHasVideo }}" hint-placeholder-val="{{ false }}">
+        <video ref="{{ heroVideoRef }}" muted="muted" loop="loop" playsinline="playsinline" autoplay="autoplay" preload="none" style="display:block; width:100%; height:clamp(280px,60vw,100vh); object-fit:cover;"></video>
+      </sc-if>
+      <sc-if value="{{ heroHasImage }}" hint-placeholder-val="{{ true }}">
+        <image-slot id="agro-hero" src="{{ assets.heroImage }}" shape="rect" fit="cover" placeholder="Video mix — campo, terreno, producto, equipo" style="display:block; width:100%; height:clamp(280px,60vw,100vh); background:var(--subtle);"></image-slot>
+      </sc-if>
+    </div>
+  </section>
+
+  <!-- 02 LA TENSIÓN DE LA INDUSTRIA -->
+  <section id="tension" data-key="tension" ref="{{ refTension }}" style="padding:clamp(64px,10vw,120px) clamp(24px,5vw,64px); border-top:1px solid var(--line);">
+    <div class="reveal {{ revealClsTension }}" style="{{ revealTension }}">
+      <div class="split-grid" style="grid-template-columns:minmax(0,3fr) minmax(0,2fr); gap:clamp(32px,5vw,64px); margin-bottom:clamp(48px,7vw,72px);">
+        <div>
+          <div style="font-size:10px; letter-spacing:0.06em; color:var(--secondary); margin-bottom:20px;">LA TENSIÓN DE LA INDUSTRIA</div>
+          <h2 style="font-size:clamp(28px,3.6vw,48px); line-height:1.1; letter-spacing:-0.03em; font-weight:400; margin:0 0 20px; max-width:520px;">En el agro, comunicar bien también requiere entender.</h2>
+          <p style="font-size:14px; line-height:1.6; color:var(--secondary); max-width:480px; margin:0;">El desafío no es producir más comunicación: es lograr que información técnica, marca, herramientas comerciales, contenido y presencia en terreno trabajen bajo una misma dirección.</p>
+        </div>
+        <div>
+          <div style="font-size:10px; letter-spacing:0.06em; color:var(--secondary); margin-bottom:20px;">ÍNDICE</div>
+          <sc-for list="{{ tocItems }}" as="toc" hint-placeholder-count="8">
+            <a href="#" onClick="{{ navToSection }}" data-key="{{ toc.key }}" style="display:flex; align-items:baseline; gap:16px; padding:12px 0; border-top:1px solid var(--line); text-decoration:none; color:inherit; cursor:pointer;" style-hover="color:var(--secondary);">
+              <span style="font-size:12px; color:var(--num);">{{ toc.n }}</span>
+              <span style="font-size:14px; font-weight:400; letter-spacing:-0.005em;">{{ toc.label }}</span>
+            </a>
+          </sc-for>
+        </div>
+      </div>
+      <div class="stagger-grid" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:clamp(32px,4vw,48px) 32px;">
+        <sc-for list="{{ tensions }}" as="tn" hint-placeholder-count="3">
+          <div style="border-top:1px solid var(--line); padding-top:20px;">
+            <div style="font-size:11px; letter-spacing:0.06em; color:var(--secondary); margin-bottom:14px;">{{ tn.label }}</div>
+            <p style="font-size:clamp(17px,1.8vw,21px); line-height:1.35; letter-spacing:-0.01em; font-weight:400; margin:0; max-width:320px;">{{ tn.desc }}</p>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 EL ROL DE CAVA -->
+  <section id="rol-cava" data-key="rolCava" ref="{{ refRolCava }}" style="padding:clamp(64px,10vw,120px) clamp(24px,5vw,64px); border-top:1px solid var(--line);">
+    <div class="reveal {{ revealClsRolCava }}" style="{{ revealRolCava }}">
+      <div style="font-size:10px; letter-spacing:0.06em; color:var(--secondary); margin-bottom:20px;">EL ROL DE CAVA</div>
+      <h2 style="font-size:clamp(28px,3.6vw,48px); line-height:1.1; letter-spacing:-0.03em; font-weight:400; margin:0 0 20px; max-width:640px;">Un equipo externo que acumula contexto.</h2>
+      <p style="font-size:14px; line-height:1.6; color:var(--secondary); max-width:560px; margin:0 0 clamp(48px,7vw,64px);">Trabajar proyecto a proyecto genera fragmentación y pérdida de contexto. Nuestro modelo de soporte continuo integra al equipo, entendiendo productos y prioridades para responder desde una misma dirección.</p>
+      <div class="flow-chain" style="margin-bottom:clamp(32px,5vw,48px);">
+        <span class="step">CLIENTE</span><span class="arrow">→</span>
+        <span class="step">CONTEXTO</span><span class="arrow">→</span>
+        <span class="step">ESTRATEGIA + DISEÑO</span><span class="arrow">→</span>
+        <span class="step">IMPLEMENTACIÓN</span><span class="arrow">→</span>
+        <span class="step">APRENDIZAJE</span>
+      </div>
+      <p style="font-size:clamp(18px,2vw,24px); line-height:1.35; letter-spacing:-0.01em; font-weight:400; max-width:680px; margin:0;">Mientras más conocemos el negocio, menos tiempo se pierde explicándolo en cada encargo.</p>
+    </div>
+  </section>
+
+  <!-- 04 CHEMIE AGRO / INTRO -->
+  <section id="chemie" data-key="chemieIntro" ref="{{ refChemieIntro }}" style="padding:clamp(64px,10vw,120px) clamp(24px,5vw,64px) clamp(40px,6vw,56px); border-top:1px solid var(--line);">
+    <div class="reveal {{ revealClsChemieIntro }}" style="{{ revealChemieIntro }}">
+      <div style="font-size:10px; letter-spacing:0.06em; color:var(--secondary); margin-bottom:20px;">CASO / {{ chemieName }}</div>
+      <h2 style="font-size:clamp(28px,3.6vw,48px); line-height:1.1; letter-spacing:-0.03em; font-weight:400; margin:0 0 24px; max-width:720px;">Más que resolver encargos: construir continuidad.</h2>
+      <p style="font-size:14px; line-height:1.6; color:var(--secondary); max-width:560px; margin:0;">Durante más de un año acompañamos a {{ chemieName }} en necesidades de comunicación técnica, comercial y digital, construyendo contexto sobre la compañía en vez de abordar cada requerimiento como un proyecto independiente.</p>
+    </div>
+  </section>
+
+  <!-- 04B CHEMIE HERO IMAGE -->
+  <section data-key="chemieMedia" ref="{{ refChemieMedia }}" style="border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+    <div class="reveal {{ revealClsChemieMedia }}" style="{{ revealChemieMedia }}">
+      <image-slot id="agro-chemie-hero" src="{{ assets.chemieHero }}" shape="rect" fit="contain" placeholder="Ficha de producto — Sunclear" style="display:block; width:100%; height:clamp(320px,54vw,560px); background:var(--subtle);"></image-slot>
+    </div>
+  </section>
+
+  <!-- 05 MUCHAS NECESIDADES. UN MISMO EQUIPO -->
+  <section data-key="necesidades" ref="{{ refNecesidades }}" style="padding:clamp(64px,10vw,120px) clamp(24px,5vw,64px); border-top:1px solid var(--line);">
+    <div class="reveal {{ revealClsNecesidades }}" style="{{ revealNecesidades }}">
+      <h2 style="font-size:clamp(28px,3.6vw,48px); line-height:1.1; letter-spacing:-0.03em; font-weight:400; margin:0 0 clamp(48px,7vw,72px); max-width:640px;">Muchas necesidades. Un mismo equipo.</h2>
+
+      <div class="stagger-grid" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:clamp(40px,5vw,48px) 32px; margin-bottom:clamp(56px,8vw,80px);">
+        <sc-for list="{{ needs }}" as="nd" hint-placeholder-count="5">
+          <div style="border-top:1px solid var(--line); padding-top:20px;">
+            <div style="font-size:clamp(40px,5vw,64px); line-height:1; font-weight:400; letter-spacing:-0.02em; color:var(--num); margin-bottom:14px;">{{ nd.n }}</div>
+            <div style="font-size:clamp(22px,2.4vw,30px); font-weight:400; letter-spacing:-0.015em; margin-bottom:10px;">{{ nd.title }}</div>
+            <p style="font-size:13px; line-height:1.55; color:var(--secondary); max-width:280px; margin:0;">{{ nd.desc }}</p>
+          </div>
+        </sc-for>
+      </div>
+
+      <div style="border-top:1px solid var(--line); padding-top:clamp(32px,5vw,44px);">
+        <div style="font-size:10px; letter-spacing:0.06em; color:var(--secondary); margin-bottom:20px;">PIEZAS DEL TRABAJO DESARROLLADO</div>
+        <div class="stagger-grid" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:20px;">
+          <image-slot id="agro-explicar-1" src="{{ assets.explicar1 }}" shape="rect" fit="cover" placeholder="Ficha técnica — Brot-Up" style="display:block; width:100%; aspect-ratio:3/4; background:var(--subtle);"></image-slot>
+          <image-slot id="agro-explicar-2" src="{{ assets.explicar2 }}" shape="rect" fit="cover" placeholder="Ficha técnica — BC-1000" style="display:block; width:100%; aspect-ratio:3/4; background:var(--subtle);"></image-slot>
+          <image-slot id="agro-vender-1" src="{{ assets.vender1 }}" shape="rect" fit="cover" placeholder="Folleto — Calciochem 80-20" style="display:block; width:100%; aspect-ratio:1/1; background:var(--subtle);"></image-slot>
+          <image-slot id="agro-diferenciar-1" src="{{ assets.diferenciar1 }}" shape="rect" fit="cover" placeholder="Logo de producto — Rootchem" style="display:block; width:100%; aspect-ratio:4/5; background:var(--subtle);"></image-slot>
+          <image-slot id="agro-presencia-1" src="{{ assets.presencia1 }}" shape="rect" fit="cover" placeholder="Instagram — Aminochem M.O" style="display:block; width:100%; aspect-ratio:1/1; background:var(--subtle);"></image-slot>
+          <image-slot id="agro-presencia-3" src="{{ assets.presencia3 }}" shape="rect" fit="cover" placeholder="Instagram — Calciochem Flow" style="display:block; width:100%; aspect-ratio:1/1; background:var(--subtle);"></image-slot>
+          <image-slot id="agro-vender-2" src="{{ assets.vender2 }}" shape="rect" fit="cover" placeholder="Ficha — Sunclear" style="display:block; width:100%; aspect-ratio:3/4; background:var(--subtle);"></image-slot>
+          <image-slot id="agro-presencia-4" src="{{ assets.presencia4 }}" shape="rect" fit="cover" placeholder="Instagram — Calciochem 80-20" style="display:block; width:100%; aspect-ratio:1/1; background:var(--subtle);"></image-slot>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 18 MICRO CTA -->
+  <section data-key="microCta1" ref="{{ refMicroCta1 }}" style="padding:clamp(40px,6vw,56px) clamp(24px,5vw,64px); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+    <div class="reveal {{ revealClsMicroCta1 }}" style="{{ revealMicroCta1 }}; display:flex; gap:20px; flex-wrap:wrap; align-items:center; justify-content:space-between;">
+      <p style="font-size:clamp(17px,1.8vw,21px); line-height:1.3; letter-spacing:-0.01em; font-weight:400; margin:0;">¿Tienen necesidades similares en su equipo?</p>
+      <a href="https://wa.me/56954621640?text={{ waMessageAgro }}" target="_blank" style="font-size:10px; letter-spacing:0.05em; color:var(--secondary); text-decoration:none; border-bottom:1px solid var(--line); padding-bottom:2px; white-space:nowrap;" style-hover="color:var(--text);">Hablemos de soporte →</a>
+    </div>
+  </section>
+
+  <!-- 12 LO QUE HEMOS APRENDIDO DEL AGRO -->
+  <section data-key="aprendizajes" ref="{{ refAprendizajes }}" style="padding:clamp(64px,10vw,120px) clamp(24px,5vw,64px); border-top:1px solid var(--line);">
+    <div class="reveal {{ revealClsAprendizajes }}" style="{{ revealAprendizajes }}">
+      <div style="font-size:10px; letter-spacing:0.06em; color:var(--secondary); margin-bottom:20px;">LO QUE HEMOS APRENDIDO</div>
+      <h2 style="font-size:clamp(28px,3.6vw,48px); line-height:1.1; letter-spacing:-0.03em; font-weight:400; margin:0 0 clamp(40px,6vw,56px); max-width:640px;">Algunos desafíos se repiten.</h2>
+      <sc-for list="{{ insights }}" as="ins" hint-placeholder-count="4">
+        <div class="split-grid" style="grid-template-columns:minmax(0,1fr) minmax(0,2.4fr); gap:24px; padding:clamp(20px,3vw,28px) 0; border-top:1px solid var(--line);">
+          <div style="font-size:12px; color:var(--num);">{{ ins.n }}</div>
+          <div>
+            <div style="font-size:clamp(17px,1.8vw,21px); font-weight:400; letter-spacing:-0.01em; margin-bottom:8px;">{{ ins.title }}</div>
+            <p style="font-size:13px; line-height:1.55; color:var(--secondary); max-width:520px; margin:0;">{{ ins.desc }}</p>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- 12B MARCAS CHEMIE -->
+  <section data-key="chemieMarcas" ref="{{ refChemieMarcas }}" style="border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+    <div class="reveal {{ revealClsChemieMarcas }}" style="{{ revealChemieMarcas }}">
+      <image-slot id="agro-chemie-logos" src="{{ assets.chemieLogos }}" shape="rect" fit="cover" placeholder="Marcas CHEMIE Agro" style="display:block; width:100%; height:clamp(120px,18vw,220px); background:var(--subtle);"></image-slot>
+    </div>
+  </section>
+
+  <!-- 13 SOPORTE CONTINUO + CÓMO FUNCIONA -->
+  <section id="soporte-continuo" data-key="soporteContinuo" ref="{{ refSoporteContinuo }}" style="padding:clamp(64px,10vw,120px) clamp(24px,5vw,64px) 0; border-top:1px solid var(--line);">
+    <div class="reveal {{ revealClsSoporteContinuo }}" style="{{ revealSoporteContinuo }}">
+      <div style="font-size:10px; letter-spacing:0.06em; color:var(--secondary); margin-bottom:20px;">SOPORTE CONTINUO CAVA</div>
+      <h2 style="font-size:clamp(28px,3.6vw,48px); line-height:1.1; letter-spacing:-0.03em; font-weight:400; margin:0 0 20px; max-width:760px;">Un equipo que ya conoce el contexto cuando aparece el próximo desafío.</h2>
+      <p style="font-size:14px; line-height:1.6; color:var(--secondary); max-width:560px; margin:0 0 clamp(40px,6vw,56px);">Una presentación, una ficha, una feria, una grabación: las necesidades no esperan. Respondemos desde un equipo que ya conoce tu marca, tus productos y tus prioridades.</p>
+      <div class="flow-chain" style="margin-bottom:clamp(32px,5vw,44px);">
+        <span class="step">ENTENDEMOS</span><span class="arrow">→</span>
+        <span class="step">PRIORIZAMOS</span><span class="arrow">→</span>
+        <span class="step">PRODUCIMOS</span><span class="arrow">→</span>
+        <span class="step">ACTIVAMOS</span><span class="arrow">→</span>
+        <span class="step">APRENDEMOS</span>
+      </div>
+      <p style="font-size:clamp(18px,2vw,24px); line-height:1.3; letter-spacing:-0.01em; font-weight:400; max-width:640px; margin:0; border-top:1px solid var(--line); padding-top:clamp(24px,3.5vw,32px);">No se trata de pedir más piezas. Se trata de tener un equipo capaz de responder mejor.</p>
+    </div>
+  </section>
+
+  <!-- 15 QUÉ PUEDE RESOLVER CAVA -->
+  <section data-key="capacidades" ref="{{ refCapacidades }}" style="padding:clamp(56px,8vw,80px) clamp(24px,5vw,64px) 0;">
+    <div class="reveal {{ revealClsCapacidades }}" style="{{ revealCapacidades }}; border-top:1px solid var(--line); padding-top:clamp(40px,6vw,56px);">
+      <div style="font-size:10px; letter-spacing:0.06em; color:var(--secondary); margin-bottom:20px;">QUÉ PUEDE RESOLVER CAVA</div>
+      <h2 style="font-size:clamp(28px,3.6vw,48px); line-height:1.1; letter-spacing:-0.03em; font-weight:400; margin:0 0 20px; max-width:720px;">Una misma dirección para necesidades muy distintas.</h2>
+      <p style="font-size:14px; line-height:1.5; color:var(--secondary); max-width:560px; margin:0 0 clamp(40px,6vw,56px);">No todas las empresas necesitan todo esto. Empezamos por la brecha más relevante para tu negocio.</p>
+      <div class="services-grid">
+        <div>
+          <div style="font-size:11px; letter-spacing:0.06em; color:var(--secondary); margin-bottom:16px;">ESTRATEGIA</div>
+          <ul>
+            <li style="font-size:14px; line-height:1.4;">Ordenamiento de mensajes</li>
+            <li style="font-size:14px; line-height:1.4;">Campañas</li>
+            <li style="font-size:14px; line-height:1.4;">Benchmark</li>
+            <li style="font-size:14px; line-height:1.4;">Soporte estratégico</li>
+          </ul>
+        </div>
+        <div>
+          <div style="font-size:11px; letter-spacing:0.06em; color:var(--secondary); margin-bottom:16px;">HERRAMIENTAS COMERCIALES</div>
+          <ul>
+            <li style="font-size:14px; line-height:1.4;">Fichas técnicas</li>
+            <li style="font-size:14px; line-height:1.4;">Presentaciones y catálogos</li>
+            <li style="font-size:14px; line-height:1.4;">Identidad de productos</li>
+            <li style="font-size:14px; line-height:1.4;">Material para eventos</li>
+          </ul>
+        </div>
+        <div>
+          <div style="font-size:11px; letter-spacing:0.06em; color:var(--secondary); margin-bottom:16px;">CONTENIDO Y AUDIOVISUAL</div>
+          <ul>
+            <li style="font-size:14px; line-height:1.4;">LinkedIn e Instagram</li>
+            <li style="font-size:14px; line-height:1.4;">Fotografía y video de producto</li>
+            <li style="font-size:14px; line-height:1.4;">Registros en campo</li>
+            <li style="font-size:14px; line-height:1.4;">Cobertura de actividades</li>
+          </ul>
+        </div>
+        <div>
+          <div style="font-size:11px; letter-spacing:0.06em; color:var(--secondary); margin-bottom:16px;">DIGITAL</div>
+          <ul>
+            <li style="font-size:14px; line-height:1.4;">Landing pages y sitios web</li>
+            <li style="font-size:14px; line-height:1.4;">Herramientas digitales</li>
+            <li style="font-size:14px; line-height:1.4;">Recursos comerciales online</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 16 MODELO DE COLABORACIÓN -->
+  <section data-key="colaboracion" ref="{{ refColaboracion }}" style="padding:clamp(56px,8vw,80px) clamp(24px,5vw,64px) clamp(64px,10vw,120px);">
+    <div class="reveal {{ revealClsColaboracion }}" style="{{ revealColaboracion }}; border-top:1px solid var(--line); padding-top:clamp(40px,6vw,56px);">
+      <div style="font-size:10px; letter-spacing:0.06em; color:var(--secondary); margin-bottom:20px;">MODELO DE COLABORACIÓN</div>
+      <h2 style="font-size:clamp(28px,3.6vw,48px); line-height:1.1; letter-spacing:-0.03em; font-weight:400; margin:0 0 clamp(40px,6vw,56px); max-width:760px;">Podemos entrar por un proyecto. El valor aparece cuando construimos contexto.</h2>
+      <div class="split-grid" style="grid-template-columns:1fr 1fr; gap:clamp(24px,4vw,40px);">
+        <div style="border-top:1px solid var(--line); padding-top:24px;">
+          <div style="font-size:11px; letter-spacing:0.06em; color:var(--secondary); margin-bottom:14px;">PROYECTO</div>
+          <div style="font-size:clamp(19px,2vw,24px); font-weight:400; letter-spacing:-0.01em; margin-bottom:14px;">Para necesidades específicas.</div>
+          <p style="font-size:13px; line-height:1.6; color:var(--secondary); margin:0;">Campaña · Video · Catálogo · Presentación · Sitio · Sistema de fichas.</p>
+        </div>
+        <div style="border-top:1px solid var(--text); padding-top:24px;">
+          <div style="font-size:11px; letter-spacing:0.06em; color:var(--secondary); margin-bottom:14px;">SOPORTE CONTINUO</div>
+          <div style="font-size:clamp(19px,2vw,24px); font-weight:400; letter-spacing:-0.01em; margin-bottom:14px;">Para empresas con necesidades frecuentes.</div>
+          <p style="font-size:13px; line-height:1.6; color:var(--secondary); margin:0;">Velocidad · Consistencia · Múltiples capacidades · Criterio · Coordinación · Continuidad.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 17 CTA COMERCIAL PRINCIPAL -->
+  <section id="contacto" data-key="contacto" ref="{{ refContacto }}" style="position:relative; overflow:hidden; padding:clamp(56px,8vw,96px) clamp(24px,5vw,64px) clamp(40px,6vw,64px); border-top:1px solid var(--line);">
+    <img src="assets/logos/cava-sintesis.png" alt="" class="theme-invert" style="position:absolute; top:50%; right:clamp(-40px,2vw,40px); transform:translateY(-50%); width:clamp(280px,32vw,440px); height:auto; opacity:0.04; pointer-events:none;">
+    <div class="reveal {{ revealClsContacto }}" style="{{ revealContacto }}; position:relative;">
+      <h2 style="font-size:clamp(32px,4.6vw,64px); line-height:1.05; letter-spacing:-0.035em; font-weight:400; margin:0 0 20px; max-width:820px;">Si tu equipo tiene más necesidades de comunicación que capacidad para resolverlas, conversemos.</h2>
+      <div style="display:flex; gap:clamp(24px,5vw,64px); flex-wrap:wrap; align-items:flex-end; justify-content:space-between;">
+        <p style="font-size:14px; line-height:1.55; max-width:460px; color:var(--secondary); margin:0;">Podemos integrarnos como un equipo estratégico-creativo externo para ayudarte a ordenar prioridades y responder a las necesidades de marca, comercial, contenido y comunicación que aparecen durante el año.</p>
+        <div style="display:flex; flex-direction:column; gap:12px; align-items:flex-end;">
+          <a href="https://wa.me/56954621640?text={{ waMessageAgro }}" target="_blank" style="background:var(--text); color:var(--paper); border-radius:999px; padding:9px 16px; font-size:10px; letter-spacing:0.03em; text-decoration:none; display:inline-block; white-space:nowrap; transition:opacity 400ms cubic-bezier(.22,.61,.36,1);" style-hover="opacity:0.7;">Conversemos →</a>
+          <a href="#soporte-continuo" onClick="{{ navToSoporte }}" style="font-size:10px; letter-spacing:0.04em; color:var(--secondary); text-decoration:none; border-bottom:1px solid var(--line); padding-bottom:2px; white-space:nowrap;" style-hover="color:var(--text);">Conoce cómo funciona el soporte CAVA</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 19 CRÉDITOS -->
+  <section data-key="creditos" ref="{{ refCreditos }}" style="padding:clamp(48px,7vw,72px) clamp(24px,5vw,64px); border-top:1px solid var(--line);">
+    <div class="reveal {{ revealClsCreditos }}" style="{{ revealCreditos }}">
+      <div style="font-size:10px; letter-spacing:0.06em; color:var(--secondary); margin-bottom:clamp(28px,4vw,40px);">CRÉDITOS</div>
+      <div class="split-grid" style="grid-template-columns:1fr 1fr; gap:clamp(32px,5vw,56px);">
+        <div>
+          <div style="font-size:11px; letter-spacing:0.04em; color:var(--secondary); margin-bottom:12px;">{{ chemieName }}</div>
+          <div style="font-size:13px; line-height:1.4; margin-bottom:16px;">Cliente: {{ chemieName }}</div>
+          <p style="font-size:12px; line-height:1.7; color:var(--secondary); margin:0;">Soporte creativo continuo · Diseño · Herramientas comerciales · Fichas técnicas · Identidad de productos · Contenido · Comunicación digital · Audiovisual.</p>
+        </div>
+        <div>
+          <div style="font-size:11px; letter-spacing:0.04em; color:var(--secondary); margin-bottom:12px;">{{ rovensaName }}</div>
+          <div style="font-size:13px; line-height:1.4; margin-bottom:16px;">Cliente: {{ rovensaName }}</div>
+          <p style="font-size:12px; line-height:1.7; color:var(--secondary); margin:0;">Producción audiovisual · Registro en terreno · Edición y desarrollo de contenido.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer style="padding:clamp(24px,4vw,32px) clamp(24px,5vw,64px); border-top:1px solid var(--line); display:flex; flex-wrap:wrap; gap:16px; justify-content:space-between; font-size:10px; letter-spacing:0.04em; color:var(--secondary);">
+    <span>© CAVA Estudio {{ currentYear }}</span>
+    <div style="display:flex; gap:20px; flex-wrap:wrap;">
+      <a href="mailto:contacto@cavaestudio.cl" style="text-decoration:none;" style-hover="color:var(--text);">contacto@cavaestudio.cl</a>
+      <a href="https://www.instagram.com/cava_estudio" target="_blank" style="text-decoration:none;" style-hover="color:var(--text);">Instagram</a>
+      <a href="https://www.linkedin.com/company/cava-estudio/" target="_blank" style="text-decoration:none;" style-hover="color:var(--text);">LinkedIn</a>
+    </div>
+    <span>Pensar / Decir / Hacer.</span>
+  </footer>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { visible: { hero: true }, mobileMenuOpen: false, theme: (typeof localStorage !== 'undefined' && localStorage.getItem('cava-theme')) || (typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') };
+  _els = {};
+
+  // Confirm exact legal names before publishing: "CHEMIE Agro" (not "CHEMI
+  // Agro"), and whether the Rovensa credit should read "Rovensa" or
+  // "Rovensa Next Chile". Both names are defined once here and bound via
+  // {{ }} everywhere they appear, so a correction is a one-line edit.
+  _chemieName = 'CHEMIE Agro';
+  _rovensaName = 'Rovensa Next';
+
+  // Central asset registry: every image/video this case study needs, keyed
+  // by name. All empty until CHEMIE/Rovensa material is delivered — fill in
+  // a value here to swap a placeholder for the real asset everywhere it's used.
+  _assets = {
+    heroVideo: 'assets/agro-hero.mp4',
+    heroImage: 'assets/agro-hero.jpg',
+    chemieHero: 'assets/agro-chemie-sunclear.jpg',
+    chemieLogos: 'assets/agro-chemie-logos.jpg',
+    explicar1: 'assets/agro-explicar-1.jpg', explicar2: 'assets/agro-explicar-2.jpg', explicar3: 'assets/agro-explicar-3.jpg',
+    vender1: 'assets/agro-vender-1.jpg', vender2: 'assets/agro-vender-2.jpg',
+    diferenciar1: 'assets/agro-diferenciar-1.jpg', diferenciar2: '', diferenciar3: '',
+    presencia1: 'assets/agro-presencia-1.jpg', presencia2: 'assets/agro-presencia-2.jpg', presencia3: 'assets/agro-presencia-3.jpg', presencia4: 'assets/agro-presencia-4.jpg',
+  };
+
+  reveal(key) {
+    const v = this.state.visible[key];
+    return v ? 'opacity:1;transform:translateY(0px);' : 'opacity:0;transform:translateY(16px);';
+  }
+
+  revealCls(key) {
+    return this.state.visible[key] ? 'in' : '';
+  }
+
+  mkRef(key) {
+    if (!this['_ref_' + key]) this['_ref_' + key] = (el) => { this._els[key] = el; };
+    return this['_ref_' + key];
+  }
+
+  scrollToKey(key) {
+    const el = this._els[key];
+    if (!el) return;
+    const top = el.getBoundingClientRect().top + window.scrollY - 12;
+    window.scrollTo({ top, behavior: 'smooth' });
+  }
+
+  _observeLazyVideo(el) {
+    if (!this._ioVideo) {
+      this._ioVideo = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          const v = e.target;
+          if (!e.isIntersecting) return;
+          const src = v.dataset.lazySrc;
+          if (src && v.getAttribute('src') !== src) v.src = src;
+          if (v.paused) v.play().catch(() => {});
+        });
+      }, { rootMargin: '200px' });
+    }
+    this._ioVideo.observe(el);
+  }
+
+  componentDidMount() {
+    this._ioReveal = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) this.setState((s) => ({ visible: { ...s.visible, [e.target.dataset.key]: true } }));
+      });
+    }, { threshold: 0.15 });
+    Object.keys(this._els).forEach((k) => { if (this._els[k]) this._ioReveal.observe(this._els[k]); });
+    Object.keys(this._els).forEach((k) => {
+      const el = this._els[k];
+      if (!el) return;
+      const r = el.getBoundingClientRect();
+      if (r.top < window.innerHeight && r.bottom > 0) this.setState((s) => ({ visible: { ...s.visible, [k]: true } }));
+    });
+
+    [0, 300, 1000].forEach((ms) => setTimeout(() => this._fixImageSlotAlt(), ms));
+  }
+
+  _fixImageSlotAlt() {
+    document.querySelectorAll('image-slot[placeholder]').forEach((slot) => {
+      const img = slot.shadowRoot && slot.shadowRoot.querySelector('.frame img');
+      const label = slot.getAttribute('placeholder');
+      if (img && label && img.alt !== label) img.alt = label;
+    });
+  }
+
+  componentWillUnmount() {
+    if (this._ioReveal) this._ioReveal.disconnect();
+    if (this._ioVideo) this._ioVideo.disconnect();
+  }
+
+  renderVals() {
+    const dark = this.state.theme === 'dark';
+    const a = this._assets;
+    return {
+      themeLabel: dark ? 'Claro' : 'Oscuro',
+      themeDotLeft: dark ? '13px' : '1px',
+      toggleTheme: () => this.setState((s) => {
+        const next = s.theme === 'dark' ? 'light' : 'dark';
+        try { localStorage.setItem('cava-theme', next); window.__cavaApplyTheme(next); } catch (e) {}
+        return { theme: next };
+      }),
+      currentYear: new Date().getFullYear(),
+      mobileMenuOpen: this.state.mobileMenuOpen,
+      mobileMenuIcon: this.state.mobileMenuOpen ? '✕' : '☰',
+      toggleMobileMenu: () => this.setState((s) => ({ mobileMenuOpen: !s.mobileMenuOpen })),
+      navToSection: (e) => { e.preventDefault(); const key = e.currentTarget.dataset.key; this.setState({ mobileMenuOpen: false }); this.scrollToKey(key); },
+      navToChemie: (e) => { e.preventDefault(); this.setState({ mobileMenuOpen: false }); this.scrollToKey('chemieIntro'); },
+      navToSoporte: (e) => { e.preventDefault(); this.setState({ mobileMenuOpen: false }); this.scrollToKey('soporteContinuo'); },
+      navToContacto: (e) => { e.preventDefault(); this.setState({ mobileMenuOpen: false }); this.scrollToKey('contacto'); },
+      chemieName: this._chemieName,
+      rovensaName: this._rovensaName,
+      waMessageAgro: encodeURIComponent('Hola CAVA, vi su trabajo en la industria agro y me gustaría conocer cómo funciona su modelo de soporte.'),
+      assets: a,
+      heroHasVideo: !!a.heroVideo,
+      heroHasImage: !a.heroVideo,
+      heroVideoRef: (el) => { if (el && a.heroVideo && el.dataset.lazySrc !== a.heroVideo) { el.dataset.lazySrc = a.heroVideo; this._observeLazyVideo(el); } },
+      revealHero: this.reveal('hero'),
+      revealHeroVideo: this.reveal('heroVideo'),
+      revealTension: this.reveal('tension'),
+      revealRolCava: this.reveal('rolCava'),
+      revealChemieIntro: this.reveal('chemieIntro'),
+      revealChemieMedia: this.reveal('chemieMedia'),
+      revealChemieMarcas: this.reveal('chemieMarcas'),
+      revealNecesidades: this.reveal('necesidades'),
+      revealMicroCta1: this.reveal('microCta1'),
+      revealAprendizajes: this.reveal('aprendizajes'),
+      revealSoporteContinuo: this.reveal('soporteContinuo'),
+      revealCapacidades: this.reveal('capacidades'),
+      revealColaboracion: this.reveal('colaboracion'),
+      revealContacto: this.reveal('contacto'),
+      revealCreditos: this.reveal('creditos'),
+      revealClsHero: this.revealCls('hero'),
+      revealClsHeroVideo: this.revealCls('heroVideo'),
+      revealClsTension: this.revealCls('tension'),
+      revealClsRolCava: this.revealCls('rolCava'),
+      revealClsChemieIntro: this.revealCls('chemieIntro'),
+      revealClsChemieMedia: this.revealCls('chemieMedia'),
+      revealClsChemieMarcas: this.revealCls('chemieMarcas'),
+      revealClsNecesidades: this.revealCls('necesidades'),
+      revealClsMicroCta1: this.revealCls('microCta1'),
+      revealClsAprendizajes: this.revealCls('aprendizajes'),
+      revealClsSoporteContinuo: this.revealCls('soporteContinuo'),
+      revealClsCapacidades: this.revealCls('capacidades'),
+      revealClsColaboracion: this.revealCls('colaboracion'),
+      revealClsContacto: this.revealCls('contacto'),
+      revealClsCreditos: this.revealCls('creditos'),
+      refHero: this.mkRef('hero'),
+      refHeroVideo: this.mkRef('heroVideo'),
+      refTension: this.mkRef('tension'),
+      refRolCava: this.mkRef('rolCava'),
+      refChemieIntro: this.mkRef('chemieIntro'),
+      refChemieMedia: this.mkRef('chemieMedia'),
+      refChemieMarcas: this.mkRef('chemieMarcas'),
+      refNecesidades: this.mkRef('necesidades'),
+      refMicroCta1: this.mkRef('microCta1'),
+      refAprendizajes: this.mkRef('aprendizajes'),
+      refSoporteContinuo: this.mkRef('soporteContinuo'),
+      refCapacidades: this.mkRef('capacidades'),
+      refColaboracion: this.mkRef('colaboracion'),
+      refContacto: this.mkRef('contacto'),
+      refCreditos: this.mkRef('creditos'),
+      tocItems: [
+        { n: '01', label: 'La tensión de la industria', key: 'tension' },
+        { n: '02', label: 'El rol de CAVA', key: 'rolCava' },
+        { n: '03', label: 'Caso CHEMIE Agro', key: 'chemieIntro' },
+        { n: '04', label: 'Muchas necesidades, un mismo equipo', key: 'necesidades' },
+        { n: '05', label: 'Soporte continuo', key: 'soporteContinuo' },
+        { n: '06', label: 'Qué puede resolver CAVA', key: 'capacidades' }
+      ],
+      needs: [
+        { n: '01', title: 'Explicar', desc: 'El diseño no compite con la información técnica: la jerarquiza.' },
+        { n: '02', title: 'Vender', desc: 'Una herramienta comercial debe ayudar a explicar, no solo verse ordenada.' },
+        { n: '03', title: 'Diferenciar', desc: 'Códigos propios por producto, sin perder relación con la compañía.' },
+        { n: '04', title: 'Mantener presencia', desc: 'Un mismo mensaje adaptado a cada audiencia y canal.' },
+        { n: '05', title: 'Mostrar', desc: 'Audiovisual para acercar producto, expertise y terreno.' }
+      ],
+      tensions: [
+        { label: 'TÉCNICO', desc: 'La información debe ser precisa y entendible.' },
+        { label: 'COMERCIAL', desc: 'El equipo necesita herramientas capaces de explicar y vender.' },
+        { label: 'MARCA', desc: 'Cada interacción debe seguir construyendo reconocimiento y coherencia.' }
+      ],
+      insights: [
+        { n: '01', title: 'Lo técnico necesita jerarquía.', desc: 'Más información no necesariamente significa mayor claridad.' },
+        { n: '02', title: 'El campo genera contenido difícil de reemplazar.', desc: 'Especialistas, cultivos y pruebas entregan credibilidad que una pieza puramente gráfica no puede simular.' },
+        { n: '03', title: 'Las necesidades cambian con la temporada.', desc: 'Productos, cultivos, eventos y prioridades comerciales generan requerimientos durante todo el año.' },
+        { n: '04', title: 'La continuidad mejora la respuesta.', desc: 'Con contexto acumulado, el equipo creativo toma mejores decisiones con más autonomía y coherencia.' }
+      ]
+    };
+  }
+}
+
+</script>
+</body>
+</html>
