@@ -1,6 +1,7 @@
 {
   "rewrites": [
     { "source": "/", "destination": "/CAVA%20Estudio.dc.html" },
-    { "source": "/agro", "destination": "/CAVA%20Agro.dc.html" }
+    { "source": "/agro", "destination": "/CAVA%20Agro.dc.html" },
+    { "source": "/orgullo-cruzado", "destination": "/CAVA%20Orgullo%20Cruzado.dc.html" }
   ]
 }
