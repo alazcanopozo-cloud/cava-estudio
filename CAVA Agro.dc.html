@@ -243,18 +243,14 @@
   </section>
 
   <!-- 04 CHEMIE AGRO / INTRO -->
-  <section id="chemie" data-key="chemieIntro" ref="{{ refChemieIntro }}" style="padding:clamp(64px,10vw,120px) clamp(24px,5vw,64px) clamp(40px,6vw,56px); border-top:1px solid var(--line);">
-    <div class="reveal {{ revealClsChemieIntro }}" style="{{ revealChemieIntro }}">
-      <div style="font-size:10px; letter-spacing:0.06em; color:var(--secondary); margin-bottom:20px;">CASO / {{ chemieName }}</div>
-      <h2 style="font-size:clamp(28px,3.6vw,48px); line-height:1.1; letter-spacing:-0.03em; font-weight:400; margin:0 0 24px; max-width:720px;">Más que resolver encargos: construir continuidad.</h2>
-      <p style="font-size:14px; line-height:1.6; color:var(--secondary); max-width:560px; margin:0;">Durante más de un año acompañamos a {{ chemieName }} en necesidades de comunicación técnica, comercial y digital, construyendo contexto sobre la compañía en vez de abordar cada requerimiento como un proyecto independiente.</p>
-    </div>
-  </section>
-
-  <!-- 04B CHEMIE HERO IMAGE -->
-  <section data-key="chemieMedia" ref="{{ refChemieMedia }}" style="border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
-    <div class="reveal {{ revealClsChemieMedia }}" style="{{ revealChemieMedia }}">
-      <image-slot id="agro-chemie-hero" src="{{ assets.chemieHero }}" shape="rect" fit="contain" placeholder="Ficha de producto — Sunclear" style="display:block; width:100%; height:clamp(320px,54vw,560px); background:var(--subtle);"></image-slot>
+  <section id="chemie" data-key="chemieIntro" ref="{{ refChemieIntro }}" style="padding:clamp(64px,10vw,120px) clamp(24px,5vw,64px); border-top:1px solid var(--line);">
+    <div class="reveal split-grid {{ revealClsChemieIntro }}" style="{{ revealChemieIntro }}; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:clamp(32px,5vw,64px); align-items:center;">
+      <div>
+        <div style="font-size:10px; letter-spacing:0.06em; color:var(--secondary); margin-bottom:20px;">CASO / {{ chemieName }}</div>
+        <h2 style="font-size:clamp(28px,3.6vw,48px); line-height:1.1; letter-spacing:-0.03em; font-weight:400; margin:0 0 24px; max-width:520px;">Más que resolver encargos: construir continuidad.</h2>
+        <p style="font-size:14px; line-height:1.6; color:var(--secondary); max-width:480px; margin:0;">Durante más de un año acompañamos a {{ chemieName }} en necesidades de comunicación técnica, comercial y digital, construyendo contexto sobre la compañía en vez de abordar cada requerimiento como un proyecto independiente.</p>
+      </div>
+      <image-slot id="agro-chemie-hero" src="{{ assets.chemieHero }}" shape="rect" fit="contain" placeholder="Ficha de producto — Sunclear" style="display:block; width:100%; aspect-ratio:6/5; background:var(--subtle);"></image-slot>
     </div>
   </section>
 
@@ -574,7 +570,6 @@ class Component extends DCLogic {
       revealTension: this.reveal('tension'),
       revealRolCava: this.reveal('rolCava'),
       revealChemieIntro: this.reveal('chemieIntro'),
-      revealChemieMedia: this.reveal('chemieMedia'),
       revealChemieMarcas: this.reveal('chemieMarcas'),
       revealNecesidades: this.reveal('necesidades'),
       revealMicroCta1: this.reveal('microCta1'),
@@ -589,7 +584,6 @@ class Component extends DCLogic {
       revealClsTension: this.revealCls('tension'),
       revealClsRolCava: this.revealCls('rolCava'),
       revealClsChemieIntro: this.revealCls('chemieIntro'),
-      revealClsChemieMedia: this.revealCls('chemieMedia'),
       revealClsChemieMarcas: this.revealCls('chemieMarcas'),
       revealClsNecesidades: this.revealCls('necesidades'),
       revealClsMicroCta1: this.revealCls('microCta1'),
@@ -604,7 +598,6 @@ class Component extends DCLogic {
       refTension: this.mkRef('tension'),
       refRolCava: this.mkRef('rolCava'),
       refChemieIntro: this.mkRef('chemieIntro'),
-      refChemieMedia: this.mkRef('chemieMedia'),
       refChemieMarcas: this.mkRef('chemieMarcas'),
       refNecesidades: this.mkRef('necesidades'),
       refMicroCta1: this.mkRef('microCta1'),
