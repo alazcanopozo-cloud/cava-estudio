@@ -113,9 +113,22 @@
     from { transform:translateX(0); }
     to { transform:translateX(-50%); }
   }
+  /* .wm-word reserves its Black-weight (widest) natural width via a hidden
+     ::before ghost stacked in the same grid cell, so the visible text's own
+     width swings (Regular↔Bold↔Black↔Italic) never change the box size. */
+  .wm-word { display:inline-grid; vertical-align:baseline; }
+  .wm-word::before { content:attr(data-text); grid-area:1/1; font-weight:900; font-style:normal; white-space:nowrap; visibility:hidden; }
+  .wm-word-inner { grid-area:1/1; display:inline-block; white-space:nowrap; font-weight:900; font-style:normal; animation-name:wordmark-flux; animation-duration:1.7s; animation-iteration-count:infinite; animation-timing-function:steps(1,end); }
+  @keyframes wordmark-flux {
+    0%, 100% { font-weight:900; font-style:normal; }
+    25% { font-weight:700; font-style:normal; }
+    50% { font-weight:400; font-style:normal; }
+    75% { font-weight:400; font-style:italic; }
+  }
   @media (prefers-reduced-motion: reduce) {
     .reveal:not(.logo-strip) > *, .stagger-grid > * { transition: none !important; opacity: 1 !important; transform: none !important; }
     .logo-strip-track { animation: none !important; }
+    .wm-word-inner { animation: none !important; }
   }
   a { color: inherit; }
   .coleccion-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:clamp(28px,4vw,36px) 24px; }
@@ -195,7 +208,7 @@
     <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(8,8,8,.32) 0%, rgba(8,8,8,.48) 50%, rgba(8,8,8,.6) 100%); z-index:1;"></div>
     <div class="reveal {{ revealClsHero }}" style="{{ revealHero }}; position:relative; z-index:2; width:100%; padding:clamp(24px,5vw,64px) clamp(24px,5vw,64px) clamp(40px,7vw,72px);">
       <div style="font-size:10px; letter-spacing:0.08em; color:rgba(255,255,255,.72); margin-bottom:20px;">CAVA CASE STUDY / VALLE SECRETO</div>
-      <h1 style="font-size:clamp(52px,8vw,132px); line-height:0.92; letter-spacing:-0.045em; font-weight:400; margin:0 0 clamp(24px,3.5vw,36px); color:#fff;">Orgullo Cruzado</h1>
+      <h1 style="font-size:clamp(52px,8vw,132px); line-height:0.92; letter-spacing:-0.045em; font-weight:400; margin:0 0 clamp(24px,3.5vw,36px); color:#fff;">Orgullo <span class="wm-word" data-text="Cruzado"><span class="wm-word-inner">Cruzado</span></span></h1>
       <div style="display:flex; gap:clamp(32px,6vw,96px); flex-wrap:wrap; align-items:flex-end; justify-content:space-between;">
         <p style="font-size:15px; line-height:1.5; max-width:440px; color:rgba(255,255,255,.82); margin:0;">Una colección de vinos creada para transformar la historia de Universidad Católica en una experiencia de marca, producto y celebración.</p>
         <div style="display:flex; flex-direction:column; gap:6px; font-size:10px; letter-spacing:0.04em; color:rgba(255,255,255,.72); text-align:right; margin-left:auto;">

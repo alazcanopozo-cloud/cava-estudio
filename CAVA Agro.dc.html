@@ -130,6 +130,19 @@
   }
   @media (prefers-reduced-motion: reduce) {
     a { transition: none !important; }
+    .wm-word-inner { animation: none !important; }
+  }
+  /* .wm-word reserves its Black-weight (widest) natural width via a hidden
+     ::before ghost stacked in the same grid cell, so the visible text's own
+     width swings (Regular↔Bold↔Black↔Italic) never change the box size. */
+  .wm-word { display:inline-grid; vertical-align:baseline; }
+  .wm-word::before { content:attr(data-text); grid-area:1/1; font-weight:900; font-style:normal; white-space:nowrap; visibility:hidden; }
+  .wm-word-inner { grid-area:1/1; display:inline-block; white-space:nowrap; font-weight:900; font-style:normal; animation-name:wordmark-flux; animation-duration:1.7s; animation-iteration-count:infinite; animation-timing-function:steps(1,end); }
+  @keyframes wordmark-flux {
+    0%, 100% { font-weight:900; font-style:normal; }
+    25% { font-weight:700; font-style:normal; }
+    50% { font-weight:400; font-style:normal; }
+    75% { font-weight:400; font-style:italic; }
   }
 </style>
 </helmet>
@@ -172,7 +185,7 @@
   <section id="hero" data-key="hero" ref="{{ refHero }}" style="padding:clamp(48px,9vw,110px) clamp(24px,5vw,64px) clamp(40px,6vw,64px);">
     <div class="reveal {{ revealClsHero }}" style="{{ revealHero }}">
       <div style="font-size:10px; letter-spacing:0.08em; color:var(--secondary); margin-bottom:20px;">CAVA × AGRO</div>
-      <h1 style="font-size:clamp(40px,6vw,88px); line-height:1; letter-spacing:-0.04em; font-weight:400; margin:0 0 clamp(24px,3.5vw,32px); max-width:960px;">Comunicación para una industria que ocurre en terreno.</h1>
+      <h1 style="font-size:clamp(40px,6vw,88px); line-height:1; letter-spacing:-0.04em; font-weight:400; margin:0 0 clamp(24px,3.5vw,32px); max-width:960px;"><span class="wm-word" data-text="Comunicación"><span class="wm-word-inner">Comunicación</span></span> para una industria que ocurre en terreno.</h1>
       <div style="display:flex; gap:clamp(32px,6vw,96px); flex-wrap:wrap; align-items:flex-end; justify-content:space-between;">
         <p style="font-size:15px; line-height:1.5; max-width:480px; color:var(--secondary); margin:0;">Equipo estratégico-creativo externo para empresas del agro con necesidades de comunicación constantes: técnicas, comerciales y audiovisuales.</p>
         <div style="display:flex; flex-direction:column; gap:10px; align-items:flex-end;">
