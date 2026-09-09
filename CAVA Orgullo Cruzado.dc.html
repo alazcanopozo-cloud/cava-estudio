@@ -118,6 +118,10 @@
     .logo-strip-track { animation: none !important; }
   }
   a { color: inherit; }
+  .coleccion-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:clamp(28px,4vw,36px) 24px; }
+  @media (max-width: 480px) {
+    .coleccion-grid { grid-template-columns:1fr; }
+  }
   /* image-slot's dashed empty-state ring is a design-tool affordance, not
      meant for a published case study — suppress it everywhere on this page. */
   image-slot::part(ring) { display: none !important; }
@@ -281,24 +285,28 @@
 
   <!-- 06 CUATRO VINOS -->
   <section id="coleccion" data-key="coleccion" ref="{{ refColeccion }}" style="padding:clamp(56px,9vw,104px) clamp(24px,5vw,64px); border-top:1px solid var(--line);">
-    <div class="reveal {{ revealClsColeccion }}" style="{{ revealColeccion }}">
-      <div style="font-size:10px; letter-spacing:0.06em; color:var(--secondary); margin-bottom:20px;">LA SOLUCIÓN: LA COLECCIÓN</div>
-      <h2 style="font-size:clamp(30px,4vw,56px); line-height:1; letter-spacing:-0.03em; font-weight:400; margin:0 0 clamp(40px,6vw,64px); max-width:640px;">Una colección construida en cuatro capítulos.</h2>
-      <div class="stagger-grid" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:clamp(32px,4vw,40px) 28px;">
-        <sc-for list="{{ collection }}" as="w" hint-placeholder-count="4">
-          <div>
-            <sc-if value="{{ w.hasVideo }}" hint-placeholder-val="{{ false }}">
-              <video ref="{{ w.videoRef }}" muted="muted" loop="loop" playsinline="playsinline" preload="none" style="display:block; width:100%; aspect-ratio:3/4; object-fit:cover; background:var(--subtle); margin-bottom:16px;"></video>
-            </sc-if>
-            <sc-if value="{{ w.hasImage }}" hint-placeholder-val="{{ true }}">
-              <image-slot id="{{ w.id }}" src="{{ w.img }}" shape="rect" fit="cover" placeholder="{{ w.title }}" style="display:block; width:100%; aspect-ratio:3/4; background:var(--subtle); margin-bottom:16px;"></image-slot>
-            </sc-if>
-            <div style="font-size:clamp(26px,2.8vw,36px); font-weight:400; letter-spacing:-0.02em; color:var(--text); margin-bottom:6px;">{{ w.year }}</div>
-            <div style="font-size:16px; font-weight:500; margin-bottom:2px;">{{ w.title }}</div>
-            <div style="font-size:11px; letter-spacing:0.03em; color:var(--secondary); margin-bottom:10px;">{{ w.varietal }}</div>
-            <div style="font-size:13px; line-height:1.55; color:var(--secondary);">{{ w.concept }}</div>
-          </div>
-        </sc-for>
+    <div class="reveal split-grid {{ revealClsColeccion }}" style="{{ revealColeccion }}; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:clamp(32px,5vw,64px);">
+      <div>
+        <div style="font-size:10px; letter-spacing:0.06em; color:var(--secondary); margin-bottom:20px;">LA SOLUCIÓN: LA COLECCIÓN</div>
+        <h2 style="font-size:clamp(30px,4vw,56px); line-height:1; letter-spacing:-0.03em; font-weight:400; margin:0 0 clamp(40px,6vw,64px); max-width:640px;">Una colección construida en cuatro capítulos.</h2>
+        <div class="coleccion-grid">
+          <sc-for list="{{ collection }}" as="w" hint-placeholder-count="4">
+            <div>
+              <div style="font-size:clamp(22px,2.4vw,30px); font-weight:400; letter-spacing:-0.02em; color:var(--text); margin-bottom:6px;">{{ w.year }}</div>
+              <div style="font-size:15px; font-weight:500; margin-bottom:2px;">{{ w.title }}</div>
+              <div style="font-size:11px; letter-spacing:0.03em; color:var(--secondary); margin-bottom:10px;">{{ w.varietal }}</div>
+              <div style="font-size:13px; line-height:1.55; color:var(--secondary);">{{ w.concept }}</div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+      <div>
+        <sc-if value="{{ coleccionHeroHasVideo }}" hint-placeholder-val="{{ false }}">
+          <video ref="{{ coleccionHeroVideoRef }}" muted="muted" loop="loop" playsinline="playsinline" preload="none" style="display:block; width:100%; height:100%; min-height:420px; aspect-ratio:3/4; object-fit:cover; background:var(--subtle);"></video>
+        </sc-if>
+        <sc-if value="{{ coleccionHeroHasImage }}" hint-placeholder-val="{{ true }}">
+          <image-slot id="oc-wine-2021-hero" src="{{ assets.wine2021 }}" shape="rect" fit="cover" placeholder="Histórico — Carménère 2024" style="display:block; width:100%; height:100%; min-height:420px; aspect-ratio:3/4; background:var(--subtle);"></image-slot>
+        </sc-if>
       </div>
     </div>
   </section>
@@ -441,7 +449,8 @@ class Component extends DCLogic {
     bottle2018Video: 'assets/oc-bottle-2018.mp4',
     bottle2019Video: 'assets/oc-bottle-2019.mp4',
     bottle2020Video: 'assets/oc-bottle-2020.mp4',
-    bottle2021Video: 'assets/oc-bottle-2021.mp4'
+    bottle2021Video: 'assets/oc-bottle-2021.mp4',
+    wine2021: 'assets/oc-wine-2021.png'
   };
 
   reveal(key) {
@@ -534,6 +543,9 @@ class Component extends DCLogic {
       heroHasVideo: !!a.heroVideo,
       heroHasImage: !a.heroVideo,
       heroVideoRef: (el) => { if (el && a.heroVideo && el.dataset.lazySrc !== a.heroVideo) { el.dataset.lazySrc = a.heroVideo; this._observeLazyVideo(el); } },
+      coleccionHeroHasVideo: !!a.bottle2021Video,
+      coleccionHeroHasImage: !a.bottle2021Video,
+      coleccionHeroVideoRef: (el) => { if (el && a.bottle2021Video && el.dataset.lazySrc !== a.bottle2021Video) { el.dataset.lazySrc = a.bottle2021Video; this._observeLazyVideo(el); } },
       revealHero: this.reveal('hero'),
       revealLogoStrip: this.reveal('logo-strip'),
       revealFrase: this.reveal('frase'),
@@ -603,16 +615,11 @@ class Component extends DCLogic {
         { id: 'oc-year-2021', year: '2021', label: 'Histórico', img: 'assets/oc-wine-2021.png' }
       ],
       collection: [
-        { id: 'oc-wine-2018', year: '2018', title: 'El Inicio', varietal: 'Syrah 2024', concept: 'Este vino, de variedad Syrah, evoca el enorme esfuerzo que implica dar el primer paso hacia una gran hazaña. Poco de sensaciones superficiales; mucho de concentración, carácter y profundidad. Una fuerza que solo se descubre cuando la epopeya ha sido alcanzada.', img: 'assets/oc-wine-2018.png', video: a.bottle2018Video },
-        { id: 'oc-wine-2019', year: '2019', title: 'Superioridad', varietal: 'Cabernet Sauvignon 2024', concept: 'Este vino, de variedad Cabernet Sauvignon, evoca la excelencia que alcanzan quienes dominan su tiempo. La perfecta combinación de carácter, precisión y convicción que permite construir una obra capaz de elevarse por sobre el resto.', img: 'assets/oc-wine-2019.png', video: a.bottle2019Video },
-        { id: 'oc-wine-2020', year: '2020', title: 'Consagración', varietal: 'Cabernet Sauvignon / Syrah 2024', concept: 'Este vino, ensamblaje de Cabernet Sauvignon y Syrah, evoca la fuerza que nace de la unión frente a la adversidad. El equilibrio entre juventud y experiencia, ímpetu y pausa, cantera y refuerzos, dio forma a un equipo capaz de superar cada obstáculo y conquistar el primer tricampeonato de nuestra historia.', img: 'assets/oc-wine-2020.png', video: a.bottle2020Video },
-        { id: 'oc-wine-2021', year: '2021', title: 'Histórico', varietal: 'Carménère 2024', concept: 'Este vino, de variedad Carménère, evoca la emoción de alcanzar lo imposible. La intensidad de una hazaña única, donde la perseverancia, el carácter y la convicción se transforman en legado.', img: 'assets/oc-wine-2021.png', video: a.bottle2021Video }
-      ].map((w) => ({
-        ...w,
-        hasVideo: !!w.video,
-        hasImage: !w.video,
-        videoRef: w.video ? (el) => { if (el && el.dataset.lazySrc !== w.video) { el.dataset.lazySrc = w.video; this._observeLazyVideo(el); } } : undefined,
-      })),
+        { year: '2018', title: 'El Inicio', varietal: 'Syrah 2024', concept: 'Este vino, de variedad Syrah, evoca el enorme esfuerzo que implica dar el primer paso hacia una gran hazaña. Poco de sensaciones superficiales; mucho de concentración, carácter y profundidad. Una fuerza que solo se descubre cuando la epopeya ha sido alcanzada.' },
+        { year: '2019', title: 'Superioridad', varietal: 'Cabernet Sauvignon 2024', concept: 'Este vino, de variedad Cabernet Sauvignon, evoca la excelencia que alcanzan quienes dominan su tiempo. La perfecta combinación de carácter, precisión y convicción que permite construir una obra capaz de elevarse por sobre el resto.' },
+        { year: '2020', title: 'Consagración', varietal: 'Cabernet Sauvignon / Syrah 2024', concept: 'Este vino, ensamblaje de Cabernet Sauvignon y Syrah, evoca la fuerza que nace de la unión frente a la adversidad. El equilibrio entre juventud y experiencia, ímpetu y pausa, cantera y refuerzos, dio forma a un equipo capaz de superar cada obstáculo y conquistar el primer tricampeonato de nuestra historia.' },
+        { year: '2021', title: 'Histórico', varietal: 'Carménère 2024', concept: 'Este vino, de variedad Carménère, evoca la emoción de alcanzar lo imposible. La intensidad de una hazaña única, donde la perseverancia, el carácter y la convicción se transforman en legado.' }
+      ],
       packagingDetails: [
         { id: 'oc-pk-1', label: 'Colección completa', img: 'assets/oc-packaging-full.png' },
         { id: 'oc-pk-2', label: 'Detalle de impresión en caja', img: '' },
