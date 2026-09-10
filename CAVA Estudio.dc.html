@@ -224,11 +224,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     .wm-cava, .wm-estudio, .wm-word-inner { animation: none !important; }
   }
   /* image-slot's empty-state dashed ring is a design-tool affordance (drag a
-     photo to fill it) — irrelevant on the published site, where every team
-     slot always ships with a real src. It hides itself once filled, but a
-     brief pre-fill window can flash it on a slow load; suppress it outright
-     via the component's exposed ::part so it never appears here. */
-  #equipo image-slot::part(ring) { display: none !important; }
+     photo to fill it) — irrelevant on the published site, where every slot
+     always ships with a real src. It hides itself once filled, but a brief
+     pre-fill window can flash it on a slow load; suppress it outright via
+     the component's exposed ::part so it never appears anywhere on the page. */
+  image-slot::part(ring) { display: none !important; }
   @media (max-width: 680px) {
     .nav-links { display: none !important; }
     .nav-burger { display: flex !important; align-items:center; justify-content:center; }
