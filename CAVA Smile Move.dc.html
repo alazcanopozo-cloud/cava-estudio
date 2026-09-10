@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+<script src="./image-slot.js"></script>
+<script>
+(function(){
+  var DARK_VARS = { '--paper':'#0d0d0d', '--text':'#f2f2f0', '--secondary':'#9a9a9a', '--subtle':'#555555', '--line':'rgba(255,255,255,.12)', '--num':'#4d4d4d', '--nav-bg':'rgba(13,13,13,.85)' };
+  var PROPS = ['--paper','--text','--secondary','--subtle','--line','--num','--nav-bg'];
+  window.__cavaApplyTheme = function(t){
+    var root = document.documentElement;
+    root.setAttribute('data-theme', t);
+    PROPS.forEach(function(p){
+      if (t === 'dark') root.style.setProperty(p, DARK_VARS[p]);
+      else root.style.removeProperty(p);
+    });
+  };
+  try {
+    var t = localStorage.getItem('cava-theme') || ((window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light');
+    window.__cavaApplyTheme(t);
+  } catch (e) {}
+})();
+</script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100'><text x='50' y='78' font-size='80' text-anchor='middle'>🖤</text></svg>">
+<title>Smile & Move — Rebranding y Branding Espacial | CAVA Estudio</title>
+<meta name="description" content="Caso de estudio Smile & Move. Rebranding, identidad visual y lineamientos de aplicación espacial desarrollados por CAVA Estudio para una clínica dental.">
+<link rel="canonical" href="https://cava-estudio-web.vercel.app/smileandmove">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="CAVA Estudio">
+<meta property="og:title" content="Smile & Move — Rebranding y Branding Espacial | CAVA Estudio">
+<meta property="og:description" content="Caso de estudio Smile & Move. Rebranding, identidad visual y lineamientos de aplicación espacial desarrollados por CAVA Estudio para una clínica dental.">
+<meta property="og:url" content="https://cava-estudio-web.vercel.app/smileandmove">
+<meta property="og:image" content="https://cava-estudio-web.vercel.app/assets/logos/cava-horizontal.png">
+<meta property="og:locale" content="es_CL">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Smile & Move — Rebranding y Branding Espacial | CAVA Estudio">
+<meta name="twitter:description" content="Caso de estudio Smile & Move. Rebranding, identidad visual y lineamientos de aplicación espacial desarrollados por CAVA Estudio para una clínica dental.">
+<meta name="twitter:image" content="https://cava-estudio-web.vercel.app/assets/logos/cava-horizontal.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,700;0,900;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper: #ffffff;
+    --text: #111111;
+    --secondary: #777777;
+    --subtle: #b0b0ab;
+    --line: rgba(0,0,0,.09);
+    --num: #BABABA;
+  }
+  html[data-theme="dark"] {
+    --paper: #0d0d0d;
+    --text: #f2f2f0;
+    --secondary: #9a9a9a;
+    --subtle: #555555;
+    --line: rgba(255,255,255,.12);
+    --num: #4d4d4d;
+    --nav-bg: rgba(13,13,13,.85);
+  }
+  html[data-theme="dark"] .theme-invert { filter: invert(1); }
+  body { margin: 0; background: var(--paper); scroll-behavior: smooth; font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif; }
+  * { box-sizing: border-box; }
+  ::selection { background: rgba(0,0,0,.12); color: var(--text); }
+  .reveal { opacity: 0; transform: translateY(16px); transition: opacity 600ms cubic-bezier(.22,.61,.36,1), transform 600ms cubic-bezier(.22,.61,.36,1); }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+  .reveal > * { opacity: 0; transform: translateY(14px); transition: opacity 550ms cubic-bezier(.22,.61,.36,1), transform 550ms cubic-bezier(.22,.61,.36,1); }
+  .reveal.in > * { opacity: 1; transform: translateY(0); }
+  .reveal.in > *:nth-child(1) { transition-delay: 0ms; }
+  .reveal.in > *:nth-child(2) { transition-delay: 90ms; }
+  .reveal.in > *:nth-child(3) { transition-delay: 180ms; }
+  .reveal.in > *:nth-child(4) { transition-delay: 270ms; }
+  .reveal.in > *:nth-child(n+5) { transition-delay: 360ms; }
+  .stagger-grid > * { opacity: 0; transform: translateY(12px); transition: opacity 500ms cubic-bezier(.22,.61,.36,1), transform 500ms cubic-bezier(.22,.61,.36,1); }
+  .reveal.in .stagger-grid > * { opacity: 1; transform: translateY(0); }
+  .stagger-grid > *:nth-child(1) { transition-delay: 0ms; }
+  .stagger-grid > *:nth-child(2) { transition-delay: 60ms; }
+  .stagger-grid > *:nth-child(3) { transition-delay: 120ms; }
+  .stagger-grid > *:nth-child(4) { transition-delay: 180ms; }
+  .stagger-grid > *:nth-child(5) { transition-delay: 240ms; }
+  .stagger-grid > *:nth-child(n+6) { transition-delay: 300ms; }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal > *, .stagger-grid > * { transition: none !important; opacity: 1 !important; transform: none !important; }
+  }
+  a { color: inherit; }
+  /* image-slot's dashed empty-state ring is a design-tool affordance, not
+     meant for a published case study — suppress it everywhere on this page. */
+  image-slot::part(ring) { display: none !important; }
+  .split-grid { display:grid; }
+  @media (max-width: 760px) {
+    .split-grid { grid-template-columns: minmax(0,1fr) !important; gap: 24px !important; }
+  }
+  .flow-chain { display:flex; flex-wrap:wrap; align-items:center; gap:10px 14px; }
+  .flow-chain span.step { font-size:11px; letter-spacing:0.05em; color:var(--text); border:1px solid var(--line); border-radius:999px; padding:7px 14px; white-space:nowrap; }
+  .flow-chain span.arrow { color:var(--subtle); font-size:13px; }
+  .before-after { display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--line); }
+  @media (max-width: 680px) {
+    .before-after { grid-template-columns:1fr; }
+  }
+  .before-after figure { margin:0; background:var(--paper); padding:clamp(16px,2.4vw,24px); }
+  .before-after figcaption { font-size:10px; letter-spacing:0.06em; color:var(--secondary); margin-bottom:14px; }
+  /* Índice: a native <details> disclosure doubles as the mobile toggle (tap
+     "ÍNDICE" to expand/collapse) with zero extra JS; on desktop it's forced
+     open and pinned via position:sticky, and the chevron/toggle affordance
+     is hidden since there's nothing to collapse. */
+  .index-disclosure summary { list-style:none; cursor:pointer; display:flex; align-items:center; justify-content:space-between; gap:8px; font-size:10px; letter-spacing:0.06em; color:var(--secondary); }
+  .index-disclosure summary::-webkit-details-marker { display:none; }
+  .index-disclosure .idx-chevron { display:inline-block; font-size:13px; color:var(--subtle); transition:transform 200ms cubic-bezier(.22,.61,.36,1); }
+  .index-disclosure[open] .idx-chevron { transform:rotate(180deg); }
+  .index-list { display:flex; flex-direction:column; margin-top:16px; }
+  .index-list a { display:flex; align-items:baseline; gap:12px; padding:14px 0; border-top:1px solid var(--line); text-decoration:none; color:var(--text); transition:opacity 300ms cubic-bezier(.22,.61,.36,1); }
+  .index-list a:hover { opacity:0.6; }
+  .index-list a .idx-n { font-size:11px; color:var(--secondary); flex-shrink:0; }
+  .index-list a .idx-label { display:block; font-size:15px; margin-bottom:3px; }
+  .index-list a .idx-desc { display:block; font-size:12px; line-height:1.4; color:var(--secondary); }
+  @media (min-width: 761px) {
+    .index-disclosure { position:sticky; top:96px; }
+    .index-disclosure summary { pointer-events:none; }
+    .index-disclosure .idx-chevron { display:none; }
+  }
+  @media (max-width: 680px) {
+    .nav-links { display: none !important; }
+    .nav-burger { display: flex !important; align-items:center; justify-content:center; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    a { transition: none !important; }
+  }
+</style>
+</helmet>
+
+<div class="theme-root" style="position:relative; background:var(--paper); color:var(--text); overflow-x:hidden;">
+
+  <!-- NAV -->
+  <nav style="position:sticky; top:0; z-index:100; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; padding:clamp(20px,3vw,32px) clamp(24px,5vw,64px); background:var(--nav-bg, rgba(255,255,255,.92)); backdrop-filter:blur(6px); border-bottom:1px solid var(--line);">
+    <a href="/" style="display:block; line-height:0;"><img src="assets/logos/cava-horizontal.png" alt="CAVA Estudio" class="theme-invert" style="display:block; height:44px; width:auto;"></a>
+    <div class="nav-links" style="display:flex; align-items:center; gap:clamp(18px,2.6vw,32px); flex-wrap:wrap; font-size:10px; letter-spacing:0.06em; color:var(--secondary);">
+      <a href="/" style="text-decoration:none;" style-hover="color:var(--text);">INICIO</a>
+      <a href="#rebranding" onClick="{{ navToRebranding }}" style="text-decoration:none;" style-hover="color:var(--text);">REBRANDING</a>
+      <a href="#sistema" onClick="{{ navToSistema }}" style="text-decoration:none;" style-hover="color:var(--text);">SISTEMA</a>
+      <a href="#espacio" onClick="{{ navToEspacio }}" style="text-decoration:none;" style-hover="color:var(--text);">ESPACIO</a>
+      <a href="#contacto" onClick="{{ navToContacto }}" style="text-decoration:none;" style-hover="color:var(--text);">CONTACTO</a>
+      <button onClick="{{ toggleTheme }}" aria-label="Cambiar tema" style="display:flex; align-items:center; gap:8px; background:none; border:none; padding:0; margin:0; cursor:pointer; font-size:10px; letter-spacing:0.06em; color:var(--secondary); font-family:inherit;" style-hover="color:var(--text);">
+        <span style="position:relative; width:26px; height:15px; border-radius:999px; border:1px solid var(--line); display:inline-block; flex-shrink:0;">
+          <span style="position:absolute; top:1px; left:{{ themeDotLeft }}; width:11px; height:11px; border-radius:999px; background:var(--text); transition:left 300ms cubic-bezier(.22,.61,.36,1);"></span>
+        </span>
+        {{ themeLabel }}
+      </button>
+    </div>
+    <button class="nav-burger" onClick="{{ toggleMobileMenu }}" aria-label="Abrir menú" style="display:none; background:none; border:none; padding:4px; cursor:pointer; font-size:20px; line-height:1; color:var(--text);">{{ mobileMenuIcon }}</button>
+  </nav>
+  <sc-if value="{{ mobileMenuOpen }}" hint-placeholder-val="{{ false }}">
+    <div class="mobile-menu" style="position:sticky; top:0; z-index:99; display:flex; flex-direction:column; align-items:flex-end; gap:20px; padding:20px clamp(24px,5vw,64px) 28px; background:var(--nav-bg, rgba(255,255,255,.92)); backdrop-filter:blur(6px); border-bottom:1px solid var(--line); font-size:13px; letter-spacing:0.04em; color:var(--secondary);">
+      <a href="/" style="text-decoration:none;" style-hover="color:var(--text);">INICIO</a>
+      <a href="#rebranding" onClick="{{ navToRebranding }}" style="text-decoration:none;" style-hover="color:var(--text);">REBRANDING</a>
+      <a href="#sistema" onClick="{{ navToSistema }}" style="text-decoration:none;" style-hover="color:var(--text);">SISTEMA</a>
+      <a href="#espacio" onClick="{{ navToEspacio }}" style="text-decoration:none;" style-hover="color:var(--text);">ESPACIO</a>
+      <a href="#contacto" onClick="{{ navToContacto }}" style="text-decoration:none;" style-hover="color:var(--text);">CONTACTO</a>
+      <button onClick="{{ toggleTheme }}" aria-label="Cambiar tema" style="display:flex; align-items:center; gap:8px; background:none; border:none; padding:0; margin:0; cursor:pointer; font-size:13px; letter-spacing:0.04em; color:var(--secondary); font-family:inherit;" style-hover="color:var(--text);">
+        <span style="position:relative; width:26px; height:15px; border-radius:999px; border:1px solid var(--line); display:inline-block; flex-shrink:0;">
+          <span style="position:absolute; top:1px; left:{{ themeDotLeft }}; width:11px; height:11px; border-radius:999px; background:var(--text); transition:left 300ms cubic-bezier(.22,.61,.36,1);"></span>
+        </span>
+        {{ themeLabel }}
+      </button>
+    </div>
+  </sc-if>
+
+  <!-- 01 HERO -->
+  <section id="hero" data-key="hero" ref="{{ refHero }}" style="padding:clamp(48px,9vw,110px) clamp(24px,5vw,64px) clamp(40px,6vw,64px);">
+    <div class="reveal {{ revealClsHero }}" style="{{ revealHero }}">
+      <div style="font-size:10px; letter-spacing:0.08em; color:var(--secondary); margin-bottom:20px;">CAVA CASE STUDY / HEALTH</div>
+      <h1 style="font-size:clamp(52px,8vw,132px); line-height:0.92; letter-spacing:-0.045em; font-weight:400; margin:0 0 clamp(24px,3.5vw,36px);">Smile &amp; Move</h1>
+      <div style="display:flex; gap:clamp(32px,6vw,96px); flex-wrap:wrap; align-items:flex-end; justify-content:space-between;">
+        <p style="font-size:15px; line-height:1.5; max-width:460px; color:var(--secondary); margin:0;">Una identidad renovada para construir una experiencia más clara, coherente y reconocible dentro y fuera de la clínica.</p>
+        <div style="display:flex; flex-direction:column; gap:6px; font-size:10px; letter-spacing:0.04em; color:var(--secondary); text-align:right; margin-left:auto;">
+          <span>Smile &amp; Move — Health / Clínica dental</span>
+          <span>{{ location }}</span>
+          <span>Brand Strategy · Rebranding · Visual Identity · Environmental Branding</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 01B SKIT -->
+  <section data-key="skit" ref="{{ refSkit }}" style="border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+    <div class="reveal {{ revealClsSkit }}" style="{{ revealSkit }}">
+      <div style="padding:24px clamp(24px,5vw,64px) 0; font-size:10px; letter-spacing:0.08em; color:var(--secondary);">SMILE &amp; MOVE / SKIT</div>
+      <video src="{{ assets.skitVideo }}" autoplay="autoplay" muted="muted" loop="loop" playsinline="playsinline" style="display:block; width:100%; aspect-ratio:16/9; object-fit:contain; background:#000; margin-top:16px;"></video>
+    </div>
+  </section>
+
+  <!-- 01C ÍNDICE -->
+  <section data-key="indice" ref="{{ refIndice }}" style="padding:clamp(40px,6vw,56px) clamp(24px,5vw,64px); border-top:1px solid var(--line);">
+    <div class="reveal split-grid {{ revealClsIndice }}" style="{{ revealIndice }}; grid-template-columns:minmax(0,3fr) minmax(0,2fr); gap:clamp(32px,5vw,64px); align-items:start;">
+      <div>
+        <div style="font-size:10px; letter-spacing:0.06em; color:var(--secondary); margin-bottom:20px;">EL PROYECTO</div>
+        <h2 style="font-size:clamp(24px,3vw,38px); line-height:1.15; letter-spacing:-0.02em; font-weight:400; margin:0 0 16px; max-width:520px;">De dos disciplinas a una sola experiencia de marca.</h2>
+        <p style="font-size:14px; line-height:1.6; color:var(--secondary); max-width:480px; margin:0;">Smile &amp; Move reúne odontología y kinesiología bajo un mismo techo. CAVA desarrolló un rebranding capaz de unificar ambas disciplinas en un sistema coherente, y lineamientos para llevar esa identidad al espacio físico de la clínica.</p>
+      </div>
+      <details class="index-disclosure" open="open">
+        <summary>ÍNDICE <span class="idx-chevron">⌄</span></summary>
+        <div class="index-list">
+          <sc-for list="{{ tocItems }}" as="toc" hint-placeholder-count="5">
+            <a href="{{ toc.href }}" onClick="{{ navToSection }}" data-key="{{ toc.key }}">
+              <span class="idx-n">{{ toc.n }}</span>
+              <span>
+                <span class="idx-label">{{ toc.label }}</span>
+                <span class="idx-desc">{{ toc.desc }}</span>
+              </span>
+            </a>
+          </sc-for>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <!-- 02 EL DESAFÍO -->
+  <section id="desafio" data-key="desafio" ref="{{ refDesafio }}" style="padding:clamp(64px,10vw,120px) clamp(24px,5vw,64px); border-top:1px solid var(--line);">
+    <div class="reveal split-grid {{ revealClsDesafio }}" style="{{ revealDesafio }}; grid-template-columns:minmax(0,3fr) minmax(0,2fr); gap:clamp(32px,5vw,64px); align-items:start;">
+      <div>
+        <div style="font-size:10px; letter-spacing:0.06em; color:var(--secondary); margin-bottom:20px;">DESAFÍO</div>
+        <h2 style="font-size:clamp(28px,3.6vw,48px); line-height:1.1; letter-spacing:-0.03em; font-weight:400; margin:0 0 24px; max-width:520px;">Dos disciplinas. Una sola marca.</h2>
+        <p style="font-size:14px; line-height:1.6; color:var(--secondary); max-width:480px; margin:0;">Smile &amp; Move reúne odontología y kinesiología: dos especialidades con necesidades, lenguajes y asociaciones distintas. El desafío era construir una identidad capaz de integrar ambos mundos sin que uno pareciera secundario frente al otro, y suficientemente sólida para trasladarse después al espacio físico de la clínica.</p>
+      </div>
+      <p style="font-size:clamp(19px,2.2vw,27px); line-height:1.3; letter-spacing:-0.01em; font-weight:400; margin:0; border-top:1px solid var(--line); padding-top:clamp(24px,3.5vw,32px);">¿Cómo construir una identidad capaz de representar salud, movimiento y sonrisa dentro de un mismo universo?</p>
+    </div>
+  </section>
+
+  <!-- 03 REBRANDING -->
+  <section id="rebranding" data-key="rebranding" ref="{{ refRebranding }}" style="padding:clamp(64px,10vw,120px) clamp(24px,5vw,64px); border-top:1px solid var(--line);">
+    <div class="reveal {{ revealClsRebranding }}" style="{{ revealRebranding }}">
+      <div class="split-grid" style="grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:clamp(32px,5vw,64px); align-items:center; margin-bottom:clamp(48px,7vw,72px);">
+        <div>
+          <div style="font-size:10px; letter-spacing:0.06em; color:var(--secondary); margin-bottom:20px;">REBRANDING</div>
+          <h2 style="font-size:clamp(28px,3.6vw,48px); line-height:1.1; letter-spacing:-0.03em; font-weight:400; margin:0 0 20px; max-width:480px;">Encontrar un lenguaje común.</h2>
+          <p style="font-size:14px; line-height:1.6; color:var(--secondary); max-width:460px; margin:0;">El rebranding buscó construir un territorio donde odontología y kinesiología pudieran convivir dentro de una misma expresión, sin fragmentarse en dos marcas.</p>
+        </div>
+        <image-slot id="sm-new-logo" src="{{ assets.newLogo }}" shape="rect" fit="cover" placeholder="Nuevo logotipo Smile & Move" style="display:block; width:100%; aspect-ratio:1/1; background:var(--subtle);"></image-slot>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 SISTEMA DE MARCA -->
+  <section id="sistema" data-key="sistemaVisual" ref="{{ refSistemaVisual }}" style="padding:clamp(64px,10vw,120px) clamp(24px,5vw,64px); border-top:1px solid var(--line);">
+    <div class="reveal {{ revealClsSistemaVisual }}" style="{{ revealSistemaVisual }}">
+      <div style="font-size:10px; letter-spacing:0.06em; color:var(--secondary); margin-bottom:20px;">SISTEMA DE MARCA</div>
+      <h2 style="font-size:clamp(28px,3.6vw,48px); line-height:1.1; letter-spacing:-0.03em; font-weight:400; margin:0 0 20px; max-width:640px;">Una identidad capaz de adaptarse sin fragmentarse.</h2>
+      <p style="font-size:14px; line-height:1.6; color:var(--secondary); max-width:600px; margin:0 0 clamp(48px,7vw,72px);">Paleta, tipografía, iconografía y recursos gráficos ordenados en un mismo sistema, capaz de comunicar cada especialidad manteniendo reconocimiento.</p>
+      <div class="stagger-grid" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:20px; margin-bottom:clamp(48px,7vw,72px);">
+        <sc-for list="{{ systemAssets }}" as="sa" hint-placeholder-count="5">
+          <div>
+            <image-slot id="{{ sa.id }}" src="{{ sa.img }}" shape="rect" fit="cover" placeholder="{{ sa.label }}" style="display:block; width:100%; aspect-ratio:1/1; background:var(--subtle); margin-bottom:8px;"></image-slot>
+            <div style="font-size:11px; color:var(--secondary);">{{ sa.label }}</div>
+          </div>
+        </sc-for>
+      </div>
+      <div style="margin-bottom:clamp(48px,7vw,72px);">
+        <div style="font-size:11px; letter-spacing:0.06em; color:var(--secondary); margin-bottom:16px;">ICONOGRAFÍA</div>
+        <div class="stagger-grid" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(90px,1fr)); gap:16px; max-width:440px;">
+          <sc-for list="{{ icons }}" as="ic" hint-placeholder-count="4">
+            <div>
+              <image-slot id="{{ ic.id }}" src="{{ ic.img }}" shape="rect" fit="cover" placeholder="{{ ic.label }}" style="display:block; width:100%; aspect-ratio:1/1; background:var(--subtle); margin-bottom:6px;"></image-slot>
+              <div style="font-size:10px; color:var(--secondary);">{{ ic.label }}</div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 MARCA EN EL ESPACIO -->
+  <section id="espacio" data-key="brandingEspacial" ref="{{ refBrandingEspacial }}" style="padding:clamp(64px,10vw,120px) clamp(24px,5vw,64px); border-top:1px solid var(--line);">
+    <div class="reveal split-grid {{ revealClsBrandingEspacial }}" style="{{ revealBrandingEspacial }}; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:clamp(32px,5vw,64px); align-items:start;">
+      <div>
+        <div style="font-size:10px; letter-spacing:0.06em; color:var(--secondary); margin-bottom:20px;">MARCA EN EL ESPACIO</div>
+        <h2 style="font-size:clamp(28px,3.6vw,48px); line-height:1.1; letter-spacing:-0.035em; font-weight:400; margin:0 0 20px; max-width:480px;">El branding no terminaba en una pantalla.</h2>
+        <p style="font-size:14px; line-height:1.6; color:var(--secondary); max-width:460px; margin:0 0 clamp(32px,4.5vw,44px);">CAVA desarrolló lineamientos para trasladar el nuevo sistema al espacio físico de la clínica. La intención no era llenar el lugar de logotipos: era conseguir que marca, especialidades, arquitectura, señalización y color funcionaran bajo una misma lógica.</p>
+        <div class="flow-chain" style="margin-bottom:clamp(40px,6vw,56px);">
+          <span class="step">RECONOCER</span><span class="arrow">→</span>
+          <span class="step">ORIENTAR</span><span class="arrow">→</span>
+          <span class="step">INTEGRAR</span><span class="arrow">→</span>
+          <span class="step">MANTENER CONSISTENCIA</span>
+        </div>
+        <div style="border-top:1px solid var(--line); padding-top:clamp(32px,5vw,44px);">
+          <div style="font-size:clamp(36px,6vw,90px); line-height:0.95; letter-spacing:-0.03em; font-weight:400; margin:0 0 4px;">SMILE</div>
+          <div style="font-size:clamp(36px,6vw,90px); line-height:0.95; letter-spacing:-0.03em; font-weight:400; color:var(--secondary); margin:0 0 20px;">&amp;MOVE</div>
+          <p style="font-size:14px; line-height:1.6; color:var(--secondary); max-width:460px; margin:0;">El objetivo era que cada especialidad pudiera tener expresión propia sin perder la sensación de pertenecer a Smile &amp; Move.</p>
+        </div>
+      </div>
+      <image-slot id="sm-transicion-bg" src="{{ assets.transicionBg }}" shape="rect" fit="contain" placeholder="Composición — Smile & Move" style="display:block; width:100%; aspect-ratio:1400/2488; background:var(--subtle);"></image-slot>
+    </div>
+  </section>
+
+  <!-- ESPACIO: TEXTOS -->
+  <section data-key="espacioTexto" ref="{{ refEspacioTexto }}" style="padding:clamp(64px,10vw,120px) clamp(24px,5vw,64px) clamp(40px,6vw,56px); border-top:1px solid var(--line);">
+    <div class="reveal split-grid {{ revealClsEspacioTexto }}" style="{{ revealEspacioTexto }}; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:clamp(32px,5vw,64px);">
+      <div>
+        <div style="font-size:11px; letter-spacing:0.06em; color:var(--secondary); margin-bottom:14px;">RECEPCIÓN</div>
+        <p style="font-size:clamp(19px,2vw,25px); line-height:1.3; letter-spacing:-0.01em; font-weight:400; margin:0;">El primer contacto físico con la marca.</p>
+      </div>
+      <div>
+        <div style="font-size:11px; letter-spacing:0.06em; color:var(--secondary); margin-bottom:14px;">MODELO 3D → RENDER FINAL</div>
+        <p style="font-size:clamp(19px,2vw,25px); line-height:1.3; letter-spacing:-0.01em; font-weight:400; margin:0;">Del modelo 3D al render final: así se validó la propuesta antes de construirla.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ESPACIO: IMÁGENES -->
+  <section data-key="espacioImagenes" ref="{{ refEspacioImagenes }}" style="padding:0 clamp(24px,5vw,64px) clamp(64px,10vw,120px);">
+    <div class="reveal {{ revealClsEspacioImagenes }}" style="{{ revealEspacioImagenes }}">
+      <div class="stagger-grid" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:20px;">
+        <sc-for list="{{ espacioImages }}" as="ei" hint-placeholder-count="4">
+          <div>
+            <image-slot id="{{ ei.id }}" src="{{ ei.img }}" shape="rect" fit="cover" placeholder="{{ ei.label }}" style="display:block; width:100%; aspect-ratio:4/3; background:var(--subtle); margin-bottom:8px;"></image-slot>
+            <div style="font-size:11px; color:var(--secondary);">{{ ei.label }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- 21 RESULTADO -->
+  <section id="resultado" data-key="resultado" ref="{{ refResultado }}" style="padding:clamp(56px,9vw,96px) clamp(24px,5vw,64px); border-top:1px solid var(--line);">
+    <div class="reveal {{ revealClsResultado }}" style="{{ revealResultado }}">
+      <div style="font-size:10px; letter-spacing:0.06em; color:var(--secondary); margin-bottom:20px;">RESULTADO</div>
+      <h2 style="font-size:clamp(28px,3.6vw,48px); line-height:1.1; letter-spacing:-0.03em; font-weight:400; margin:0 0 24px; max-width:680px;">Una marca para dos especialidades y una misma experiencia.</h2>
+      <p style="font-size:14px; line-height:1.6; color:var(--secondary); max-width:600px; margin:0 0 clamp(40px,6vw,56px);">Smile &amp; Move demuestra cómo el branding puede ayudar a ordenar una propuesta más compleja. La nueva identidad permitió construir un lenguaje común para odontología y kinesiología, y establecer criterios para trasladarlo a los distintos puntos de contacto de la clínica.</p>
+      <div class="flow-chain">
+        <span class="step">DOS DISCIPLINAS</span><span class="arrow">→</span>
+        <span class="step">UNA IDENTIDAD</span><span class="arrow">→</span>
+        <span class="step">UN SISTEMA</span><span class="arrow">→</span>
+        <span class="step">UN ESPACIO</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 22 CIERRE -->
+  <section id="contacto" data-key="contacto" ref="{{ refContacto }}" style="position:relative; overflow:hidden; padding:clamp(56px,8vw,96px) clamp(24px,5vw,64px) clamp(40px,6vw,64px); border-top:1px solid var(--line);">
+    <img src="assets/logos/cava-sintesis.png" alt="" class="theme-invert" style="position:absolute; top:50%; right:clamp(-40px,2vw,40px); transform:translateY(-50%); width:clamp(280px,32vw,440px); height:auto; opacity:0.04; pointer-events:none;">
+    <div class="reveal {{ revealClsContacto }}" style="{{ revealContacto }}; position:relative;">
+      <h2 style="font-size:clamp(30px,4.4vw,60px); line-height:1.05; letter-spacing:-0.035em; font-weight:400; margin:0 0 20px; max-width:860px;">Una marca no tiene que simplificar lo que una empresa hace. Tiene que ayudar a entenderlo.</h2>
+      <div style="display:flex; gap:clamp(24px,5vw,64px); flex-wrap:wrap; align-items:flex-end; justify-content:space-between;">
+        <p style="font-size:14px; line-height:1.55; max-width:460px; color:var(--secondary); margin:0;">Ayudamos a empresas a transformar propuestas complejas en sistemas de marca claros, coherentes y capaces de vivir en distintos puntos de contacto.</p>
+        <a href="https://wa.me/56954621640?text={{ waMessageSmileMove }}" target="_blank" style="background:var(--text); color:var(--paper); border-radius:999px; padding:9px 16px; font-size:10px; letter-spacing:0.03em; text-decoration:none; display:inline-block; white-space:nowrap; transition:opacity 400ms cubic-bezier(.22,.61,.36,1);" style-hover="opacity:0.7;">Hablemos de tu marca →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 27 CRÉDITOS -->
+  <section data-key="creditos" ref="{{ refCreditos }}" style="padding:clamp(48px,7vw,72px) clamp(24px,5vw,64px); border-top:1px solid var(--line);">
+    <div class="reveal {{ revealClsCreditos }}" style="{{ revealCreditos }}">
+      <div style="font-size:10px; letter-spacing:0.06em; color:var(--secondary); margin-bottom:clamp(28px,4vw,40px);">CRÉDITOS</div>
+      <sc-for list="{{ credits }}" as="cr" hint-placeholder-count="5">
+        <div class="split-grid" style="grid-template-columns:minmax(0,1fr) minmax(0,2.4fr); gap:24px; padding:16px 0; border-top:1px solid var(--line);">
+          <div style="font-size:11px; letter-spacing:0.04em; color:var(--secondary);">{{ cr.label }}</div>
+          <div style="font-size:14px; line-height:1.5;">{{ cr.value }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <footer style="padding:clamp(24px,4vw,32px) clamp(24px,5vw,64px); border-top:1px solid var(--line); display:flex; flex-wrap:wrap; gap:16px; justify-content:space-between; font-size:10px; letter-spacing:0.04em; color:var(--secondary);">
+    <span>© CAVA Estudio {{ currentYear }}</span>
+    <div style="display:flex; gap:20px; flex-wrap:wrap;">
+      <a href="mailto:contacto@cavaestudio.cl" style="text-decoration:none;" style-hover="color:var(--text);">contacto@cavaestudio.cl</a>
+      <a href="https://www.instagram.com/cava_estudio" target="_blank" style="text-decoration:none;" style-hover="color:var(--text);">Instagram</a>
+      <a href="https://www.linkedin.com/company/cava-estudio/" target="_blank" style="text-decoration:none;" style-hover="color:var(--text);">LinkedIn</a>
+    </div>
+    <span>Pensar / Decir / Hacer.</span>
+  </footer>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { visible: { hero: true }, mobileMenuOpen: false, theme: (typeof localStorage !== 'undefined' && localStorage.getItem('cava-theme')) || (typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') };
+  _els = {};
+
+  // Confirm before publishing: exact city and project year. Both are
+  // defined once here and bound via {{ }} everywhere they appear, so
+  // filling them in is a one-line edit.
+  _location = 'Rancagua, Chile';
+  _projectYear = '2026';
+
+  // Central asset registry: every image/video this case study needs, keyed
+  // by name. All empty until Smile & Move material is delivered — fill in
+  // a value here to swap a placeholder for the real asset everywhere it's used.
+  _assets = {
+    newLogo: 'assets/sm-logo.jpg',
+    skitVideo: 'assets/sm-skit.mp4',
+    system1: 'assets/sm-logo-version.jpg', system2: 'assets/sm-paleta.jpg', system3: 'assets/sm-hero.jpg', system6: 'assets/sm-aplicaciones.jpg',
+    iconTooth: 'assets/sm-icon-tooth.jpg', iconHeart: 'assets/sm-icon-heart.jpg', iconHand: 'assets/sm-icon-hand.jpg', iconPin: 'assets/sm-icon-pin.jpg',
+    transicionBg: 'assets/sm-composicion.jpg',
+    reception: 'assets/sm-reception.jpg',
+    detail3: 'assets/sm-detail-muros.jpg',
+    spaceLineamiento: 'assets/sm-modelo3d.jpg', spaceImplementacion: 'assets/sm-render-final.jpg'
+  };
+
+  reveal(key) {
+    const v = this.state.visible[key];
+    return v ? 'opacity:1;transform:translateY(0px);' : 'opacity:0;transform:translateY(16px);';
+  }
+
+  revealCls(key) {
+    return this.state.visible[key] ? 'in' : '';
+  }
+
+  mkRef(key) {
+    if (!this['_ref_' + key]) this['_ref_' + key] = (el) => { this._els[key] = el; };
+    return this['_ref_' + key];
+  }
+
+  scrollToKey(key) {
+    const el = this._els[key];
+    if (!el) return;
+    const top = el.getBoundingClientRect().top + window.scrollY - 12;
+    window.scrollTo({ top, behavior: 'smooth' });
+  }
+
+  _observeLazyVideo(el) {
+    if (!this._ioVideo) {
+      this._ioVideo = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          const v = e.target;
+          if (!e.isIntersecting) return;
+          const src = v.dataset.lazySrc;
+          if (src && v.getAttribute('src') !== src) v.src = src;
+          if (v.paused) v.play().catch(() => {});
+        });
+      }, { rootMargin: '200px' });
+    }
+    this._ioVideo.observe(el);
+  }
+
+  componentDidMount() {
+    this._ioReveal = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) this.setState((s) => ({ visible: { ...s.visible, [e.target.dataset.key]: true } }));
+      });
+    }, { threshold: 0.15 });
+    Object.keys(this._els).forEach((k) => { if (this._els[k]) this._ioReveal.observe(this._els[k]); });
+    Object.keys(this._els).forEach((k) => {
+      const el = this._els[k];
+      if (!el) return;
+      const r = el.getBoundingClientRect();
+      if (r.top < window.innerHeight && r.bottom > 0) this.setState((s) => ({ visible: { ...s.visible, [k]: true } }));
+    });
+
+    [0, 300, 1000].forEach((ms) => setTimeout(() => this._fixImageSlotAlt(), ms));
+  }
+
+  _fixImageSlotAlt() {
+    document.querySelectorAll('image-slot[placeholder]').forEach((slot) => {
+      const img = slot.shadowRoot && slot.shadowRoot.querySelector('.frame img');
+      const label = slot.getAttribute('placeholder');
+      if (img && label && img.alt !== label) img.alt = label;
+    });
+  }
+
+  componentWillUnmount() {
+    if (this._ioReveal) this._ioReveal.disconnect();
+    if (this._ioVideo) this._ioVideo.disconnect();
+  }
+
+  renderVals() {
+    const dark = this.state.theme === 'dark';
+    const a = this._assets;
+    return {
+      themeLabel: dark ? 'Claro' : 'Oscuro',
+      themeDotLeft: dark ? '13px' : '1px',
+      toggleTheme: () => this.setState((s) => {
+        const next = s.theme === 'dark' ? 'light' : 'dark';
+        try { localStorage.setItem('cava-theme', next); window.__cavaApplyTheme(next); } catch (e) {}
+        return { theme: next };
+      }),
+      currentYear: new Date().getFullYear(),
+      mobileMenuOpen: this.state.mobileMenuOpen,
+      mobileMenuIcon: this.state.mobileMenuOpen ? '✕' : '☰',
+      toggleMobileMenu: () => this.setState((s) => ({ mobileMenuOpen: !s.mobileMenuOpen })),
+      navToSection: (e) => { e.preventDefault(); const key = e.currentTarget.dataset.key; this.setState({ mobileMenuOpen: false }); this.scrollToKey(key); },
+      navToRebranding: (e) => { e.preventDefault(); this.setState({ mobileMenuOpen: false }); this.scrollToKey('rebranding'); },
+      navToSistema: (e) => { e.preventDefault(); this.setState({ mobileMenuOpen: false }); this.scrollToKey('sistemaVisual'); },
+      navToEspacio: (e) => { e.preventDefault(); this.setState({ mobileMenuOpen: false }); this.scrollToKey('brandingEspacial'); },
+      navToContacto: (e) => { e.preventDefault(); this.setState({ mobileMenuOpen: false }); this.scrollToKey('contacto'); },
+      location: this._location,
+      projectYear: this._projectYear,
+      waMessageSmileMove: encodeURIComponent('Hola CAVA, vi el caso de Smile & Move y me gustaría conversar sobre mi marca.'),
+      assets: a,
+      revealHero: this.reveal('hero'),
+      revealSkit: this.reveal('skit'),
+      revealIndice: this.reveal('indice'),
+      revealDesafio: this.reveal('desafio'),
+      revealRebranding: this.reveal('rebranding'),
+      revealSistemaVisual: this.reveal('sistemaVisual'),
+      revealBrandingEspacial: this.reveal('brandingEspacial'),
+      revealEspacioTexto: this.reveal('espacioTexto'),
+      revealEspacioImagenes: this.reveal('espacioImagenes'),
+      revealResultado: this.reveal('resultado'),
+      revealContacto: this.reveal('contacto'),
+      revealCreditos: this.reveal('creditos'),
+      revealClsHero: this.revealCls('hero'),
+      revealClsSkit: this.revealCls('skit'),
+      revealClsIndice: this.revealCls('indice'),
+      revealClsDesafio: this.revealCls('desafio'),
+      revealClsRebranding: this.revealCls('rebranding'),
+      revealClsSistemaVisual: this.revealCls('sistemaVisual'),
+      revealClsBrandingEspacial: this.revealCls('brandingEspacial'),
+      revealClsEspacioTexto: this.revealCls('espacioTexto'),
+      revealClsEspacioImagenes: this.revealCls('espacioImagenes'),
+      revealClsResultado: this.revealCls('resultado'),
+      revealClsContacto: this.revealCls('contacto'),
+      revealClsCreditos: this.revealCls('creditos'),
+      refHero: this.mkRef('hero'),
+      refSkit: this.mkRef('skit'),
+      refIndice: this.mkRef('indice'),
+      refDesafio: this.mkRef('desafio'),
+      refRebranding: this.mkRef('rebranding'),
+      refSistemaVisual: this.mkRef('sistemaVisual'),
+      refBrandingEspacial: this.mkRef('brandingEspacial'),
+      refEspacioTexto: this.mkRef('espacioTexto'),
+      refEspacioImagenes: this.mkRef('espacioImagenes'),
+      refResultado: this.mkRef('resultado'),
+      refContacto: this.mkRef('contacto'),
+      refCreditos: this.mkRef('creditos'),
+      tocItems: [
+        { n: '01', label: 'Desafío', key: 'desafio', href: '#desafio', desc: 'Dos disciplinas. Una sola marca.' },
+        { n: '02', label: 'Rebranding', key: 'rebranding', href: '#rebranding', desc: 'Un logotipo capaz de representar ambos mundos.' },
+        { n: '03', label: 'Sistema de marca', key: 'sistemaVisual', href: '#sistema', desc: 'Reglas y recursos para adaptarse sin fragmentarse.' },
+        { n: '04', label: 'Marca en el espacio', key: 'brandingEspacial', href: '#espacio', desc: 'De la pantalla a la fachada, la recepción y la señalética.' },
+        { n: '05', label: 'Resultado', key: 'resultado', href: '#resultado', desc: 'Dos disciplinas, una identidad, un sistema, un espacio.' }
+      ],
+      systemAssets: [
+        { id: 'sm-sys-1', img: a.system1, label: 'Versiones del logotipo' },
+        { id: 'sm-sys-2', img: a.system2, label: 'Paleta cromática' },
+        { id: 'sm-sys-3', img: a.system3, label: 'Sistema Visual' },
+        { id: 'sm-sys-6', img: a.system6, label: 'Aplicaciones' }
+      ],
+      icons: [
+        { id: 'sm-icon-1', img: a.iconTooth, label: 'Odontología' },
+        { id: 'sm-icon-2', img: a.iconHeart, label: 'Kinesiología' },
+        { id: 'sm-icon-3', img: a.iconHand, label: 'Clientes' },
+        { id: 'sm-icon-4', img: a.iconPin, label: 'Ubicación' }
+      ],
+      espacioImages: [
+        { id: 'sm-reception', img: a.reception, label: 'Recepción' },
+        { id: 'sm-detail-muros', img: a.detail3, label: 'Muros' },
+        { id: 'sm-lineamiento', img: a.spaceLineamiento, label: 'Modelo 3D' },
+        { id: 'sm-implementacion', img: a.spaceImplementacion, label: 'Render final' }
+      ],
+      credits: [
+        { label: 'PROYECTO', value: 'Smile & Move' },
+        { label: 'INDUSTRIA', value: 'Health / Clínica dental' },
+        { label: 'UBICACIÓN', value: this._location },
+        { label: 'AÑO', value: this._projectYear },
+        { label: 'CAVA', value: 'Estrategia de marca · Rebranding · Identidad visual · Sistema de marca · Aplicaciones · Branding espacial · Lineamientos de implementación' }
+      ]
+    };
+  }
+}
+
+</script>
+</body>
+</html>

@@ -2,6 +2,7 @@
   "rewrites": [
     { "source": "/", "destination": "/CAVA%20Estudio.dc.html" },
     { "source": "/agro", "destination": "/CAVA%20Agro.dc.html" },
-    { "source": "/orgullo-cruzado", "destination": "/CAVA%20Orgullo%20Cruzado.dc.html" }
+    { "source": "/orgullo-cruzado", "destination": "/CAVA%20Orgullo%20Cruzado.dc.html" },
+    { "source": "/smileandmove", "destination": "/CAVA%20Smile%20Move.dc.html" }
   ]
 }
