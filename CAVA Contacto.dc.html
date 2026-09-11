@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <!-- Event snippet for Whatsapp directo conversion page
+In your html page, add the snippet and call gtag_report_conversion when someone clicks on the chosen link or button. -->
+<script>
+function gtag_report_conversion(url) {
+  var callback = function () {
+    if (typeof(url) != 'undefined') {
+      window.location = url;
+    }
+  };
+  gtag('event', 'conversion', {
+      'send_to': 'AW-18175229677/x22tCPOYw-0cEO39z9pD',
+      'event_callback': callback
+  });
+  return false;
+}
+</script>
+
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18175229677"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-18175229677');
+</script>
+  <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5SC8KG3L');</script>
+<!-- End Google Tag Manager -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+<script src="./image-slot.js"></script>
+<script>
+(function(){
+  var DARK_VARS = { '--paper':'#0d0d0d', '--text':'#f2f2f0', '--secondary':'#9a9a9a', '--subtle':'#555555', '--line':'rgba(255,255,255,.12)', '--num':'#4d4d4d', '--nav-bg':'rgba(13,13,13,.85)' };
+  var PROPS = ['--paper','--text','--secondary','--subtle','--line','--num','--nav-bg'];
+  window.__cavaApplyTheme = function(t){
+    var root = document.documentElement;
+    root.setAttribute('data-theme', t);
+    PROPS.forEach(function(p){
+      if (t === 'dark') root.style.setProperty(p, DARK_VARS[p]);
+      else root.style.removeProperty(p);
+    });
+  };
+  try {
+    var t = localStorage.getItem('cava-theme') || ((window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light');
+    window.__cavaApplyTheme(t);
+  } catch (e) {}
+})();
+</script>
+</head>
+<body>
+  <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5SC8KG3L"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<x-dc>
+<helmet>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100'><text x='50' y='78' font-size='80' text-anchor='middle'>🖤</text></svg>">
+<title>Contacto | CAVA Estudio</title>
+<meta name="description" content="Cuéntanos de tu marca y conversemos por WhatsApp. Branding, packaging, marketing y desarrollo web en Chile desde 2010.">
+<link rel="canonical" href="https://cava-estudio-web.vercel.app/contacto">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="CAVA Estudio">
+<meta property="og:title" content="Contacto | CAVA Estudio">
+<meta property="og:description" content="Cuéntanos de tu marca y conversemos por WhatsApp. Branding, packaging, marketing y desarrollo web en Chile desde 2010.">
+<meta property="og:url" content="https://cava-estudio-web.vercel.app/contacto">
+<meta property="og:image" content="https://cava-estudio-web.vercel.app/assets/logos/cava-horizontal.png">
+<meta property="og:locale" content="es_CL">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Contacto | CAVA Estudio">
+<meta name="twitter:description" content="Cuéntanos de tu marca y conversemos por WhatsApp. Branding, packaging, marketing y desarrollo web en Chile desde 2010.">
+<meta name="twitter:image" content="https://cava-estudio-web.vercel.app/assets/logos/cava-horizontal.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,700;0,900;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper: #ffffff;
+    --text: #111111;
+    --secondary: #777777;
+    --subtle: #b0b0ab;
+    --line: rgba(0,0,0,.09);
+    --num: #BABABA;
+  }
+  html[data-theme="dark"] {
+    --paper: #0d0d0d;
+    --text: #f2f2f0;
+    --secondary: #9a9a9a;
+    --subtle: #555555;
+    --line: rgba(255,255,255,.12);
+    --num: #4d4d4d;
+    --nav-bg: rgba(13,13,13,.85);
+  }
+  html[data-theme="dark"] .theme-invert { filter: invert(1); }
+  * { box-sizing: border-box; }
+  body { margin:0; font-family:'Inter',sans-serif; }
+  a { color: inherit; }
+  @media (max-width: 680px) {
+    .nav-links { display: none !important; }
+    .nav-burger { display: flex !important; align-items:center; justify-content:center; }
+    .cava-contact-grid { grid-template-columns:1fr !important; }
+  }
+  .cava-wa-field { display:flex; flex-direction:column; gap:6px; margin-bottom:16px; }
+  .cava-wa-field label { font-size: 11px; letter-spacing:0.04em; color: var(--secondary); }
+  .cava-wa-input {
+    background: transparent; border: 1px solid var(--line); border-radius: 8px;
+    padding: 12px 14px; font-family: 'Inter', sans-serif; font-size: 14px;
+    color: var(--text); width: 100%; box-sizing: border-box;
+  }
+  .cava-wa-input:focus { outline: none; border-color: var(--text); }
+  select.cava-wa-input { appearance: none; cursor: pointer; }
+  select.cava-wa-input option { color: #111111; background: #ffffff; }
+</style>
+</helmet>
+
+<div class="theme-root" style="position:relative; background:var(--paper); color:var(--text); overflow-x:hidden; min-height:100vh; display:flex; flex-direction:column;">
+
+  <!-- NAV -->
+  <nav style="position:sticky; top:0; z-index:100; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; padding:clamp(20px,3vw,32px) clamp(24px,5vw,64px); background:var(--nav-bg, rgba(255,255,255,.92)); backdrop-filter:blur(6px); border-bottom:1px solid var(--line);">
+    <a href="CAVA Estudio.dc.html" style="display:block; line-height:0;">
+      <img src="assets/logos/cava-horizontal.png" alt="CAVA Estudio" class="theme-invert" style="display:block; height:44px; width:auto;">
+    </a>
+    <div class="nav-links" style="display:flex; align-items:center; gap:clamp(18px,2.6vw,32px); flex-wrap:wrap; font-size:10px; letter-spacing:0.06em; color:var(--secondary);">
+      <a href="CAVA Estudio.dc.html#servicios" style="text-decoration:none;" style-hover="color:var(--text);">SERVICIOS</a>
+      <a href="CAVA Estudio.dc.html#trabajos" style="text-decoration:none;" style-hover="color:var(--text);">PORTAFOLIO</a>
+      <a href="CAVA Estudio.dc.html#metodo" style="text-decoration:none;" style-hover="color:var(--text);">MÉTODO</a>
+      <a href="CAVA Contacto.dc.html" style="text-decoration:none; color:var(--text);">CONTACTO</a>
+      <button onClick="{{ toggleTheme }}" aria-label="Cambiar tema" style="display:flex; align-items:center; gap:8px; background:none; border:none; padding:0; margin:0; cursor:pointer; font-size:10px; letter-spacing:0.06em; color:var(--secondary); font-family:inherit;" style-hover="color:var(--text);">
+        <span style="position:relative; width:26px; height:15px; border-radius:999px; border:1px solid var(--line); display:inline-block; flex-shrink:0;">
+          <span style="position:absolute; top:1px; left:{{ themeDotLeft }}; width:11px; height:11px; border-radius:999px; background:var(--text); transition:left 300ms cubic-bezier(.22,.61,.36,1);"></span>
+        </span>
+        {{ themeLabel }}
+      </button>
+    </div>
+    <button class="nav-burger" onClick="{{ toggleMobileMenu }}" aria-label="Abrir menú" style="display:none; background:none; border:none; padding:4px; cursor:pointer; font-size:20px; line-height:1; color:var(--text);">{{ mobileMenuIcon }}</button>
+  </nav>
+  <sc-if value="{{ mobileMenuOpen }}" hint-placeholder-val="{{ false }}">
+    <div class="mobile-menu" style="position:sticky; top:0; z-index:99; display:flex; flex-direction:column; align-items:flex-end; gap:20px; padding:20px clamp(24px,5vw,64px) 28px; background:var(--nav-bg, rgba(255,255,255,.92)); backdrop-filter:blur(6px); border-bottom:1px solid var(--line); font-size:13px; letter-spacing:0.04em; color:var(--secondary);">
+      <a href="CAVA Estudio.dc.html#servicios" style="text-decoration:none;" style-hover="color:var(--text);">SERVICIOS</a>
+      <a href="CAVA Estudio.dc.html#trabajos" style="text-decoration:none;" style-hover="color:var(--text);">PORTAFOLIO</a>
+      <a href="CAVA Estudio.dc.html#metodo" style="text-decoration:none;" style-hover="color:var(--text);">MÉTODO</a>
+      <a href="CAVA Contacto.dc.html" style="text-decoration:none; color:var(--text);">CONTACTO</a>
+      <button onClick="{{ toggleTheme }}" aria-label="Cambiar tema" style="display:flex; align-items:center; gap:8px; background:none; border:none; padding:0; margin:0; cursor:pointer; font-size:13px; letter-spacing:0.04em; color:var(--secondary); font-family:inherit;" style-hover="color:var(--text);">
+        <span style="position:relative; width:26px; height:15px; border-radius:999px; border:1px solid var(--line); display:inline-block; flex-shrink:0;">
+          <span style="position:absolute; top:1px; left:{{ themeDotLeft }}; width:11px; height:11px; border-radius:999px; background:var(--text); transition:left 300ms cubic-bezier(.22,.61,.36,1);"></span>
+        </span>
+        {{ themeLabel }}
+      </button>
+    </div>
+  </sc-if>
+
+  <!-- CONTACTO -->
+  <section style="flex:1; padding:clamp(48px,8vw,96px) clamp(24px,5vw,64px) clamp(64px,10vw,120px);">
+    <div class="cava-contact-grid" style="display:grid; grid-template-columns:1fr 1fr; gap:clamp(40px,6vw,80px); align-items:start; max-width:1100px; margin:0 auto;">
+
+      <div>
+        <h1 style="font-size:clamp(40px,6vw,72px); line-height:0.94; letter-spacing:-0.03em; font-weight:400; margin:0 0 24px;">Hablemos de<br/>tu marca.</h1>
+        <p style="font-size:15px; line-height:1.6; color:var(--secondary); max-width:400px; margin:0 0 36px;">Contanos qué está pasando en tu negocio, tu marca o tu comunicación. Completá el formulario y te escribimos directo por WhatsApp — sin esperas ni mensajes automáticos.</p>
+        <div style="display:flex; flex-direction:column; gap:10px; font-size:13px;">
+          <a href="mailto:contacto@cavaestudio.cl" style="text-decoration:none; color:var(--text);" style-hover="opacity:0.7;">contacto@cavaestudio.cl</a>
+          <a href="https://wa.me/56954621640" target="_blank" style="text-decoration:none; color:var(--text);" style-hover="opacity:0.7;">+56 9 5462 1640</a>
+          <a href="https://www.instagram.com/cava_estudio" target="_blank" style="text-decoration:none; color:var(--text);" style-hover="opacity:0.7;">Instagram</a>
+          <a href="https://www.linkedin.com/company/cava-estudio/" target="_blank" style="text-decoration:none; color:var(--text);" style-hover="opacity:0.7;">LinkedIn</a>
+        </div>
+      </div>
+
+      <div style="border:1px solid var(--line); border-radius:16px; padding:clamp(24px,4vw,36px);">
+        <sc-if value="{{ contactSent !== true }}" hint-placeholder-val="{{ true }}">
+          <form onSubmit="{{ submitContactForm }}">
+            <div class="cava-wa-field">
+              <label>Nombre y apellido</label>
+              <input class="cava-wa-input" type="text" name="nombre" required="{{ true }}" />
+            </div>
+            <div class="cava-wa-field">
+              <label>Nombre de la empresa</label>
+              <input class="cava-wa-input" type="text" name="empresa" required="{{ true }}" />
+            </div>
+            <div class="cava-wa-field">
+              <label>Tamaño del equipo</label>
+              <select class="cava-wa-input" name="equipo" required="{{ true }}">
+                <option value="">Selecciona una opción</option>
+                <option value="0 a 9 personas">0 a 9 personas</option>
+                <option value="10 a 20 personas">10 a 20 personas</option>
+                <option value="más de 20 personas">Más de 20 personas</option>
+                <option value="más de 100 personas">Más de 100 personas</option>
+              </select>
+            </div>
+            <div class="cava-wa-field">
+              <label>Rubro de la empresa</label>
+              <input class="cava-wa-input" type="text" name="rubro" required="{{ true }}" />
+            </div>
+            <div class="cava-wa-field">
+              <label>Presupuesto estimado para el proyecto</label>
+              <select class="cava-wa-input" name="presupuesto" required="{{ true }}">
+                <option value="">Selecciona una opción</option>
+                <option value="$450.000 a $800.000">$450.000 a $800.000</option>
+                <option value="$1.000.000 a $1.500.000">$1.000.000 a $1.500.000</option>
+                <option value="más de $1.500.000">Más de $1.500.000</option>
+                <option value="no tenemos un piso definido">No tenemos un piso definido</option>
+              </select>
+            </div>
+            <button type="submit" style="width:100%; background:var(--text); color:var(--paper); border:none; border-radius:999px; padding:14px; font-size:13px; letter-spacing:0.03em; cursor:pointer; margin-top:8px; transition:opacity 300ms ease;" style-hover="opacity:0.8;">Enviar por WhatsApp →</button>
+          </form>
+        </sc-if>
+        <sc-if value="{{ contactSent === true }}" hint-placeholder-val="{{ false }}">
+          <div style="padding:24px 0; text-align:center;">
+            <div style="font-size:20px; font-weight:600; margin-bottom:10px;">¡Listo!</div>
+            <p style="font-size:13px; color:var(--secondary); line-height:1.5; margin:0 0 20px;">Se abrió WhatsApp en una pestaña nueva con tu mensaje ya redactado. Si no se abrió, tocá el botón de nuevo.</p>
+            <button onClick="{{ resetContactForm }}" style="background:none; border:1px solid var(--line); color:var(--text); border-radius:999px; padding:10px 18px; font-size:12px; cursor:pointer;" style-hover="border-color:var(--text);">Enviar otro mensaje</button>
+          </div>
+        </sc-if>
+      </div>
+
+    </div>
+  </section>
+
+  <footer style="padding:clamp(24px,4vw,32px) clamp(24px,5vw,64px); border-top:1px solid var(--line); display:flex; flex-wrap:wrap; gap:16px; justify-content:space-between; font-size:10px; letter-spacing:0.04em; color:var(--secondary);">
+    <span>© CAVA Estudio {{ currentYear }}</span>
+    <div style="display:flex; gap:20px; flex-wrap:wrap;">
+      <a href="mailto:contacto@cavaestudio.cl" style="text-decoration:none;" style-hover="color:var(--text);">contacto@cavaestudio.cl</a>
+      <a href="https://www.instagram.com/cava_estudio" target="_blank" style="text-decoration:none;" style-hover="color:var(--text);">Instagram</a>
+      <a href="https://www.linkedin.com/company/cava-estudio/" target="_blank" style="text-decoration:none;" style-hover="color:var(--text);">LinkedIn</a>
+    </div>
+    <span>Pensar / Decir / Hacer.</span>
+  </footer>
+
+</div>
+
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { mobileMenuOpen: false, contactSent: false, theme: (typeof localStorage !== 'undefined' && localStorage.getItem('cava-theme')) || (typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') };
+
+  renderVals() {
+    const dark = this.state.theme === 'dark';
+    return {
+      themeLabel: dark ? 'Claro' : 'Oscuro',
+      themeDotLeft: dark ? '13px' : '1px',
+      toggleTheme: () => this.setState((s) => {
+        const next = s.theme === 'dark' ? 'light' : 'dark';
+        try { localStorage.setItem('cava-theme', next); window.__cavaApplyTheme(next); } catch (e) {}
+        return { theme: next };
+      }),
+      mobileMenuOpen: this.state.mobileMenuOpen,
+      mobileMenuIcon: this.state.mobileMenuOpen ? '✕' : '☰',
+      toggleMobileMenu: () => this.setState((s) => ({ mobileMenuOpen: !s.mobileMenuOpen })),
+      currentYear: new Date().getFullYear(),
+      contactSent: this.state.contactSent,
+      resetContactForm: () => this.setState({ contactSent: false }),
+      submitContactForm: (e) => {
+        e.preventDefault();
+        const form = e.target;
+        const data = Object.fromEntries(new FormData(form).entries());
+        const lines = [
+          'Hola CAVA Estudio! Vengo desde la web 👋',
+          '',
+          `Nombre: ${data.nombre}`,
+          `Empresa: ${data.empresa}`,
+          `Tamaño del equipo: ${data.equipo}`,
+          `Rubro: ${data.rubro}`,
+          `Presupuesto estimado: ${data.presupuesto}`
+        ];
+        const msg = encodeURIComponent(lines.join('\n'));
+        const url = `https://wa.me/56954621640?text=${msg}`;
+        this.setState({ contactSent: true });
+        try {
+          if (typeof gtag === 'function') {
+            gtag('event', 'conversion', { send_to: 'AW-18175229677/x22tCPOYw-0cEO39z9pD' });
+          }
+        } catch (err) {}
+        window.open(url, '_blank');
+      }
+    };
+  }
+}
+</script>
+</body>
+</html>
