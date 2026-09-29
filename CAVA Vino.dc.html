@@ -855,7 +855,29 @@ class Component extends DCLogic {
   }
 
   mkRef(key) {
-    if (!this['_ref_' + key]) this['_ref_' + key] = (el) => { this._els[key] = el; };
+    if (!this['_ref_' + key]) this['_ref_' + key] = (el) => {
+      this._els[key] = el;
+      if (!el) return;
+      // Sections can mount after componentDidMount already ran its one-time
+      // observe() pass (this template streams in content), so every ref is
+      // observed as soon as it exists instead of relying on that single pass
+      // — otherwise late-mounting sections never get watched and stay at
+      // opacity:0 forever.
+      if (!this._ioReveal) {
+        // Generous bottom rootMargin: sections are marked visible well before
+        // they actually scroll into view, so a fast/jumpy scroll can't carry
+        // an element through its (otherwise much narrower) intersection
+        // window without the observer catching it.
+        this._ioReveal = new IntersectionObserver((entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) this.setState((s) => ({ visible: { ...s.visible, [e.target.dataset.key]: true } }));
+          });
+        }, { threshold: 0, rootMargin: '0px 0px 800px 0px' });
+      }
+      this._ioReveal.observe(el);
+      const r = el.getBoundingClientRect();
+      if (r.top < window.innerHeight && r.bottom > 0) this.setState((s) => ({ visible: { ...s.visible, [key]: true } }));
+    };
     return this['_ref_' + key];
   }
 
@@ -867,20 +889,41 @@ class Component extends DCLogic {
   }
 
   componentDidMount() {
-    this._ioReveal = new IntersectionObserver((entries) => {
-      entries.forEach((e) => {
-        if (e.isIntersecting) this.setState((s) => ({ visible: { ...s.visible, [e.target.dataset.key]: true } }));
+    // Belt-and-suspenders on top of the IntersectionObserver in mkRef(): a
+    // throttled scroll listener that directly checks every tracked
+    // section's bounding rect against the viewport. If a fast or jumpy
+    // scroll ever carries a section through its intersection window without
+    // the observer catching it, this still catches it — so nothing can be
+    // left stuck at opacity:0 forever.
+    let ticking = false;
+    const recheck = () => {
+      ticking = false;
+      const vh = window.innerHeight;
+      Object.keys(this._els).forEach((k) => {
+        if (this.state.visible[k]) return;
+        const el = this._els[k];
+        if (!el) return;
+        const r = el.getBoundingClientRect();
+        if (r.top < vh + 800 && r.bottom > -800) {
+          this.setState((s) => ({ visible: { ...s.visible, [k]: true } }));
+        }
       });
-    }, { threshold: 0.15 });
-    Object.keys(this._els).forEach((k) => { if (this._els[k]) this._ioReveal.observe(this._els[k]); });
-    Object.keys(this._els).forEach((k) => {
-      const el = this._els[k];
-      if (!el) return;
-      const r = el.getBoundingClientRect();
-      if (r.top < window.innerHeight && r.bottom > 0) this.setState((s) => ({ visible: { ...s.visible, [k]: true } }));
-    });
+    };
+    this._revealScrollHandler = () => {
+      if (!ticking) { ticking = true; requestAnimationFrame(recheck); }
+    };
+    window.addEventListener('scroll', this._revealScrollHandler, { passive: true });
+    window.addEventListener('resize', this._revealScrollHandler, { passive: true });
+    recheck();
 
     [0, 300, 1000].forEach((ms) => setTimeout(() => this._fixImageSlotAlt(), ms));
+  }
+
+  componentWillUnmount() {
+    if (this._revealScrollHandler) {
+      window.removeEventListener('scroll', this._revealScrollHandler);
+      window.removeEventListener('resize', this._revealScrollHandler);
+    }
   }
 
   _fixImageSlotAlt() {
