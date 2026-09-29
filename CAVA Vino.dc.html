@@ -160,6 +160,13 @@
   @media (max-width: 760px) {
     .img-strip { flex-wrap:wrap; }
     .img-strip-tile { width:50% !important; }
+    /* An odd-count row (3, 5, or a single full-width hero tile) leaves the
+       trailing tile alone in its own row at 50% width — half the row blank.
+       Position parity of the LAST child equals the row's total count parity,
+       so this one rule catches every odd case (including a lone 1-tile row,
+       which needs to stay full-width anyway) and stretches it to fill the
+       line, without touching even rows (2, 4 — already pair up cleanly). */
+    .img-strip-tile:nth-child(odd):last-child { width:100% !important; }
   }
   @media (prefers-reduced-motion: reduce) {
     a { transition: none !important; }
