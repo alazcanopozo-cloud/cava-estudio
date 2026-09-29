@@ -75,6 +75,25 @@
     --nav-bg: rgba(13,13,13,.85);
   }
   html[data-theme="dark"] .theme-invert { filter: invert(1); }
+  .section-invert {
+    --paper: #0d0d0d;
+    --text: #f2f2f0;
+    --secondary: #9a9a9a;
+    --subtle: #555555;
+    --line: rgba(255,255,255,.12);
+    --num: #4d4d4d;
+    background: var(--paper);
+    color: var(--text);
+    transition: background 300ms ease, color 300ms ease;
+  }
+  html[data-theme="dark"] .section-invert {
+    --paper: #ffffff;
+    --text: #111111;
+    --secondary: #777777;
+    --subtle: #b0b0ab;
+    --line: rgba(0,0,0,.09);
+    --num: #BABABA;
+  }
   body { margin: 0; background: var(--paper); scroll-behavior: smooth; font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif; }
   * { box-sizing: border-box; }
   ::selection { background: rgba(0,0,0,.12); color: var(--text); }
@@ -138,17 +157,9 @@
   @media (hover: hover) and (pointer: fine) {
     .oem-nav { display:flex; }
   }
-  /* Label mosaic: the fine multi-column pattern only reads well once rows
-     are wide enough to keep each placeholder's caption legible — below that,
-     flatten every row (display:contents drops the row boxes but keeps their
-     tiles in document order) into one continuous 2-up wrap, so an odd tile
-     count leaves at most one trailing gap for the whole mosaic instead of
-     one per original row. That last orphan stretches to fill its line. */
   @media (max-width: 760px) {
-    .mosaic-wrap { display:flex; flex-wrap:wrap; }
-    .mosaic-row { display:contents !important; }
-    .mosaic-tile { width:50% !important; height:clamp(140px,42vw,220px) !important; }
-    .mosaic-row:last-of-type > .mosaic-tile:last-child { width:100% !important; }
+    .img-strip { flex-wrap:wrap; }
+    .img-strip-tile { width:50% !important; }
   }
   @media (prefers-reduced-motion: reduce) {
     a { transition: none !important; }
@@ -248,75 +259,6 @@
     </div>
   </section>
 
-  <!-- 01D MOSAICO DE ETIQUETAS -->
-  <section data-key="mosaico" ref="{{ refMosaico }}">
-    <div class="reveal {{ revealClsMosaico }}" style="{{ revealMosaico }}">
-      <div class="mosaic-wrap" style="width:100vw; position:relative; left:50%; right:50%; margin-left:-50vw; margin-right:-50vw;">
-        <div class="mosaic-row" style="display:flex; width:100%; height:clamp(160px,20vw,260px);">
-          <div class="mosaic-tile" style="width:33.333%; height:100%;">
-            <image-slot id="label-mosaic-1" src="" shape="rect" fit="cover" placeholder="Detalle de etiqueta 01 — imagen pendiente" style="display:block; width:100%; height:100%; background:var(--subtle);"></image-slot>
-          </div>
-          <div class="mosaic-tile" style="width:25%; height:100%;">
-            <image-slot id="label-mosaic-2" src="" shape="rect" fit="cover" placeholder="Detalle de etiqueta 02 — imagen pendiente" style="display:block; width:100%; height:100%; background:var(--subtle);"></image-slot>
-          </div>
-          <div class="mosaic-tile" style="width:41.667%; height:100%;">
-            <image-slot id="label-mosaic-3" src="" shape="rect" fit="cover" placeholder="Detalle de etiqueta 03 — imagen pendiente" style="display:block; width:100%; height:100%; background:var(--subtle);"></image-slot>
-          </div>
-        </div>
-        <div class="mosaic-row" style="display:flex; width:100%; height:clamp(100px,12vw,160px);">
-          <div class="mosaic-tile" style="width:16.667%; height:100%;">
-            <image-slot id="label-mosaic-4" src="" shape="rect" fit="cover" placeholder="Detalle de etiqueta 04 — imagen pendiente" style="display:block; width:100%; height:100%; background:var(--subtle);"></image-slot>
-          </div>
-          <div class="mosaic-tile" style="width:16.667%; height:100%;">
-            <image-slot id="label-mosaic-5" src="" shape="rect" fit="cover" placeholder="Detalle de etiqueta 05 — imagen pendiente" style="display:block; width:100%; height:100%; background:var(--subtle);"></image-slot>
-          </div>
-          <div class="mosaic-tile" style="width:16.667%; height:100%;">
-            <image-slot id="label-mosaic-6" src="" shape="rect" fit="cover" placeholder="Detalle de etiqueta 06 — imagen pendiente" style="display:block; width:100%; height:100%; background:var(--subtle);"></image-slot>
-          </div>
-          <div class="mosaic-tile" style="width:25%; height:100%;">
-            <image-slot id="label-mosaic-7" src="" shape="rect" fit="cover" placeholder="Detalle de etiqueta 07 — imagen pendiente" style="display:block; width:100%; height:100%; background:var(--subtle);"></image-slot>
-          </div>
-          <div class="mosaic-tile" style="width:25%; height:100%;">
-            <image-slot id="label-mosaic-8" src="" shape="rect" fit="cover" placeholder="Detalle de etiqueta 08 — imagen pendiente" style="display:block; width:100%; height:100%; background:var(--subtle);"></image-slot>
-          </div>
-        </div>
-        <div class="mosaic-row" style="display:flex; width:100%; height:clamp(200px,26vw,320px);">
-          <div class="mosaic-tile" style="width:50%; height:100%;">
-            <image-slot id="label-mosaic-9" src="" shape="rect" fit="cover" placeholder="Detalle de etiqueta 09 — imagen pendiente" style="display:block; width:100%; height:100%; background:var(--subtle);"></image-slot>
-          </div>
-          <div class="mosaic-tile" style="width:50%; height:100%;">
-            <image-slot id="label-mosaic-10" src="" shape="rect" fit="cover" placeholder="Detalle de etiqueta 10 — imagen pendiente" style="display:block; width:100%; height:100%; background:var(--subtle);"></image-slot>
-          </div>
-        </div>
-        <div class="mosaic-row" style="display:flex; width:100%; height:clamp(110px,14vw,170px);">
-          <div class="mosaic-tile" style="width:25%; height:100%;">
-            <image-slot id="label-mosaic-11" src="" shape="rect" fit="cover" placeholder="Detalle de etiqueta 11 — imagen pendiente" style="display:block; width:100%; height:100%; background:var(--subtle);"></image-slot>
-          </div>
-          <div class="mosaic-tile" style="width:25%; height:100%;">
-            <image-slot id="label-mosaic-12" src="" shape="rect" fit="cover" placeholder="Detalle de etiqueta 12 — imagen pendiente" style="display:block; width:100%; height:100%; background:var(--subtle);"></image-slot>
-          </div>
-          <div class="mosaic-tile" style="width:25%; height:100%;">
-            <image-slot id="label-mosaic-13" src="" shape="rect" fit="cover" placeholder="Detalle de etiqueta 13 — imagen pendiente" style="display:block; width:100%; height:100%; background:var(--subtle);"></image-slot>
-          </div>
-          <div class="mosaic-tile" style="width:25%; height:100%;">
-            <image-slot id="label-mosaic-14" src="" shape="rect" fit="cover" placeholder="Detalle de etiqueta 14 — imagen pendiente" style="display:block; width:100%; height:100%; background:var(--subtle);"></image-slot>
-          </div>
-        </div>
-        <div class="mosaic-row" style="display:flex; width:100%; height:clamp(170px,22vw,280px);">
-          <div class="mosaic-tile" style="width:41.667%; height:100%;">
-            <image-slot id="label-mosaic-15" src="" shape="rect" fit="cover" placeholder="Detalle de etiqueta 15 — imagen pendiente" style="display:block; width:100%; height:100%; background:var(--subtle);"></image-slot>
-          </div>
-          <div class="mosaic-tile" style="width:33.333%; height:100%;">
-            <image-slot id="label-mosaic-16" src="" shape="rect" fit="cover" placeholder="Detalle de etiqueta 16 — imagen pendiente" style="display:block; width:100%; height:100%; background:var(--subtle);"></image-slot>
-          </div>
-          <div class="mosaic-tile" style="width:25%; height:100%;">
-            <image-slot id="label-mosaic-17" src="" shape="rect" fit="cover" placeholder="Detalle de etiqueta 17 — imagen pendiente" style="display:block; width:100%; height:100%; background:var(--subtle);"></image-slot>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- 02 QUIÉNES SOMOS -->
   <section id="quienes" data-key="quienes" ref="{{ refQuienes }}" style="padding:clamp(64px,10vw,120px) clamp(24px,5vw,64px); border-top:1px solid var(--line);">
     <div class="reveal {{ revealClsQuienes }}" style="{{ revealQuienes }}">
@@ -336,7 +278,7 @@
           </div>
         </sc-for>
       </div>
-      <p style="font-size:clamp(19px,2.2vw,27px); line-height:1.3; letter-spacing:-0.01em; font-weight:400; margin:0; max-width:760px; border-top:1px solid var(--line); padding-top:clamp(24px,3.5vw,32px);">Una buena etiqueta debe funcionar como marca, como producto y como herramienta comercial.</p>
+      <p style="font-size:clamp(19px,2.2vw,27px); line-height:1.3; letter-spacing:-0.01em; font-weight:400; margin:0 0 0 auto; max-width:760px; text-align:right; border-top:1px solid var(--line); padding-top:clamp(24px,3.5vw,32px);">Una buena etiqueta debe funcionar como marca, como producto y como herramienta comercial.</p>
     </div>
   </section>
 
@@ -357,37 +299,51 @@
           <p style="font-size:15px; line-height:1.6; color:var(--secondary); margin:0 0 12px;">Años de trabajo junto a Puntí Ferrer desarrollando marcas y productos para el mercado local e internacional.</p>
           <div style="font-size:11px; letter-spacing:0.02em; color:var(--secondary);">Desarrollo de marca · Packaging · Proyectos OEM · Herramientas comerciales</div>
         </div>
-        <div class="stagger-grid" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:16px;">
-          <div>
-            <image-slot id="pf-barrels-1" src="{{ assets.pfBarrels1 }}" shape="rect" fit="cover" placeholder="The Winemaker's Secret Barrels" style="display:block; width:100%; aspect-ratio:4/3; background:var(--subtle); margin-bottom:10px;"></image-slot>
-            <div style="font-size:11px; color:var(--secondary);">The Winemaker's Secret Barrels</div>
+        <div class="img-strip-wrap" style="width:100vw; position:relative; left:50%; right:50%; margin-left:-50vw; margin-right:-50vw;">
+          <div class="img-strip" style="display:flex; width:100%;">
+            <div class="img-strip-tile" style="width:25%;">
+              <image-slot id="pf-barrels-1" src="{{ assets.pfBarrels1 }}" shape="rect" fit="cover" placeholder="The Winemaker's Secret Barrels" style="display:block; width:100%; height:100%; aspect-ratio:4/3; background:var(--subtle);"></image-slot>
+            </div>
+            <div class="img-strip-tile" style="width:25%;">
+              <image-slot id="pf-barrels-2" src="{{ assets.pfBarrels2 }}" shape="rect" fit="cover" placeholder="The Winemaker's Secret Barrels" style="display:block; width:100%; height:100%; aspect-ratio:4/3; background:var(--subtle);"></image-slot>
+            </div>
+            <div class="img-strip-tile" style="width:25%;">
+              <image-slot id="pf-copperland" src="{{ assets.pfCopperland }}" shape="rect" fit="cover" placeholder="Copperland" style="display:block; width:100%; height:100%; aspect-ratio:4/3; background:var(--subtle);"></image-slot>
+            </div>
+            <div class="img-strip-tile" style="width:25%;">
+              <image-slot id="pf-conforme-2" src="{{ assets.pfConforme2 }}" shape="rect" fit="cover" placeholder="Conforme — imagen pendiente" style="display:block; width:100%; height:100%; aspect-ratio:4/3; background:var(--subtle);"></image-slot>
+            </div>
           </div>
-          <div>
-            <image-slot id="pf-barrels-2" src="{{ assets.pfBarrels2 }}" shape="rect" fit="cover" placeholder="The Winemaker's Secret Barrels" style="display:block; width:100%; aspect-ratio:4/3; background:var(--subtle); margin-bottom:10px;"></image-slot>
-            <div style="font-size:11px; color:var(--secondary);">The Winemaker's Secret Barrels</div>
-          </div>
-          <div>
-            <image-slot id="pf-copperland" src="{{ assets.pfCopperland }}" shape="rect" fit="cover" placeholder="Copperland" style="display:block; width:100%; aspect-ratio:4/3; background:var(--subtle); margin-bottom:10px;"></image-slot>
-            <div style="font-size:11px; color:var(--secondary);">Copperland</div>
-          </div>
-          <div>
-            <image-slot id="pf-conforme" src="{{ assets.pfConforme }}" shape="rect" fit="cover" placeholder="Conforme — imagen pendiente" style="display:block; width:100%; aspect-ratio:4/3; background:var(--subtle); margin-bottom:10px;"></image-slot>
-            <div style="font-size:11px; color:var(--secondary);">Conforme</div>
+          <div class="img-strip" style="display:flex; width:100%;">
+            <div class="img-strip-tile" style="width:25%;">
+              <image-slot id="pf-memoriaandes-1" src="{{ assets.pfMemoriaAndes1 }}" shape="rect" fit="cover" placeholder="Memoria de Los Andes" style="display:block; width:100%; height:100%; aspect-ratio:3/4; background:var(--subtle);"></image-slot>
+            </div>
+            <div class="img-strip-tile" style="width:25%;">
+              <image-slot id="pf-memoriaandes-2" src="{{ assets.pfMemoriaAndes2 }}" shape="rect" fit="cover" placeholder="Memoria de Los Andes" style="display:block; width:100%; height:100%; aspect-ratio:3/4; background:var(--subtle);"></image-slot>
+            </div>
+            <div class="img-strip-tile" style="width:25%;">
+              <image-slot id="pf-memoriaandes-3" src="{{ assets.pfMemoriaAndes3 }}" shape="rect" fit="cover" placeholder="Memoria de Los Andes" style="display:block; width:100%; height:100%; aspect-ratio:3/4; background:var(--subtle);"></image-slot>
+            </div>
+            <div class="img-strip-tile" style="width:25%;">
+              <image-slot id="pf-memoriaandes-4" src="{{ assets.pfMemoriaAndes4 }}" shape="rect" fit="cover" placeholder="Memoria de Los Andes" style="display:block; width:100%; height:100%; aspect-ratio:3/4; background:var(--subtle);"></image-slot>
+            </div>
           </div>
         </div>
       </div>
 
       <!-- CASO DESTACADO — ORGULLO CRUZADO -->
       <div class="case-row">
-        <div style="max-width:640px; margin-bottom:clamp(28px,4vw,36px);">
-          <div style="font-size:10px; letter-spacing:0.06em; color:var(--secondary); margin-bottom:14px;">CASO DESTACADO</div>
-          <h3 style="font-size:clamp(26px,3vw,40px); font-weight:400; letter-spacing:-0.025em; margin:0 0 14px;">Orgullo Cruzado</h3>
-          <p style="font-size:15px; line-height:1.6; color:var(--secondary); margin:0 0 20px;">Vino, identidad y comunidad: un caso real, construido en colaboración con el Club Deportivo Universidad Católica.</p>
-          <a href="/orgullo-cruzado" style="background:var(--text); color:var(--paper); border-radius:999px; padding:9px 16px; font-size:10px; letter-spacing:0.03em; text-decoration:none; display:inline-block; white-space:nowrap; transition:opacity 400ms cubic-bezier(.22,.61,.36,1);" style-hover="opacity:0.7;">Ver caso completo →</a>
+        <div class="split-grid" style="grid-template-columns:minmax(0,2fr) minmax(0,3fr); gap:clamp(32px,5vw,64px); align-items:center;">
+          <div>
+            <div style="font-size:10px; letter-spacing:0.06em; color:var(--secondary); margin-bottom:14px;">CASO DESTACADO</div>
+            <h3 style="font-size:clamp(26px,3vw,40px); font-weight:400; letter-spacing:-0.025em; margin:0 0 14px;">Orgullo Cruzado</h3>
+            <p style="font-size:15px; line-height:1.6; color:var(--secondary); margin:0 0 20px;">Vino, identidad y comunidad: un caso real, construido en colaboración con el Club Deportivo Universidad Católica.</p>
+            <a href="/orgullo-cruzado" style="background:var(--text); color:var(--paper); border-radius:999px; padding:9px 16px; font-size:10px; letter-spacing:0.03em; text-decoration:none; display:inline-block; white-space:nowrap; transition:opacity 400ms cubic-bezier(.22,.61,.36,1);" style-hover="opacity:0.7;">Ver caso completo →</a>
+          </div>
+          <a href="/orgullo-cruzado" style="display:block;">
+            <image-slot id="oc-case-hero" src="{{ assets.ocHero }}" shape="rect" fit="cover" placeholder="Orgullo Cruzado" style="display:block; width:100%; aspect-ratio:8/5; background:var(--subtle); transition:opacity 300ms cubic-bezier(.22,.61,.36,1);" style-hover="opacity:0.85;"></image-slot>
+          </a>
         </div>
-        <a href="/orgullo-cruzado" style="display:block;">
-          <image-slot id="oc-case-hero" src="{{ assets.ocHero }}" shape="rect" fit="cover" placeholder="Orgullo Cruzado" style="display:block; width:100%; aspect-ratio:8/5; background:var(--subtle); transition:opacity 300ms cubic-bezier(.22,.61,.36,1);" style-hover="opacity:0.85;"></image-slot>
-        </a>
       </div>
 
       <!-- CASO — VALLE SECRETO -->
@@ -398,22 +354,13 @@
           <p style="font-size:14px; line-height:1.6; color:var(--secondary); margin:0 0 12px;">CAVA acompaña de forma continua la operación de Valle Secreto: contraetiquetas, cajas, fichas, sitio web y adaptaciones de packaging para distintos mercados.</p>
           <p style="font-size:14px; line-height:1.5; font-style:italic; color:var(--text); margin:0;">La construcción de una marca no termina cuando se entrega su identidad. También necesita ser operada y mantenida con coherencia.</p>
         </div>
-        <div class="stagger-grid" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:16px;">
-          <div>
-            <image-slot id="vs-contraetiquetas" src="{{ assets.vsContraetiquetas }}" shape="rect" fit="cover" placeholder="Contraetiquetas — imagen pendiente" style="display:block; width:100%; aspect-ratio:4/3; background:var(--subtle); margin-bottom:10px;"></image-slot>
-            <div style="font-size:11px; color:var(--secondary);">Contraetiquetas</div>
-          </div>
-          <div>
-            <image-slot id="vs-cajas" src="{{ assets.vsCajas }}" shape="rect" fit="cover" placeholder="Cajas — imagen pendiente" style="display:block; width:100%; aspect-ratio:4/3; background:var(--subtle); margin-bottom:10px;"></image-slot>
-            <div style="font-size:11px; color:var(--secondary);">Cajas</div>
-          </div>
-          <div>
-            <image-slot id="vs-fichas" src="{{ assets.vsFichas }}" shape="rect" fit="cover" placeholder="Fichas — imagen pendiente" style="display:block; width:100%; aspect-ratio:4/3; background:var(--subtle); margin-bottom:10px;"></image-slot>
-            <div style="font-size:11px; color:var(--secondary);">Fichas</div>
-          </div>
-          <div>
-            <image-slot id="vs-web" src="{{ assets.vsSitioWeb }}" shape="rect" fit="cover" placeholder="Sitio web — imagen pendiente" style="display:block; width:100%; aspect-ratio:4/3; background:var(--subtle); margin-bottom:10px;"></image-slot>
-            <div style="font-size:11px; color:var(--secondary);">Sitio web</div>
+        <div class="img-strip-wrap" style="width:100vw; position:relative; left:50%; right:50%; margin-left:-50vw; margin-right:-50vw;">
+          <div class="img-strip" style="display:flex; width:100%; align-items:flex-start;">
+            <sc-for list="{{ vsDocImages }}" as="vi" hint-placeholder-count="3">
+              <div class="img-strip-tile" style="width:33.333%;">
+                <image-slot id="{{ vi.id }}" src="{{ vi.img }}" shape="rect" fit="cover" placeholder="{{ vi.label }}" style="{{ vi.style }}"></image-slot>
+              </div>
+            </sc-for>
           </div>
         </div>
       </div>
@@ -426,22 +373,88 @@
           <p style="font-size:14px; line-height:1.6; color:var(--secondary); margin:0 0 12px;">Desarrollo de marcas y soporte creativo continuo: fichas, sitio web, adaptaciones, packaging y proyectos OEM para distintos mercados.</p>
           <div style="font-size:12px; color:var(--secondary);">Marcas como Casa Vieja y El Cretino — Casa Vieja con presencia en Brasil.</div>
         </div>
-        <div class="stagger-grid" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:16px;">
-          <div>
-            <image-slot id="si-casa-vieja" src="{{ assets.siCasaVieja }}" shape="rect" fit="cover" placeholder="Casa Vieja — imagen pendiente" style="display:block; width:100%; aspect-ratio:4/3; background:var(--subtle); margin-bottom:10px;"></image-slot>
-            <div style="font-size:11px; color:var(--secondary);">Casa Vieja</div>
+        <div class="img-strip-wrap" style="width:100vw; position:relative; left:50%; right:50%; margin-left:-50vw; margin-right:-50vw; margin-top:clamp(28px,4vw,36px);">
+          <div class="img-strip" style="display:flex; width:100%;">
+            <div class="img-strip-tile" style="width:25%;">
+              <image-slot id="si-elcretino-box" src="{{ assets.siElCretinoBox }}" shape="rect" fit="cover" placeholder="El Cretino" style="display:block; width:100%; height:100%; aspect-ratio:1280/894; background:var(--subtle);"></image-slot>
+            </div>
+            <div class="img-strip-tile" style="width:25%;">
+              <image-slot id="si-elcretino-bottle" src="{{ assets.siElCretinoBottle }}" shape="rect" fit="cover" placeholder="El Cretino" style="display:block; width:100%; height:100%; aspect-ratio:1280/894; background:var(--subtle);"></image-slot>
+            </div>
+            <div class="img-strip-tile" style="width:25%;">
+              <image-slot id="si-elcretino-cash" src="{{ assets.siElCretinoCash }}" shape="rect" fit="cover" placeholder="El Cretino" style="display:block; width:100%; height:100%; aspect-ratio:1280/894; background:var(--subtle);"></image-slot>
+            </div>
+            <div class="img-strip-tile" style="width:25%;">
+              <image-slot id="si-elcretino-detail" src="{{ assets.siElCretinoDetail }}" shape="rect" fit="cover" placeholder="El Cretino" style="display:block; width:100%; height:100%; aspect-ratio:1280/894; background:var(--subtle);"></image-slot>
+            </div>
           </div>
-          <div>
-            <image-slot id="si-el-cretino" src="{{ assets.siElCretino }}" shape="rect" fit="cover" placeholder="El Cretino — imagen pendiente" style="display:block; width:100%; aspect-ratio:4/3; background:var(--subtle); margin-bottom:10px;"></image-slot>
-            <div style="font-size:11px; color:var(--secondary);">El Cretino</div>
+          <div class="img-strip" style="display:flex; width:100%;">
+            <div class="img-strip-tile" style="width:25%;">
+              <image-slot id="si-casavieja-chilena" src="{{ assets.siCasaViejaChilena }}" shape="rect" fit="cover" placeholder="Casa Vieja Chilena" style="display:block; width:100%; height:100%; aspect-ratio:1280/905; background:var(--subtle);"></image-slot>
+            </div>
+            <div class="img-strip-tile" style="width:25%;">
+              <image-slot id="si-casavieja-reserva" src="{{ assets.siCasaViejaReserva }}" shape="rect" fit="cover" placeholder="Casa Vieja Reserva" style="display:block; width:100%; height:100%; aspect-ratio:1280/905; background:var(--subtle);"></image-slot>
+            </div>
+            <div class="img-strip-tile" style="width:25%;">
+              <image-slot id="si-casavieja-granreserva" src="{{ assets.siCasaViejaGranReserva }}" shape="rect" fit="cover" placeholder="Casa Vieja Gran Reserva" style="display:block; width:100%; height:100%; aspect-ratio:1280/905; background:var(--subtle);"></image-slot>
+            </div>
+            <div class="img-strip-tile" style="width:25%;">
+              <image-slot id="si-casavieja-detalle" src="{{ assets.siCasaViejaDetalle }}" shape="rect" fit="cover" placeholder="Casa Vieja — detalle" style="display:block; width:100%; height:100%; aspect-ratio:1280/905; background:var(--subtle);"></image-slot>
+            </div>
           </div>
-          <div>
-            <image-slot id="si-fichas" src="{{ assets.siFichas }}" shape="rect" fit="cover" placeholder="Fichas de producto — imagen pendiente" style="display:block; width:100%; aspect-ratio:4/3; background:var(--subtle); margin-bottom:10px;"></image-slot>
-            <div style="font-size:11px; color:var(--secondary);">Fichas de producto</div>
+        </div>
+      </div>
+
+      <!-- CASO — LAPSOS DE ELQUI / DE SOL A SOL / AVENTURERO -->
+      <div class="case-row">
+        <div style="max-width:640px; margin-bottom:clamp(28px,4vw,36px);">
+          <div style="font-size:10px; letter-spacing:0.06em; color:var(--secondary); margin-bottom:14px;">CASO</div>
+          <h3 style="font-size:clamp(22px,2.4vw,32px); font-weight:400; letter-spacing:-0.02em; margin:0 0 14px;">Lapsos de Elqui, De Sol a Sol y Aventurero</h3>
+          <p style="font-size:14px; line-height:1.6; color:var(--secondary); margin:0 0 12px;">Desarrollo de marca y packaging para productores independientes en distintas zonas del país: Lapsos de Elqui en el norte, y De Sol a Sol y Aventurero en el sur de Chile.</p>
+          <div style="font-size:12px; color:var(--secondary);">Identidad de marca, sistema de etiquetas y packaging para cada proyecto.</div>
+        </div>
+        <div class="img-strip-wrap" style="width:100vw; position:relative; left:50%; right:50%; margin-left:-50vw; margin-right:-50vw;">
+          <div class="img-strip" style="display:flex; width:100%;">
+            <div class="img-strip-tile" style="width:25%;">
+              <image-slot id="ds-carmenere" src="{{ assets.dsCarmenere }}" shape="rect" fit="cover" placeholder="De Sol a Sol — Carmenère" style="display:block; width:100%; height:100%; aspect-ratio:4/5; background:var(--subtle);"></image-slot>
+            </div>
+            <div class="img-strip-tile" style="width:25%;">
+              <image-slot id="ds-pais" src="{{ assets.dsPais }}" shape="rect" fit="cover" placeholder="De Sol a Sol — País" style="display:block; width:100%; height:100%; aspect-ratio:4/5; background:var(--subtle);"></image-slot>
+            </div>
+            <div class="img-strip-tile" style="width:25%;">
+              <image-slot id="ds-sauvignon" src="{{ assets.dsSauvignon }}" shape="rect" fit="cover" placeholder="De Sol a Sol — Sauvignon Blanc" style="display:block; width:100%; height:100%; aspect-ratio:4/5; background:var(--subtle);"></image-slot>
+            </div>
+            <div class="img-strip-tile" style="width:25%;">
+              <image-slot id="ds-lineup" src="{{ assets.dsLineup }}" shape="rect" fit="cover" placeholder="De Sol a Sol — línea completa" style="display:block; width:100%; height:100%; aspect-ratio:4/5; background:var(--subtle);"></image-slot>
+            </div>
           </div>
-          <div>
-            <image-slot id="si-web" src="{{ assets.siSitioWeb }}" shape="rect" fit="cover" placeholder="Sitio web — imagen pendiente" style="display:block; width:100%; aspect-ratio:4/3; background:var(--subtle); margin-bottom:10px;"></image-slot>
-            <div style="font-size:11px; color:var(--secondary);">Sitio web</div>
+          <div class="img-strip" style="display:flex; width:100%;">
+            <div class="img-strip-tile" style="width:25%;">
+              <image-slot id="le-lying" src="{{ assets.leLying }}" shape="rect" fit="cover" placeholder="Lapsos de Elqui" style="display:block; width:100%; height:100%; aspect-ratio:4/3; background:var(--subtle);"></image-slot>
+            </div>
+            <div class="img-strip-tile" style="width:25%;">
+              <image-slot id="le-standing" src="{{ assets.leStanding }}" shape="rect" fit="cover" placeholder="Lapsos de Elqui" style="display:block; width:100%; height:100%; aspect-ratio:4/3; background:var(--subtle);"></image-slot>
+            </div>
+            <div class="img-strip-tile" style="width:25%;">
+              <image-slot id="le-label" src="{{ assets.leLabel }}" shape="rect" fit="cover" placeholder="Lapsos de Elqui" style="display:block; width:100%; height:100%; aspect-ratio:4/3; background:var(--subtle);"></image-slot>
+            </div>
+            <div class="img-strip-tile" style="width:25%;">
+              <image-slot id="le-closeup" src="{{ assets.leCloseup }}" shape="rect" fit="cover" placeholder="Lapsos de Elqui" style="display:block; width:100%; height:100%; aspect-ratio:4/3; background:var(--subtle);"></image-slot>
+            </div>
+          </div>
+          <div class="img-strip" style="display:flex; width:100%;">
+            <div class="img-strip-tile" style="width:25%;">
+              <image-slot id="av-macro" src="{{ assets.avMacro }}" shape="rect" fit="cover" placeholder="El Aventurero" style="display:block; width:100%; height:100%; aspect-ratio:4/5; background:var(--subtle);"></image-slot>
+            </div>
+            <div class="img-strip-tile" style="width:25%;">
+              <image-slot id="av-trio" src="{{ assets.avTrio }}" shape="rect" fit="cover" placeholder="El Aventurero" style="display:block; width:100%; height:100%; aspect-ratio:4/5; background:var(--subtle);"></image-slot>
+            </div>
+            <div class="img-strip-tile" style="width:25%;">
+              <image-slot id="av-hero" src="{{ assets.avHero }}" shape="rect" fit="cover" placeholder="El Aventurero" style="display:block; width:100%; height:100%; aspect-ratio:4/5; background:var(--subtle);"></image-slot>
+            </div>
+            <div class="img-strip-tile" style="width:25%;">
+              <image-slot id="av-magenta" src="{{ assets.avMagenta }}" shape="rect" fit="cover" placeholder="El Aventurero" style="display:block; width:100%; height:100%; aspect-ratio:4/5; background:var(--subtle);"></image-slot>
+            </div>
           </div>
         </div>
       </div>
@@ -463,6 +476,58 @@
       <div style="border-top:1px solid var(--line); padding-top:clamp(32px,5vw,44px); margin-top:clamp(16px,3vw,24px); display:flex; gap:24px; flex-wrap:wrap; align-items:center; justify-content:space-between;">
         <p style="font-size:clamp(19px,2.2vw,26px); line-height:1.3; letter-spacing:-0.01em; font-weight:400; margin:0;">¿Tu marca podría ser el próximo caso?</p>
         <a href="#contacto" onClick="{{ navToContacto }}" style="background:var(--text); color:var(--paper); border-radius:999px; padding:9px 16px; font-size:10px; letter-spacing:0.03em; text-decoration:none; display:inline-block; white-space:nowrap; transition:opacity 400ms cubic-bezier(.22,.61,.36,1);" style-hover="opacity:0.7;">Conversemos →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03B RENDERS TDP BRASIL -->
+  <section id="tdp-brasil" data-key="tdpBrasil" ref="{{ refTdpBrasil }}" style="padding:clamp(64px,10vw,120px) clamp(24px,5vw,64px) 0; border-top:1px solid var(--line);">
+    <div class="reveal {{ revealClsTdpBrasil }}" style="{{ revealTdpBrasil }}">
+      <div style="font-size:10px; letter-spacing:0.06em; color:var(--secondary); margin-bottom:20px;">RENDERS · TDP BRASIL</div>
+      <h2 style="font-size:clamp(28px,3.6vw,48px); line-height:1.1; letter-spacing:-0.03em; font-weight:400; margin:0 0 20px; max-width:640px;">Renders desarrollados para TDP en Brasil.</h2>
+      <p style="font-size:14px; line-height:1.6; color:var(--secondary); max-width:560px; margin:0 0 clamp(40px,6vw,56px);">Un catálogo de renders 3D para distintas marcas desarrolladas junto a TDP, nuestro socio comercial en Brasil al que llegamos a través de Santa Irene: El Libertador, GO UP y Ola Po'.</p>
+    </div>
+    <div class="img-strip-wrap" style="width:100vw; position:relative; left:50%; right:50%; margin-left:-50vw; margin-right:-50vw; margin-top:clamp(40px,6vw,56px);">
+      <div class="img-strip" style="display:flex; width:100%;">
+        <div class="img-strip-tile" style="width:33.333%;">
+          <image-slot id="tdp-libertador-1" src="{{ assets.tdpLibertadorGroup }}" shape="rect" fit="cover" placeholder="El Libertador" style="display:block; width:100%; height:100%; aspect-ratio:7/4; background:var(--subtle);"></image-slot>
+        </div>
+        <div class="img-strip-tile" style="width:33.333%;">
+          <image-slot id="tdp-libertador-2" src="{{ assets.tdpLibertadorMacro }}" shape="rect" fit="cover" placeholder="El Libertador" style="display:block; width:100%; height:100%; aspect-ratio:7/4; background:var(--subtle);"></image-slot>
+        </div>
+        <div class="img-strip-tile" style="width:33.333%;">
+          <image-slot id="tdp-libertador-3" src="{{ assets.tdpLibertadorRow }}" shape="rect" fit="cover" placeholder="El Libertador" style="display:block; width:100%; height:100%; aspect-ratio:7/4; background:var(--subtle);"></image-slot>
+        </div>
+      </div>
+      <div class="img-strip" style="display:flex; width:100%;">
+        <div class="img-strip-tile" style="width:100%;">
+          <image-slot id="tdp-goup-group" src="{{ assets.tdpGoUpGroup }}" shape="rect" fit="cover" placeholder="GO UP" style="display:block; width:100%; height:100%; aspect-ratio:8/5; background:var(--subtle);"></image-slot>
+        </div>
+      </div>
+      <div class="img-strip" style="display:flex; width:100%;">
+        <div class="img-strip-tile" style="width:25%;">
+          <image-slot id="tdp-goup-black" src="{{ assets.tdpGoUpBlack }}" shape="rect" fit="cover" placeholder="GO UP — Black Edition" style="display:block; width:100%; height:100%; aspect-ratio:7/10; background:var(--subtle);"></image-slot>
+        </div>
+        <div class="img-strip-tile" style="width:25%;">
+          <image-slot id="tdp-goup-brut" src="{{ assets.tdpGoUpBrut }}" shape="rect" fit="cover" placeholder="GO UP — Brut" style="display:block; width:100%; height:100%; aspect-ratio:7/10; background:var(--subtle);"></image-slot>
+        </div>
+        <div class="img-strip-tile" style="width:25%;">
+          <image-slot id="tdp-goup-rose" src="{{ assets.tdpGoUpRose }}" shape="rect" fit="cover" placeholder="GO UP — Rosé" style="display:block; width:100%; height:100%; aspect-ratio:7/10; background:var(--subtle);"></image-slot>
+        </div>
+        <div class="img-strip-tile" style="width:25%;">
+          <image-slot id="tdp-goup-sauvignon" src="{{ assets.tdpGoUpSauvignon }}" shape="rect" fit="cover" placeholder="GO UP — Sauvignon Blanc" style="display:block; width:100%; height:100%; aspect-ratio:7/10; background:var(--subtle);"></image-slot>
+        </div>
+      </div>
+      <div class="img-strip" style="display:flex; width:100%;">
+        <div class="img-strip-tile" style="width:33.333%;">
+          <image-slot id="tdp-olapo-carmenere" src="{{ assets.tdpOlaPoCarmenere }}" shape="rect" fit="cover" placeholder="Ola Po' — Carmenère" style="display:block; width:100%; height:100%; aspect-ratio:7/10; background:var(--subtle);"></image-slot>
+        </div>
+        <div class="img-strip-tile" style="width:33.333%;">
+          <image-slot id="tdp-olapo-cabernet" src="{{ assets.tdpOlaPoCabernet }}" shape="rect" fit="cover" placeholder="Ola Po' — Cabernet Sauvignon" style="display:block; width:100%; height:100%; aspect-ratio:7/10; background:var(--subtle);"></image-slot>
+        </div>
+        <div class="img-strip-tile" style="width:33.333%;">
+          <image-slot id="tdp-olapo-merlot" src="{{ assets.tdpOlaPoMerlot }}" shape="rect" fit="cover" placeholder="Ola Po' — Merlot" style="display:block; width:100%; height:100%; aspect-ratio:7/10; background:var(--subtle);"></image-slot>
+        </div>
       </div>
     </div>
   </section>
@@ -494,11 +559,47 @@
         </div>
       </div>
 
+      <div class="img-strip-wrap" style="width:100vw; position:relative; left:50%; right:50%; margin-left:-50vw; margin-right:-50vw; margin-bottom:clamp(48px,7vw,72px);">
+        <div class="img-strip" style="display:flex; width:100%;">
+          <sc-for list="{{ chinaImagesRow1 }}" as="ci" hint-placeholder-count="3">
+            <div class="img-strip-tile" style="width:33.333%;">
+              <image-slot id="{{ ci.id }}" src="{{ ci.img }}" shape="rect" fit="cover" placeholder="{{ ci.label }}" style="display:block; width:100%; height:100%; aspect-ratio:4/3; background:var(--subtle);"></image-slot>
+            </div>
+          </sc-for>
+        </div>
+        <div class="img-strip" style="display:flex; width:100%;">
+          <sc-for list="{{ chinaImagesRow2 }}" as="ci" hint-placeholder-count="3">
+            <div class="img-strip-tile" style="width:33.333%;">
+              <image-slot id="{{ ci.id }}" src="{{ ci.img }}" shape="rect" fit="cover" placeholder="{{ ci.label }}" style="display:block; width:100%; height:100%; aspect-ratio:4/3; background:var(--subtle);"></image-slot>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+
       <div style="border-top:1px solid var(--line); padding-top:clamp(40px,6vw,56px);">
         <div style="font-size:10px; letter-spacing:0.06em; color:var(--secondary); margin-bottom:14px;">OEM</div>
-        <h3 style="font-size:clamp(22px,2.6vw,34px); font-weight:400; letter-spacing:-0.02em; margin:0 0 20px; max-width:600px;">Productos creados para oportunidades concretas.</h3>
-        <p style="font-size:14px; line-height:1.6; color:var(--secondary); margin:0 0 clamp(40px,6vw,56px); max-width:560px;">El desarrollo OEM ha sido una constante en nuestro trabajo con viñas. Hemos participado en la creación de marcas y productos concebidos específicamente para clientes, segmentos, precios, mercados y oportunidades comerciales determinadas.</p>
-        <p style="font-size:clamp(24px,3.4vw,40px); line-height:1.4; letter-spacing:-0.02em; font-weight:400; margin:0 0 clamp(40px,6vw,56px); max-width:900px;">Mercado <span style="color:var(--subtle);">+</span> Cliente <span style="color:var(--subtle);">+</span> Consumidor <span style="color:var(--subtle);">+</span> Vino <span style="color:var(--subtle);">+</span> Precio <span style="color:var(--subtle);">+</span> Marca <span style="color:var(--subtle);">+</span> Packaging <span style="color:var(--subtle);">+</span> Producción <span style="color:var(--subtle);">+</span> Logística <span style="color:var(--subtle);">=</span> <span style="font-weight:500;">un producto OEM.</span></p>
+        <div class="split-grid" style="grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:clamp(32px,5vw,64px); align-items:start; margin-bottom:clamp(40px,6vw,56px);">
+          <div>
+            <h3 style="font-size:clamp(22px,2.6vw,34px); font-weight:400; letter-spacing:-0.02em; margin:0 0 20px; max-width:600px;">Productos creados para oportunidades concretas.</h3>
+            <p style="font-size:14px; line-height:1.6; color:var(--secondary); margin:0; max-width:560px;">El desarrollo OEM ha sido una constante en nuestro trabajo con viñas. Hemos participado en la creación de marcas y productos concebidos específicamente para clientes, segmentos, precios, mercados y oportunidades comerciales determinadas.</p>
+          </div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:4px clamp(16px,2.5vw,32px); text-align:right;">
+            <div style="font-size:clamp(18px,2.2vw,28px); line-height:1.5; letter-spacing:-0.02em; font-weight:400;">
+              <div>Mercado</div>
+              <div><span style="color:var(--subtle);">+</span> Cliente</div>
+              <div><span style="color:var(--subtle);">+</span> Consumidor</div>
+              <div><span style="color:var(--subtle);">+</span> Vino</div>
+              <div><span style="color:var(--subtle);">+</span> Precio</div>
+            </div>
+            <div style="font-size:clamp(18px,2.2vw,28px); line-height:1.5; letter-spacing:-0.02em; font-weight:400;">
+              <div><span style="color:var(--subtle);">+</span> Marca</div>
+              <div><span style="color:var(--subtle);">+</span> Packaging</div>
+              <div><span style="color:var(--subtle);">+</span> Producción</div>
+              <div><span style="color:var(--subtle);">+</span> Logística</div>
+              <div style="font-weight:500;"><span style="color:var(--subtle); font-weight:400;">=</span> un producto OEM.</div>
+            </div>
+          </div>
+        </div>
 
         <div style="display:flex; align-items:center; justify-content:space-between; gap:16px; margin-bottom:16px;">
           <div style="font-size:10px; letter-spacing:0.06em; color:var(--secondary);">CATÁLOGO OEM — MARCAS DISPONIBLES PARA DESARROLLAR</div>
@@ -509,13 +610,13 @@
         </div>
         <div ref="{{ oemStripRef }}" style="width:100vw; position:relative; left:50%; right:50%; margin-left:-50vw; margin-right:-50vw; overflow-x:auto; margin-bottom:clamp(40px,6vw,56px); -webkit-overflow-scrolling:touch;">
           <div style="display:flex; width:max-content;">
-            <sc-for list="{{ oemCatalog }}" as="o" hint-placeholder-count="50">
-              <image-slot id="{{ o.id }}" src="{{ o.img }}" shape="rect" fit="cover" placeholder="{{ o.label }}" style="display:block; flex:0 0 clamp(160px,18vw,240px); aspect-ratio:3/4; background:var(--subtle);"></image-slot>
+            <sc-for list="{{ oemCatalog }}" as="o" hint-placeholder-count="78">
+              <image-slot id="{{ o.id }}" src="{{ o.img }}" shape="rect" fit="cover" placeholder="{{ o.label }}" style="display:block; flex:0 0 clamp(160px,18vw,240px); aspect-ratio:2/3; background:var(--subtle);"></image-slot>
             </sc-for>
           </div>
         </div>
 
-        <p style="font-size:clamp(17px,1.8vw,22px); line-height:1.4; letter-spacing:-0.01em; font-weight:400; margin:0; max-width:640px; border-top:1px solid var(--line); padding-top:clamp(24px,3.5vw,32px);">Un proyecto OEM no comienza preguntando cómo debería verse una etiqueta. Comienza entendiendo qué producto necesita existir, para quién y en qué contexto debe competir.</p>
+        <p style="font-size:clamp(17px,1.8vw,22px); line-height:1.4; letter-spacing:-0.01em; font-weight:400; margin:0 auto; max-width:640px; text-align:center; border-top:1px solid var(--line); padding-top:clamp(24px,3.5vw,32px);">Un proyecto OEM no comienza preguntando cómo debería verse una etiqueta. Comienza entendiendo qué producto necesita existir, para quién y en qué contexto debe competir.</p>
       </div>
     </div>
   </section>
@@ -537,24 +638,32 @@
         </sc-for>
       </div>
 
-      <div class="stagger-grid" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:12px; margin-bottom:clamp(48px,7vw,72px);">
-        <sc-for list="{{ productionImages }}" as="pi" hint-placeholder-count="4">
-          <div>
-            <image-slot id="{{ pi.id }}" src="{{ pi.img }}" shape="rect" fit="cover" placeholder="{{ pi.label }}" style="display:block; width:100%; aspect-ratio:3/4; background:var(--subtle); margin-bottom:8px;"></image-slot>
-            <div style="font-size:10px; color:var(--secondary);">{{ pi.label }}</div>
-          </div>
-        </sc-for>
+      <div class="img-strip-wrap" style="width:100vw; position:relative; left:50%; right:50%; margin-left:-50vw; margin-right:-50vw; margin-bottom:clamp(48px,7vw,72px);">
+        <div class="img-strip" style="display:flex; width:100%;">
+          <sc-for list="{{ productionImages }}" as="pi" hint-placeholder-count="4">
+            <div class="img-strip-tile" style="width:25%;">
+              <image-slot id="{{ pi.id }}" src="{{ pi.img }}" shape="rect" fit="cover" placeholder="{{ pi.label }}" style="display:block; width:100%; height:100%; aspect-ratio:3/2; background:var(--subtle);"></image-slot>
+            </div>
+          </sc-for>
+        </div>
+        <div class="img-strip" style="display:flex; width:100%;">
+          <sc-for list="{{ vsOcCollection }}" as="vc" hint-placeholder-count="6">
+            <div class="img-strip-tile" style="width:16.667%;">
+              <image-slot id="{{ vc.id }}" src="{{ vc.img }}" shape="rect" fit="cover" placeholder="{{ vc.label }}" style="display:block; width:100%; height:100%; aspect-ratio:7/10; background:var(--subtle);"></image-slot>
+            </div>
+          </sc-for>
+        </div>
       </div>
 
       <div style="border-top:1px solid var(--line); padding-top:clamp(24px,3.5vw,32px);">
-        <p style="font-size:clamp(19px,2.2vw,27px); line-height:1.3; letter-spacing:-0.01em; font-weight:400; margin:0 0 12px; max-width:680px;">Diseñamos entendiendo lo que puede producirse.</p>
-        <p style="font-size:14px; line-height:1.6; color:var(--secondary); margin:0; max-width:560px;">Eso nos permite conectar intención de marca, viabilidad técnica y realidad comercial.</p>
+        <p style="font-size:clamp(19px,2.2vw,27px); line-height:1.3; letter-spacing:-0.01em; font-weight:400; margin:0 0 12px auto; max-width:680px; text-align:right;">Diseñamos entendiendo lo que puede producirse.</p>
+        <p style="font-size:14px; line-height:1.6; color:var(--secondary); margin:0 0 0 auto; max-width:560px; text-align:right;">Eso nos permite conectar intención de marca, viabilidad técnica y realidad comercial.</p>
       </div>
     </div>
   </section>
 
   <!-- 06 FORMA DE TRABAJO -->
-  <section id="trabajo" data-key="trabajo" ref="{{ refTrabajo }}" style="padding:clamp(64px,10vw,120px) clamp(24px,5vw,64px); border-top:1px solid var(--line);">
+  <section id="trabajo" data-key="trabajo" ref="{{ refTrabajo }}" class="section-invert" style="padding:clamp(64px,10vw,120px) clamp(24px,5vw,64px); border-top:1px solid var(--line);">
     <div class="reveal {{ revealClsTrabajo }}" style="{{ revealTrabajo }}">
       <div style="font-size:10px; letter-spacing:0.06em; color:var(--secondary); margin-bottom:20px;">FORMA DE TRABAJO</div>
       <h2 style="font-size:clamp(28px,3.6vw,48px); line-height:1.1; letter-spacing:-0.03em; font-weight:400; margin:0 0 20px; max-width:640px;">Podemos entrar en distintos momentos del proceso.</h2>
@@ -603,6 +712,22 @@
         <p style="font-size:13px; line-height:1.6; color:var(--secondary); margin:0; max-width:520px;">ProWine São Paulo 2026 es una oportunidad para continuar construyendo relaciones, entendiendo el mercado y detectando nuevos desafíos donde nuestra experiencia pueda aportar.</p>
       </div>
     </div>
+    <div class="img-strip-wrap" style="width:100vw; position:relative; left:50%; right:50%; margin-left:-50vw; margin-right:-50vw; margin-top:clamp(32px,5vw,48px);">
+      <div class="img-strip" style="display:flex; width:100%;">
+        <sc-for list="{{ brasilImagesRow1 }}" as="bi" hint-placeholder-count="5">
+          <div class="img-strip-tile" style="width:20%;">
+            <image-slot id="{{ bi.id }}" src="{{ bi.img }}" shape="rect" fit="cover" placeholder="{{ bi.label }}" style="display:block; width:100%; height:100%; aspect-ratio:3/4; background:var(--subtle);"></image-slot>
+          </div>
+        </sc-for>
+      </div>
+      <div class="img-strip" style="display:flex; width:100%;">
+        <sc-for list="{{ brasilImagesRow2 }}" as="bi" hint-placeholder-count="5">
+          <div class="img-strip-tile" style="width:20%;">
+            <image-slot id="{{ bi.id }}" src="{{ bi.img }}" shape="rect" fit="cover" placeholder="{{ bi.label }}" style="display:block; width:100%; height:100%; aspect-ratio:4/3; background:var(--subtle);"></image-slot>
+          </div>
+        </sc-for>
+      </div>
+    </div>
   </section>
 
   <!-- 08 CONTACTO -->
@@ -645,27 +770,79 @@ class Component extends DCLogic {
   // empty strings render image-slot's clearly-identified placeholder state
   // until Conforme / Memoria de Los Andes / San Nicolás Wines material is delivered.
   _assets = {
-    skitVideo: '',
+    skitVideo: 'assets/skit-vinas.mp4',
     pfBarrels1: 'assets/p-vallesecreto-1.jpg',
     pfBarrels2: 'assets/p-vallesecreto-2.jpg',
-    pfCopperland: 'assets/p-copperland.jpg',
-    pfConforme: '',
+    pfCopperland: 'assets/pf-copperland-bottles.jpg',
+    pfConforme2: 'assets/pf-conforme-detail.jpg',
+    pfMemoriaAndes1: 'assets/pf-memoriaandes-13.webp',
+    pfMemoriaAndes2: 'assets/pf-memoriaandes-14.webp',
+    pfMemoriaAndes3: 'assets/pf-memoriaandes-15.webp',
+    pfMemoriaAndes4: 'assets/pf-memoriaandes-16.webp',
     siLogo: 'assets/logos/client-santa-irene-black.png',
-    siCasaVieja: '',
-    siElCretino: '',
-    siFichas: '',
-    siSitioWeb: '',
+    siElCretinoBox: 'assets/si-elcretino-9.webp',
+    siElCretinoBottle: 'assets/si-elcretino-10.webp',
+    siElCretinoCash: 'assets/si-elcretino-11.webp',
+    siElCretinoDetail: 'assets/si-elcretino-12.webp',
+    siCasaViejaChilena: 'assets/si-casavieja-5.webp',
+    siCasaViejaReserva: 'assets/si-casavieja-6.webp',
+    siCasaViejaGranReserva: 'assets/si-casavieja-7.webp',
+    siCasaViejaDetalle: 'assets/si-casavieja-8.webp',
     vsLogo: 'assets/logos/client-valle-secreto-black.png',
     vsWeb: 'assets/oc-web-hero.png',
-    vsContraetiquetas: '',
-    vsCajas: '',
-    vsFichas: '',
-    vsSitioWeb: '',
-    ocHero: 'assets/oc-hero.png',
-    prodLabel: 'assets/oc-macro-label.jpg',
-    prodFoil: 'assets/oc-detail-print.jpg',
-    prodTexture: 'assets/oc-detail-texture.jpg',
-    prodBox: 'assets/oc-packaging-full.png'
+    ocHero: 'assets/oc-case-collection.png',
+    vsSpecsheet: 'assets/prod-specsheet.webp',
+    vsBrochure: 'assets/prod-brochure.webp',
+    vsOrigenBox: 'assets/prod-origenbox.webp',
+    vsOcArtwork: 'assets/prod-oc-artwork.webp',
+    vsOcLineup: 'assets/prod-oc-lineup.webp',
+    vsOcDetail: 'assets/prod-oc-detail.webp',
+    vsOcBoxes: 'assets/prod-oc-boxes.webp',
+    vsOcPreventa: 'assets/prod-oc-preventa.webp',
+    vsOcWebsite: 'assets/prod-oc-website.webp',
+    prodVineyardAerial: 'assets/prod-vineyard-aerial.png',
+    prodHarvestHand: 'assets/prod-harvest-hand.png',
+    prodFermentation: 'assets/prod-fermentation.png',
+    prodBottlingLine: 'assets/prod-bottling-line.png',
+    chinaCoconuts: 'assets/china-coconuts-group.webp',
+    chinaMarketStreet: 'assets/china-market-street.webp',
+    chinaWineTasting: 'assets/china-wine-tasting.webp',
+    chinaBusinessMeeting: 'assets/china-business-meeting.webp',
+    chinaGroupDinner: 'assets/china-group-dinner.webp',
+    chinaCalligraphy: 'assets/china-calligraphy.webp',
+    brasilTapSelfie: 'assets/brasil-tap-selfie.jpg',
+    brasilSantaIreneBooth: 'assets/brasil-santaIrene-booth.jpg',
+    brasilTopwinesSelfie: 'assets/brasil-topwines-selfie.jpg',
+    brasil0507: 'assets/brasil-0507.jpg',
+    brasil0515: 'assets/brasil-0515.jpg',
+    brasil0523: 'assets/brasil-0523.jpg',
+    brasil5614: 'assets/brasil-team-office.jpg',
+    brasil5644: 'assets/brasil-5644.jpg',
+    brasil5667: 'assets/brasil-5667.jpg',
+    brasil5677: 'assets/brasil-5677.jpg',
+    dsCarmenere: 'assets/desolsol-carmenere.webp',
+    dsPais: 'assets/desolsol-pais.webp',
+    dsSauvignon: 'assets/desolsol-sauvignon.webp',
+    dsLineup: 'assets/desolsol-lineup.webp',
+    leLying: 'assets/lapsoselqui-lying.webp',
+    leStanding: 'assets/lapsoselqui-standing.webp',
+    leLabel: 'assets/lapsoselqui-label.webp',
+    leCloseup: 'assets/lapsoselqui-closeup.webp',
+    avMacro: 'assets/aventurero-macro.jpg',
+    avMagenta: 'assets/aventurero-magenta.webp',
+    avTrio: 'assets/aventurero-trio.webp',
+    avHero: 'assets/aventurero-hero.jpg',
+    tdpLibertadorGroup: 'assets/tdp-libertador-group.webp',
+    tdpLibertadorMacro: 'assets/tdp-libertador-macro.webp',
+    tdpLibertadorRow: 'assets/tdp-libertador-row.webp',
+    tdpGoUpGroup: 'assets/tdp-goup-group.webp',
+    tdpGoUpBlack: 'assets/tdp-goup-black.webp',
+    tdpGoUpBrut: 'assets/tdp-goup-brut.webp',
+    tdpGoUpRose: 'assets/tdp-goup-rose.webp',
+    tdpGoUpSauvignon: 'assets/tdp-goup-sauvignon.webp',
+    tdpOlaPoCarmenere: 'assets/tdp-olapo-carmenere.webp',
+    tdpOlaPoCabernet: 'assets/tdp-olapo-cabernet.webp',
+    tdpOlaPoMerlot: 'assets/tdp-olapo-merlot.webp'
   };
 
   reveal(key) {
@@ -742,9 +919,9 @@ class Component extends DCLogic {
       revealHero: this.reveal('hero'),
       revealSkit: this.reveal('skit'),
       revealIndice: this.reveal('indice'),
-      revealMosaico: this.reveal('mosaico'),
       revealQuienes: this.reveal('quienes'),
       revealExperiencia: this.reveal('experiencia'),
+      revealTdpBrasil: this.reveal('tdpBrasil'),
       revealMercados: this.reveal('mercados'),
       revealProduccion: this.reveal('produccion'),
       revealTrabajo: this.reveal('trabajo'),
@@ -753,9 +930,9 @@ class Component extends DCLogic {
       revealClsHero: this.revealCls('hero'),
       revealClsSkit: this.revealCls('skit'),
       revealClsIndice: this.revealCls('indice'),
-      revealClsMosaico: this.revealCls('mosaico'),
       revealClsQuienes: this.revealCls('quienes'),
       revealClsExperiencia: this.revealCls('experiencia'),
+      revealClsTdpBrasil: this.revealCls('tdpBrasil'),
       revealClsMercados: this.revealCls('mercados'),
       revealClsProduccion: this.revealCls('produccion'),
       revealClsTrabajo: this.revealCls('trabajo'),
@@ -795,9 +972,9 @@ class Component extends DCLogic {
       hasSkitVideo: !!a.skitVideo,
       noSkitVideo: !a.skitVideo,
       refIndice: this.mkRef('indice'),
-      refMosaico: this.mkRef('mosaico'),
       refQuienes: this.mkRef('quienes'),
       refExperiencia: this.mkRef('experiencia'),
+      refTdpBrasil: this.mkRef('tdpBrasil'),
       refMercados: this.mkRef('mercados'),
       refProduccion: this.mkRef('produccion'),
       refTrabajo: this.mkRef('trabajo'),
@@ -806,10 +983,11 @@ class Component extends DCLogic {
       tocItems: [
         { n: '01', label: 'Quiénes somos', key: 'quienes', href: '#quienes', desc: 'Marca, producto y mercado como una misma disciplina.' },
         { n: '02', label: 'Experiencia y casos', key: 'experiencia', href: '#experiencia', desc: 'Puntí Ferrer, Orgullo Cruzado, Valle Secreto, Santa Irene y más.' },
-        { n: '03', label: 'Mercados internacionales y OEM', key: 'mercados', href: '#mercados', desc: 'China, Labelapp y proyectos creados para oportunidades concretas.' },
-        { n: '04', label: 'Del producto a la producción y exportación', key: 'produccion', href: '#produccion', desc: 'Botellas, cierres, etiquetas, cajas y maquila.' },
-        { n: '05', label: 'Forma de trabajo', key: 'trabajo', href: '#trabajo', desc: 'Construir, fortalecer o acompañar, según el momento.' },
-        { n: '06', label: 'Contacto', key: 'contacto', href: '#contacto', desc: 'Conversemos sobre tu marca, producto o mercado.' }
+        { n: '03', label: 'Renders TDP Brasil', key: 'tdpBrasil', href: '#tdp-brasil', desc: 'El Libertador, GO UP y Ola Po’ — renders para TDP en Brasil.' },
+        { n: '04', label: 'Mercados internacionales y OEM', key: 'mercados', href: '#mercados', desc: 'China, Labelapp y proyectos creados para oportunidades concretas.' },
+        { n: '05', label: 'Del producto a la producción y exportación', key: 'produccion', href: '#produccion', desc: 'Botellas, cierres, etiquetas, cajas y maquila.' },
+        { n: '06', label: 'Forma de trabajo', key: 'trabajo', href: '#trabajo', desc: 'Construir, fortalecer o acompañar, según el momento.' },
+        { n: '07', label: 'Contacto', key: 'contacto', href: '#contacto', desc: 'Conversemos sobre tu marca, producto o mercado.' }
       ],
       dimensions: [
         { n: '01', name: 'Marca', desc: 'Construcción de posicionamiento, identidad, narrativa y sistemas reconocibles.' },
@@ -825,7 +1003,86 @@ class Component extends DCLogic {
           ? 'font-size:16px; font-weight:500; letter-spacing:0.01em; color:var(--text); background:var(--line); border-radius:999px; padding:14px 24px; white-space:nowrap;'
           : 'font-size:13px; letter-spacing:0.02em; color:var(--text); background:var(--line); border-radius:999px; padding:10px 18px; white-space:nowrap;'
       })),
-      oemCatalog: Array.from({ length: 50 }, (_, i) => ({ id: `oem-cat-${i + 1}`, img: '', label: `Marca OEM ${String(i + 1).padStart(2, '0')} — imagen pendiente` })),
+      oemCatalog: [
+        { id: 'oem-cat-1', img: 'assets/BRANDBOOK-ETIQUETAS-VSI/1-NAVEGANTE.webp', label: 'Navegante' },
+        { id: 'oem-cat-2', img: 'assets/BRANDBOOK-ETIQUETAS-VSI/2-JAZZY.webp', label: 'Jazzy' },
+        { id: 'oem-cat-3', img: 'assets/BRANDBOOK-ETIQUETAS-VSI/3-WUMUL.webp', label: 'Wumul' },
+        { id: 'oem-cat-4', img: 'assets/BRANDBOOK-ETIQUETAS-VSI/4-AMIKOS.webp', label: 'Amikos' },
+        { id: 'oem-cat-5', img: 'assets/BRANDBOOK-ETIQUETAS-VSI/5-AVES-MAGICAS.webp', label: 'Aves Magicas' },
+        { id: 'oem-cat-6', img: 'assets/BRANDBOOK-ETIQUETAS-VSI/6-1986.webp', label: '1986' },
+        { id: 'oem-cat-7', img: 'assets/BRANDBOOK-ETIQUETAS-VSI/7-HIPPOCAMPUS.webp', label: 'Hippocampus' },
+        { id: 'oem-cat-8', img: 'assets/BRANDBOOK-ETIQUETAS-VSI/8-HIPPOCAMPUS.webp', label: 'Hippocampus' },
+        { id: 'oem-cat-9', img: 'assets/BRANDBOOK-ETIQUETAS-VSI/9-HIPPOCAMPUS.webp', label: 'Hippocampus' },
+        { id: 'oem-cat-10', img: 'assets/BRANDBOOK-ETIQUETAS-VSI/10-ASTRO.webp', label: 'Astro' },
+        { id: 'oem-cat-11', img: 'assets/BRANDBOOK-ETIQUETAS-VSI/11-CASA-VIEJA.webp', label: 'Casa Vieja' },
+        { id: 'oem-cat-12', img: 'assets/BRANDBOOK-ETIQUETAS-VSI/12-CASA-VIEJA.webp', label: 'Casa Vieja' },
+        { id: 'oem-cat-13', img: 'assets/BRANDBOOK-ETIQUETAS-VSI/13-CASA-VIEJA.webp', label: 'Casa Vieja' },
+        { id: 'oem-cat-14', img: 'assets/BRANDBOOK-ETIQUETAS-VSI/14-DEVOTO.webp', label: 'Devoto' },
+        { id: 'oem-cat-15', img: 'assets/BRANDBOOK-ETIQUETAS-VSI/15-EMBLEMA.webp', label: 'Emblema' },
+        { id: 'oem-cat-16', img: 'assets/BRANDBOOK-ETIQUETAS-VSI/16-JUNTOS.webp', label: 'Juntos' },
+        { id: 'oem-cat-17', img: 'assets/BRANDBOOK-ETIQUETAS-VSI/17-LOS-GALLOS.webp', label: 'Los Gallos' },
+        { id: 'oem-cat-18', img: 'assets/BRANDBOOK-ETIQUETAS-VSI/18-TRONADOR.webp', label: 'Tronador' },
+        { id: 'oem-cat-19', img: 'assets/BRANDBOOK-ETIQUETAS-VSI/19-HARVEST-TOOLS.webp', label: 'Harvest Tools' },
+        { id: 'oem-cat-20', img: 'assets/BRANDBOOK-ETIQUETAS-VSI/20-SEÑAL-DE-LUZ.webp', label: 'Señal De Luz' },
+        { id: 'oem-cat-21', img: 'assets/BRANDBOOK-ETIQUETAS-VSI/21-FESTUS.webp', label: 'Festus' },
+        { id: 'oem-cat-22', img: 'assets/BRANDBOOK-ETIQUETAS-VSI/22-TRAVESIA.webp', label: 'Travesia' },
+        { id: 'oem-cat-23', img: 'assets/BRANDBOOK-ETIQUETAS-VSI/23-VIEJA-CALLE.webp', label: 'Vieja Calle' },
+        { id: 'oem-cat-24', img: 'assets/BRANDBOOK-ETIQUETAS-VSI/24-VINCULO.webp', label: 'Vinculo' },
+        { id: 'oem-cat-25', img: 'assets/BRANDBOOK-ETIQUETAS-VSI/25-ZARCILLO.webp', label: 'Zarcillo' },
+        { id: 'oem-cat-26', img: 'assets/BRANDBOOK-ETIQUETAS-VSI/26-LOVE-STORY.webp', label: 'Love Story' },
+        { id: 'oem-cat-27', img: 'assets/BRANDBOOK-ETIQUETAS-VSI/27-ELIXIR.webp', label: 'Elixir' },
+        { id: 'oem-cat-28', img: 'assets/BRANDBOOK-ETIQUETAS-VSI/28-FORTUNO.webp', label: 'Fortuno' },
+        { id: 'oem-cat-29', img: 'assets/BRANDBOOK-ETIQUETAS-VSI/29-REPTILIS.webp', label: 'Reptilis' },
+        { id: 'oem-cat-30', img: 'assets/BRANDBOOK-ETIQUETAS-VSI/30-CIMA.webp', label: 'Cima' },
+        { id: 'oem-cat-31', img: 'assets/BRANDBOOK-ETIQUETAS-VSI/31-GRAN-AVE.webp', label: 'Gran Ave' },
+        { id: 'oem-cat-32', img: 'assets/BRANDBOOK-ETIQUETAS-VSI/32-HOJA-CAIDA.webp', label: 'Hoja Caida' },
+        { id: 'oem-cat-33', img: 'assets/BRANDBOOK-ETIQUETAS-VSI/33-MADRE-TIERRA.webp', label: 'Madre Tierra' },
+        { id: 'oem-cat-34', img: 'assets/BRANDBOOK-ETIQUETAS-VSI/34-FELINO.webp', label: 'Felino' },
+        { id: 'oem-cat-35', img: 'assets/BRANDBOOK-ETIQUETAS-VSI/35-DREAMER.webp', label: 'Dreamer' },
+        { id: 'oem-cat-36', img: 'assets/BRANDBOOK-ETIQUETAS-VSI/36-REAL.webp', label: 'Real' },
+        { id: 'oem-cat-37', img: 'assets/BRANDBOOK-ETIQUETAS-VSI/37-FAROL.webp', label: 'Farol' },
+        { id: 'oem-cat-38', img: 'assets/BRANDBOOK-ETIQUETAS-VSI/38-RAMITO.webp', label: 'Ramito' },
+        { id: 'oem-cat-39', img: 'assets/BRANDBOOK-ETIQUETAS-VSI/39-RAILROAD.webp', label: 'Railroad' },
+        { id: 'oem-cat-40', img: 'assets/BRANDBOOK-ETIQUETAS-VSI/40-DERIVA.webp', label: 'Deriva' },
+        { id: 'oem-cat-41', img: 'assets/BRANDBOOK-ETIQUETAS-VSI/41-FURY.webp', label: 'Fury' },
+        { id: 'oem-cat-42', img: 'assets/BRANDBOOK-ETIQUETAS-VSI/42-CHIVO-NEGRO.webp', label: 'Chivo Negro' },
+        { id: 'oem-cat-43', img: 'assets/BRANDBOOK-ETIQUETAS-VSI/43-ONIRICO.webp', label: 'Onirico' },
+        { id: 'oem-cat-44', img: 'assets/BRANDBOOK-ETIQUETAS-VSI/44-RAPAZ.webp', label: 'Rapaz' },
+        { id: 'oem-cat-45', img: 'assets/BRANDBOOK-ETIQUETAS-VSI/45-CARRETA.webp', label: 'Carreta' },
+        { id: 'oem-cat-46', img: 'assets/BRANDBOOK-ETIQUETAS-VSI/46-OPTICO.webp', label: 'Optico' },
+        { id: 'oem-cat-47', img: 'assets/BRANDBOOK-ETIQUETAS-VSI/47-PICAFLOR.webp', label: 'Picaflor' },
+        { id: 'oem-cat-48', img: 'assets/BRANDBOOK-ETIQUETAS-VSI/48-NATURAL.webp', label: 'Natural' },
+        { id: 'oem-cat-49', img: 'assets/BRANDBOOK-ETIQUETAS-VSI/49-SUNSET-CS.webp', label: 'Sunset Cs' },
+        { id: 'oem-cat-50', img: 'assets/BRANDBOOK-ETIQUETAS-VSI/50-SUNSET-MR.webp', label: 'Sunset Mr' },
+        { id: 'oem-cat-51', img: 'assets/BRANDBOOK-ETIQUETAS-VSI/51-SUNSET-CR.webp', label: 'Sunset Cr' },
+        { id: 'oem-cat-52', img: 'assets/BRANDBOOK-ETIQUETAS-VSI/52-GUITARRERA.webp', label: 'Guitarrera' },
+        { id: 'oem-cat-53', img: 'assets/BRANDBOOK-ETIQUETAS-VSI/53-INTRATABLE.webp', label: 'Intratable' },
+        { id: 'oem-cat-54', img: 'assets/BRANDBOOK-ETIQUETAS-VSI/54-TAWRIQ.webp', label: 'Tawriq' },
+        { id: 'oem-cat-55', img: 'assets/BRANDBOOK-ETIQUETAS-VSI/55-G.webp', label: 'G' },
+        { id: 'oem-cat-56', img: 'assets/BRANDBOOK-ETIQUETAS-VSI/56-CULMEN.webp', label: 'Culmen' },
+        { id: 'oem-cat-57', img: 'assets/BRANDBOOK-ETIQUETAS-VSI/57-NAUFRAGIO.webp', label: 'Naufragio' },
+        { id: 'oem-cat-58', img: 'assets/BRANDBOOK-ETIQUETAS-VSI/58-GRAVITY.webp', label: 'Gravity' },
+        { id: 'oem-cat-59', img: 'assets/BRANDBOOK-ETIQUETAS-VSI/59-MAGNETO.webp', label: 'Magneto' },
+        { id: 'oem-cat-60', img: 'assets/BRANDBOOK-ETIQUETAS-VSI/60-NUCLEO.webp', label: 'Nucleo' },
+        { id: 'oem-cat-61', img: 'assets/BRANDBOOK-ETIQUETAS-VSI/61-BALCON.webp', label: 'Balcon' },
+        { id: 'oem-cat-62', img: 'assets/BRANDBOOK-ETIQUETAS-VSI/62-ELEPHAS.webp', label: 'Elephas' },
+        { id: 'oem-cat-63', img: 'assets/BRANDBOOK-ETIQUETAS-VSI/63-VASIJA.webp', label: 'Vasija' },
+        { id: 'oem-cat-64', img: 'assets/BRANDBOOK-ETIQUETAS-VSI/64-MONO-LOCO.webp', label: 'Mono Loco' },
+        { id: 'oem-cat-65', img: 'assets/BRANDBOOK-ETIQUETAS-VSI/65-CHILENA.webp', label: 'Chilena' },
+        { id: 'oem-cat-70', img: 'assets/BRANDBOOK-ETIQUETAS-VSI/70-BOSQUESUR.webp', label: 'Bosquesur' },
+        { id: 'oem-cat-75', img: 'assets/BRANDBOOK-ETIQUETAS-VSI/75-CODORNIZ.webp', label: 'Codorniz' },
+        { id: 'oem-cat-88', img: 'assets/BRANDBOOK-ETIQUETAS-VSI/88-MANTAUCO.webp', label: 'Mantauco' },
+        { id: 'oem-cat-89', img: 'assets/BRANDBOOK-ETIQUETAS-VSI/89-MAPUSARA.webp', label: 'Mapusara' },
+        { id: 'oem-cat-104', img: 'assets/BRANDBOOK-ETIQUETAS-VSI/104-QUISQUE.webp', label: 'Quisque' },
+        { id: 'oem-cat-114', img: 'assets/BRANDBOOK-ETIQUETAS-VSI/114-TRICA.webp', label: 'Trica' },
+        { id: 'oem-cat-119', img: 'assets/BRANDBOOK-ETIQUETAS-VSI/119-VIEJO-SOL.webp', label: 'Viejo Sol' },
+        { id: 'oem-cat-120', img: 'assets/BRANDBOOK-ETIQUETAS-VSI/120-PIANO-PIANO.webp', label: 'Piano Piano' },
+        { id: 'oem-cat-121', img: 'assets/BRANDBOOK-ETIQUETAS-VSI/121-RENACER.webp', label: 'Renacer' },
+        { id: 'oem-cat-122', img: 'assets/BRANDBOOK-ETIQUETAS-VSI/122-TIGRE.webp', label: 'Tigre' },
+        { id: 'oem-cat-123', img: 'assets/BRANDBOOK-ETIQUETAS-VSI/123-FOX.webp', label: 'Fox' },
+        { id: 'oem-cat-124', img: 'assets/BRANDBOOK-ETIQUETAS-VSI/124-NOCHE-LUNA.webp', label: 'Noche Luna' },
+        { id: 'oem-cat-125', img: 'assets/BRANDBOOK-ETIQUETAS-VSI/125-TARDE.webp', label: 'Tarde' }
+      ],
       productionAreas: [
         { n: '01', name: 'Botellas', desc: 'Formatos, pesos, colores, disponibilidad y relación con posicionamiento y mercado.' },
         { n: '02', name: 'Corchos y tapones', desc: 'Alternativas de cierre y criterios de aplicación según producto.' },
@@ -835,11 +1092,48 @@ class Component extends DCLogic {
         { n: '06', name: 'Producción', desc: 'Preparación de originales, validación de materiales, coordinación con proveedores, pruebas e implementación.' },
         { n: '07', name: 'Maquila y exportación', desc: 'Experiencia acompañando procesos desde el vino y sus componentes hasta el producto listo para carga en contenedor.' }
       ],
+      vsDocImages: [
+        { id: 'vs-specsheet', img: a.vsSpecsheet, label: 'Ficha técnica de etiqueta', style: 'display:block; width:100%; height:100%; aspect-ratio:3/2; background:var(--subtle);' },
+        { id: 'vs-brochure', img: a.vsBrochure, label: 'Brochure de experiencias', style: 'display:block; width:100%; height:100%; aspect-ratio:3/2; background:var(--subtle);' },
+        { id: 'vs-origenbox', img: a.vsOrigenBox, label: 'Packaging — caja y botella', style: 'display:block; width:100%; height:100%; aspect-ratio:3/2; background:var(--subtle);' }
+      ],
+      vsOcCollection: [
+        { id: 'vs-oc-artwork', img: a.vsOcArtwork, label: 'Colección Orgullo Cruzado — arte final' },
+        { id: 'vs-oc-lineup', img: a.vsOcLineup, label: 'Colección Orgullo Cruzado — línea completa' },
+        { id: 'vs-oc-detail', img: a.vsOcDetail, label: 'Detalle de etiqueta' },
+        { id: 'vs-oc-boxes', img: a.vsOcBoxes, label: 'Packaging — cajas de colección' },
+        { id: 'vs-oc-preventa', img: a.vsOcPreventa, label: 'Material de preventa' },
+        { id: 'vs-oc-website', img: a.vsOcWebsite, label: 'Sitio web y checkout' }
+      ],
       productionImages: [
-        { id: 'prod-label', img: a.prodLabel, label: 'Etiquetas — relieve y foil' },
-        { id: 'prod-foil', img: a.prodFoil, label: 'Impresión y terminaciones' },
-        { id: 'prod-texture', img: a.prodTexture, label: 'Textura y relieve en papel' },
-        { id: 'prod-box', img: a.prodBox, label: 'Cajas — colección completa' }
+        { id: 'prod-vineyard-aerial', img: a.prodVineyardAerial, label: 'Viñedo — vista aérea' },
+        { id: 'prod-harvest-hand', img: a.prodHarvestHand, label: 'Cosecha' },
+        { id: 'prod-fermentation', img: a.prodFermentation, label: 'Fermentación' },
+        { id: 'prod-bottling-line', img: a.prodBottlingLine, label: 'Línea de embotellado' }
+      ],
+      chinaImagesRow1: [
+        { id: 'china-coconuts', img: a.chinaCoconuts, label: 'Viaje a China — 2018' },
+        { id: 'china-market-street', img: a.chinaMarketStreet, label: 'Mercado local' },
+        { id: 'china-wine-tasting', img: a.chinaWineTasting, label: 'Degustación con clientes' }
+      ],
+      chinaImagesRow2: [
+        { id: 'china-business-meeting', img: a.chinaBusinessMeeting, label: 'Reunión comercial' },
+        { id: 'china-group-dinner', img: a.chinaGroupDinner, label: 'Cena con el equipo' },
+        { id: 'china-calligraphy', img: a.chinaCalligraphy, label: 'Caligrafía china' }
+      ],
+      brasilImagesRow1: [
+        { id: 'brasil-tap-selfie', img: a.brasilTapSelfie, label: 'ProWine São Paulo' },
+        { id: 'brasil-santaIrene-booth', img: a.brasilSantaIreneBooth, label: 'Stand Viña Santa Irene' },
+        { id: 'brasil-topwines-selfie', img: a.brasilTopwinesSelfie, label: 'ProWine São Paulo' },
+        { id: 'brasil-0507', img: a.brasil0507, label: 'ProWine São Paulo' },
+        { id: 'brasil-0515', img: a.brasil0515, label: 'ProWine São Paulo' }
+      ],
+      brasilImagesRow2: [
+        { id: 'brasil-0523', img: a.brasil0523, label: 'ProWine São Paulo' },
+        { id: 'brasil-5614', img: a.brasil5614, label: 'Equipo TDP Wines' },
+        { id: 'brasil-5644', img: a.brasil5644, label: 'ProWine São Paulo' },
+        { id: 'brasil-5667', img: a.brasil5667, label: 'ProWine São Paulo' },
+        { id: 'brasil-5677', img: a.brasil5677, label: 'ProWine São Paulo' }
       ],
       workModes: [
         { name: 'Construir', desc: 'Para nuevas marcas, productos, líneas o proyectos OEM.', items: 'Estrategia · Naming · Identidad · Packaging · OEM · Herramientas de lanzamiento' },

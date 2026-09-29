@@ -183,7 +183,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   @media (max-width: 600px) {
     .work-grid { grid-template-columns:1fr; }
   }
-  .services-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:40px 32px; }
+  .services-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:40px 32px; align-items:start; }
   @media (max-width: 900px) {
     .services-grid { grid-template-columns:repeat(2,1fr); }
   }
@@ -390,8 +390,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div style="font-size:10px; letter-spacing:0.06em; color:var(--secondary); margin-bottom:16px;">CASOS DE ESTUDIO</div>
       <h2 style="font-size:clamp(32px,4vw,64px); line-height:0.95; letter-spacing:-0.035em; font-weight:400; margin:0 0 20px; max-width:760px;">Distintas industrias. La misma forma de construir marca.</h2>
       <p style="font-size:14px; line-height:1.5; color:var(--secondary); max-width:560px; margin:0 0 clamp(40px,6vw,72px);">Profundiza en cómo llevamos tres marcas desde el desafío inicial hasta un sistema de identidad aplicado en cada punto de contacto.</p>
-      <div class="work-grid">
-        <sc-for list="{{ caseStudies }}" as="cs" hint-placeholder-count="3">
+      <div class="services-grid">
+        <sc-for list="{{ caseStudies }}" as="cs" hint-placeholder-count="4">
           <a href="{{ cs.href }}" style="display:block; text-decoration:none; color:inherit;">
             <image-slot id="{{ cs.id }}" src="{{ cs.img }}" shape="rect" fit="cover" placeholder="{{ cs.name }}" style="display:block; width:100%; aspect-ratio:4/3; background:var(--subtle); transition:opacity 300ms cubic-bezier(.22,.61,.36,1);" style-hover="opacity:0.85;"></image-slot>
             <div style="margin-top:16px; font-size:15px; font-weight:500;">{{ cs.name }}</div>
@@ -948,6 +948,7 @@ class Component extends DCLogic {
         videoRef: p.video ? (el) => { if (el && el.dataset.lazySrc !== p.video) { el.dataset.lazySrc = p.video; el.poster = p.img; this._observeLazyVideo(el); } } : undefined,
       })),
       caseStudies: [
+        { id: 'case-industria-vino', img: 'assets/case-industria-vino.webp', name: 'CAVA x Industria del Vino', desc: 'Branding, packaging y proyectos OEM para viñas y mercados internacionales.', href: '/industria-del-vino' },
         { id: 'case-smile-move', img: 'assets/case-smile-move.jpg', name: 'Smile & Move', desc: 'Rebranding y branding espacial para una clínica de odontología y kinesiología.', href: '/smileandmove' },
         { id: 'case-orgullo-cruzado', img: 'assets/case-orgullo-cruzado.jpg', name: 'Orgullo Cruzado', desc: 'Branding, packaging y e-commerce para una colección de vinos.', href: '/orgullo-cruzado' },
         { id: 'case-agro', img: 'assets/case-agro.jpg', name: 'CAVA x Agro', desc: 'Estrategia, diseño y soporte creativo continuo para la industria agro.', href: '/agro' }
