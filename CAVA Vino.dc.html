@@ -721,15 +721,22 @@
     </div>
     <div class="img-strip-wrap" style="width:100vw; position:relative; left:50%; right:50%; margin-left:-50vw; margin-right:-50vw; margin-top:clamp(32px,5vw,48px);">
       <div class="img-strip" style="display:flex; width:100%;">
-        <sc-for list="{{ brasilImagesRow1 }}" as="bi" hint-placeholder-count="5">
-          <div class="img-strip-tile" style="width:20%;">
+        <sc-for list="{{ brasilImagesRow1 }}" as="bi" hint-placeholder-count="3">
+          <div class="img-strip-tile" style="width:33.333%;">
             <image-slot id="{{ bi.id }}" src="{{ bi.img }}" shape="rect" fit="cover" placeholder="{{ bi.label }}" style="display:block; width:100%; height:100%; aspect-ratio:3/4; background:var(--subtle);"></image-slot>
           </div>
         </sc-for>
       </div>
       <div class="img-strip" style="display:flex; width:100%;">
-        <sc-for list="{{ brasilImagesRow2 }}" as="bi" hint-placeholder-count="5">
-          <div class="img-strip-tile" style="width:20%;">
+        <sc-for list="{{ brasilImagesRow2 }}" as="bi" hint-placeholder-count="4">
+          <div class="img-strip-tile" style="width:25%;">
+            <image-slot id="{{ bi.id }}" src="{{ bi.img }}" shape="rect" fit="cover" placeholder="{{ bi.label }}" style="display:block; width:100%; height:100%; aspect-ratio:4/3; background:var(--subtle);"></image-slot>
+          </div>
+        </sc-for>
+      </div>
+      <div class="img-strip" style="display:flex; width:100%;">
+        <sc-for list="{{ brasilImagesRow3 }}" as="bi" hint-placeholder-count="3">
+          <div class="img-strip-tile" style="width:33.333%;">
             <image-slot id="{{ bi.id }}" src="{{ bi.img }}" shape="rect" fit="cover" placeholder="{{ bi.label }}" style="display:block; width:100%; height:100%; aspect-ratio:4/3; background:var(--subtle);"></image-slot>
           </div>
         </sc-for>
@@ -1174,13 +1181,15 @@ class Component extends DCLogic {
       brasilImagesRow1: [
         { id: 'brasil-tap-selfie', img: a.brasilTapSelfie, label: 'ProWine São Paulo' },
         { id: 'brasil-santaIrene-booth', img: a.brasilSantaIreneBooth, label: 'Stand Viña Santa Irene' },
-        { id: 'brasil-topwines-selfie', img: a.brasilTopwinesSelfie, label: 'ProWine São Paulo' },
-        { id: 'brasil-0507', img: a.brasil0507, label: 'ProWine São Paulo' },
-        { id: 'brasil-0515', img: a.brasil0515, label: 'ProWine São Paulo' }
+        { id: 'brasil-topwines-selfie', img: a.brasilTopwinesSelfie, label: 'ProWine São Paulo' }
       ],
       brasilImagesRow2: [
+        { id: 'brasil-0507', img: a.brasil0507, label: 'ProWine São Paulo' },
+        { id: 'brasil-0515', img: a.brasil0515, label: 'ProWine São Paulo' },
         { id: 'brasil-0523', img: a.brasil0523, label: 'ProWine São Paulo' },
-        { id: 'brasil-5614', img: a.brasil5614, label: 'Equipo TDP Wines' },
+        { id: 'brasil-5614', img: a.brasil5614, label: 'Equipo TDP Wines' }
+      ],
+      brasilImagesRow3: [
         { id: 'brasil-5644', img: a.brasil5644, label: 'ProWine São Paulo' },
         { id: 'brasil-5667', img: a.brasil5667, label: 'ProWine São Paulo' },
         { id: 'brasil-5677', img: a.brasil5677, label: 'ProWine São Paulo' }
