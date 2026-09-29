@@ -728,15 +728,22 @@
         </sc-for>
       </div>
       <div class="img-strip" style="display:flex; width:100%;">
-        <sc-for list="{{ brasilImagesRow2 }}" as="bi" hint-placeholder-count="4">
-          <div class="img-strip-tile" style="width:25%;">
-            <image-slot id="{{ bi.id }}" src="{{ bi.img }}" shape="rect" fit="cover" placeholder="{{ bi.label }}" style="display:block; width:100%; height:100%; aspect-ratio:4/3; background:var(--subtle);"></image-slot>
+        <sc-for list="{{ brasilImagesRow2 }}" as="bi" hint-placeholder-count="3">
+          <div class="img-strip-tile" style="width:33.333%;">
+            <image-slot id="{{ bi.id }}" src="{{ bi.img }}" shape="rect" fit="cover" placeholder="{{ bi.label }}" style="display:block; width:100%; height:100%; aspect-ratio:3/4; background:var(--subtle);"></image-slot>
           </div>
         </sc-for>
       </div>
       <div class="img-strip" style="display:flex; width:100%;">
         <sc-for list="{{ brasilImagesRow3 }}" as="bi" hint-placeholder-count="3">
           <div class="img-strip-tile" style="width:33.333%;">
+            <image-slot id="{{ bi.id }}" src="{{ bi.img }}" shape="rect" fit="cover" placeholder="{{ bi.label }}" style="display:block; width:100%; height:100%; aspect-ratio:3/4; background:var(--subtle);"></image-slot>
+          </div>
+        </sc-for>
+      </div>
+      <div class="img-strip" style="display:flex; width:100%;">
+        <sc-for list="{{ brasilImagesRow4 }}" as="bi" hint-placeholder-count="1">
+          <div class="img-strip-tile" style="width:100%;">
             <image-slot id="{{ bi.id }}" src="{{ bi.img }}" shape="rect" fit="cover" placeholder="{{ bi.label }}" style="display:block; width:100%; height:100%; aspect-ratio:4/3; background:var(--subtle);"></image-slot>
           </div>
         </sc-for>
@@ -1186,13 +1193,15 @@ class Component extends DCLogic {
       brasilImagesRow2: [
         { id: 'brasil-0507', img: a.brasil0507, label: 'ProWine São Paulo' },
         { id: 'brasil-0515', img: a.brasil0515, label: 'ProWine São Paulo' },
-        { id: 'brasil-0523', img: a.brasil0523, label: 'ProWine São Paulo' },
-        { id: 'brasil-5614', img: a.brasil5614, label: 'Equipo TDP Wines' }
+        { id: 'brasil-0523', img: a.brasil0523, label: 'ProWine São Paulo' }
       ],
       brasilImagesRow3: [
         { id: 'brasil-5644', img: a.brasil5644, label: 'ProWine São Paulo' },
         { id: 'brasil-5667', img: a.brasil5667, label: 'ProWine São Paulo' },
         { id: 'brasil-5677', img: a.brasil5677, label: 'ProWine São Paulo' }
+      ],
+      brasilImagesRow4: [
+        { id: 'brasil-5614', img: a.brasil5614, label: 'Equipo TDP Wines' }
       ],
       workModes: [
         { name: 'Construir', desc: 'Para nuevas marcas, productos, líneas o proyectos OEM.', items: 'Estrategia · Naming · Identidad · Packaging · OEM · Herramientas de lanzamiento' },
