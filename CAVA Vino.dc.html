@@ -180,26 +180,26 @@
   <nav style="position:sticky; top:0; z-index:100; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; padding:clamp(20px,3vw,32px) clamp(24px,5vw,64px); background:var(--nav-bg, rgba(255,255,255,.92)); backdrop-filter:blur(6px); border-bottom:1px solid var(--line);">
     <a href="/" style="display:block; line-height:0;"><img src="assets/logos/cava-horizontal.png" alt="CAVA Estudio" class="theme-invert" style="display:block; height:44px; width:auto;"></a>
     <div class="nav-links" style="display:flex; align-items:center; gap:clamp(18px,2.6vw,32px); flex-wrap:wrap; font-size:10px; letter-spacing:0.06em; color:var(--secondary);">
-      <a href="/" style="text-decoration:none;" style-hover="color:var(--text);">INICIO</a>
-      <a href="#experiencia" onClick="{{ navToExperiencia }}" style="text-decoration:none;" style-hover="color:var(--text);">EXPERIENCIA</a>
-      <a href="#mercados" onClick="{{ navToMercados }}" style="text-decoration:none;" style-hover="color:var(--text);">MERCADOS</a>
-      <a href="#contacto" onClick="{{ navToContacto }}" style="text-decoration:none;" style-hover="color:var(--text);">CONTACTO</a>
-      <button onClick="{{ toggleTheme }}" aria-label="Cambiar tema" style="display:flex; align-items:center; gap:8px; background:none; border:none; padding:0; margin:0; cursor:pointer; font-size:10px; letter-spacing:0.06em; color:var(--secondary); font-family:inherit;" style-hover="color:var(--text);">
+      <a href="/" style="text-decoration:none;" style-hover="color:var(--text);">{{ t.navHome }}</a>
+      <a href="#experiencia" onClick="{{ navToExperiencia }}" style="text-decoration:none;" style-hover="color:var(--text);">{{ t.navExp }}</a>
+      <a href="#mercados" onClick="{{ navToMercados }}" style="text-decoration:none;" style-hover="color:var(--text);">{{ t.navMarkets }}</a>
+      <a href="#contacto" onClick="{{ navToContacto }}" style="text-decoration:none;" style-hover="color:var(--text);">{{ t.navContact }}</a>
+      <button onClick="{{ toggleTheme }}" aria-label="{{ t.ariaTheme }}" style="display:flex; align-items:center; gap:8px; background:none; border:none; padding:0; margin:0; cursor:pointer; font-size:10px; letter-spacing:0.06em; color:var(--secondary); font-family:inherit;" style-hover="color:var(--text);">
         <span style="position:relative; width:26px; height:15px; border-radius:999px; border:1px solid var(--line); display:inline-block; flex-shrink:0;">
           <span style="position:absolute; top:1px; left:{{ themeDotLeft }}; width:11px; height:11px; border-radius:999px; background:var(--text); transition:left 300ms cubic-bezier(.22,.61,.36,1);"></span>
         </span>
         {{ themeLabel }}
       </button>
     </div>
-    <button class="nav-burger" onClick="{{ toggleMobileMenu }}" aria-label="Abrir menú" style="display:none; background:none; border:none; padding:4px; cursor:pointer; font-size:20px; line-height:1; color:var(--text);">{{ mobileMenuIcon }}</button>
+    <button class="nav-burger" onClick="{{ toggleMobileMenu }}" aria-label="{{ t.ariaMenu }}" style="display:none; background:none; border:none; padding:4px; cursor:pointer; font-size:20px; line-height:1; color:var(--text);">{{ mobileMenuIcon }}</button>
   </nav>
   <sc-if value="{{ mobileMenuOpen }}" hint-placeholder-val="{{ false }}">
     <div class="mobile-menu" style="position:sticky; top:0; z-index:99; display:flex; flex-direction:column; align-items:flex-end; gap:20px; padding:20px clamp(24px,5vw,64px) 28px; background:var(--nav-bg, rgba(255,255,255,.92)); backdrop-filter:blur(6px); border-bottom:1px solid var(--line); font-size:13px; letter-spacing:0.04em; color:var(--secondary);">
-      <a href="/" style="text-decoration:none;" style-hover="color:var(--text);">INICIO</a>
-      <a href="#experiencia" onClick="{{ navToExperiencia }}" style="text-decoration:none;" style-hover="color:var(--text);">EXPERIENCIA</a>
-      <a href="#mercados" onClick="{{ navToMercados }}" style="text-decoration:none;" style-hover="color:var(--text);">MERCADOS</a>
-      <a href="#contacto" onClick="{{ navToContacto }}" style="text-decoration:none;" style-hover="color:var(--text);">CONTACTO</a>
-      <button onClick="{{ toggleTheme }}" aria-label="Cambiar tema" style="display:flex; align-items:center; gap:8px; background:none; border:none; padding:0; margin:0; cursor:pointer; font-size:13px; letter-spacing:0.04em; color:var(--secondary); font-family:inherit;" style-hover="color:var(--text);">
+      <a href="/" style="text-decoration:none;" style-hover="color:var(--text);">{{ t.navHome }}</a>
+      <a href="#experiencia" onClick="{{ navToExperiencia }}" style="text-decoration:none;" style-hover="color:var(--text);">{{ t.navExp }}</a>
+      <a href="#mercados" onClick="{{ navToMercados }}" style="text-decoration:none;" style-hover="color:var(--text);">{{ t.navMarkets }}</a>
+      <a href="#contacto" onClick="{{ navToContacto }}" style="text-decoration:none;" style-hover="color:var(--text);">{{ t.navContact }}</a>
+      <button onClick="{{ toggleTheme }}" aria-label="{{ t.ariaTheme }}" style="display:flex; align-items:center; gap:8px; background:none; border:none; padding:0; margin:0; cursor:pointer; font-size:13px; letter-spacing:0.04em; color:var(--secondary); font-family:inherit;" style-hover="color:var(--text);">
         <span style="position:relative; width:26px; height:15px; border-radius:999px; border:1px solid var(--line); display:inline-block; flex-shrink:0;">
           <span style="position:absolute; top:1px; left:{{ themeDotLeft }}; width:11px; height:11px; border-radius:999px; background:var(--text); transition:left 300ms cubic-bezier(.22,.61,.36,1);"></span>
         </span>
@@ -211,15 +211,24 @@
   <!-- 01 APERTURA -->
   <section id="hero" data-key="hero" ref="{{ refHero }}" style="padding:clamp(48px,9vw,110px) clamp(24px,5vw,64px) clamp(40px,6vw,64px);">
     <div class="reveal {{ revealClsHero }}" style="{{ revealHero }}">
-      <div style="font-size:10px; letter-spacing:0.08em; color:var(--secondary); margin-bottom:20px;">CAVA + INDUSTRIA DEL VINO</div>
-      <h1 style="font-size:clamp(44px,6.4vw,104px); line-height:0.98; letter-spacing:-0.04em; font-weight:400; margin:0 0 clamp(24px,3.5vw,36px); max-width:920px;">Del vino a la marca.<br>De la presencia a la preferencia.</h1>
+      <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px 24px; margin-bottom:20px;">
+        <div style="font-size:10px; letter-spacing:0.08em; color:var(--secondary);">{{ t.heroEyebrow }}</div>
+        <div role="group" aria-label="{{ t.ariaLang }}" style="display:flex; align-items:center; gap:2px; font-size:10px; letter-spacing:0.06em;">
+          <button onClick="{{ setLangEs }}" lang="es" title="Español" aria-pressed="{{ langEsPressed }}" style="{{ langEsStyle }}" style-hover="color:var(--text);">ES</button>
+          <span style="color:var(--subtle);">/</span>
+          <button onClick="{{ setLangPt }}" lang="pt-BR" title="Português (Brasil)" aria-pressed="{{ langPtPressed }}" style="{{ langPtStyle }}" style-hover="color:var(--text);">PT</button>
+          <span style="color:var(--subtle);">/</span>
+          <button onClick="{{ setLangEn }}" lang="en" title="English" aria-pressed="{{ langEnPressed }}" style="{{ langEnStyle }}" style-hover="color:var(--text);">EN</button>
+        </div>
+      </div>
+      <h1 style="font-size:clamp(44px,6.4vw,104px); line-height:0.98; letter-spacing:-0.04em; font-weight:400; margin:0 0 clamp(24px,3.5vw,36px); max-width:920px;">{{ t.heroH1a }}<br>{{ t.heroH1b }}</h1>
       <div class="split-grid" style="grid-template-columns:minmax(0,3fr) minmax(0,2fr); gap:clamp(32px,5vw,64px); align-items:end;">
-        <p style="font-size:15px; line-height:1.6; max-width:480px; color:var(--secondary); margin:0;">Desde 2011 trabajamos junto a viñas y marcas de vino, conectando estrategia, identidad, packaging, desarrollo de productos, herramientas comerciales y soporte continuo. Nuestra experiencia nos permite entender una marca desde su definición hasta su materialización y llegada al mercado.</p>
+        <p style="font-size:15px; line-height:1.6; max-width:480px; color:var(--secondary); margin:0;">{{ t.heroP }}</p>
         <div>
-          <p style="font-size:clamp(17px,1.8vw,22px); line-height:1.35; letter-spacing:-0.01em; font-weight:400; margin:0 0 20px; border-top:1px solid var(--line); padding-top:20px;">CAVA entiende la marca, el producto y el mercado.</p>
+          <p style="font-size:clamp(17px,1.8vw,22px); line-height:1.35; letter-spacing:-0.01em; font-weight:400; margin:0 0 20px; border-top:1px solid var(--line); padding-top:20px;">{{ t.heroTag }}</p>
           <div style="display:flex; gap:12px; flex-wrap:wrap;">
-            <a href="#contacto" onClick="{{ navToContacto }}" style="background:var(--text); color:var(--paper); border-radius:999px; padding:9px 16px; font-size:10px; letter-spacing:0.03em; text-decoration:none; display:inline-block; white-space:nowrap; transition:opacity 400ms cubic-bezier(.22,.61,.36,1);" style-hover="opacity:0.7;">Conversemos →</a>
-            <a href="#experiencia" onClick="{{ navToExperiencia }}" style="border:1px solid var(--line); border-radius:999px; padding:9px 16px; font-size:10px; letter-spacing:0.03em; text-decoration:none; display:inline-block; white-space:nowrap; color:var(--text); transition:opacity 400ms cubic-bezier(.22,.61,.36,1);" style-hover="opacity:0.6;">Ver experiencia</a>
+            <a href="https://wa.me/56939582076?text={{ waMessage }}" target="_blank" rel="noopener" style="background:var(--text); color:var(--paper); border-radius:999px; padding:9px 16px; font-size:10px; letter-spacing:0.03em; text-decoration:none; display:inline-block; white-space:nowrap; transition:opacity 400ms cubic-bezier(.22,.61,.36,1);" style-hover="opacity:0.7;">{{ t.ctaTalk }}</a>
+            <a href="#experiencia" onClick="{{ navToExperiencia }}" style="border:1px solid var(--line); border-radius:999px; padding:9px 16px; font-size:10px; letter-spacing:0.03em; text-decoration:none; display:inline-block; white-space:nowrap; color:var(--text); transition:opacity 400ms cubic-bezier(.22,.61,.36,1);" style-hover="opacity:0.6;">{{ t.ctaExp }}</a>
           </div>
         </div>
       </div>
@@ -229,13 +238,13 @@
   <!-- 01B SKIT -->
   <section data-key="skit" ref="{{ refSkit }}" style="border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
     <div class="reveal {{ revealClsSkit }}" style="{{ revealSkit }}">
-      <div style="padding:24px clamp(24px,5vw,64px) 0; font-size:10px; letter-spacing:0.08em; color:var(--secondary);">CAVA + INDUSTRIA DEL VINO / SKIT</div>
+      <div style="padding:24px clamp(24px,5vw,64px) 0; font-size:10px; letter-spacing:0.08em; color:var(--secondary);">{{ t.skitLabel }}</div>
       <sc-if value="{{ hasSkitVideo }}" hint-placeholder-val="{{ false }}">
         <video ref="{{ skitVideoRef }}" muted="muted" loop="loop" playsinline="playsinline" autoplay="autoplay" preload="none" style="display:block; width:100%; aspect-ratio:16/9; object-fit:contain; background:#000; margin-top:16px;"></video>
       </sc-if>
       <sc-if value="{{ noSkitVideo }}" hint-placeholder-val="{{ true }}">
         <div style="display:flex; align-items:center; justify-content:center; width:100%; aspect-ratio:16/9; background:var(--subtle); margin-top:16px; border:1px dashed var(--line);">
-          <span style="font-size:12px; letter-spacing:0.04em; color:var(--secondary);">Video Skit — pendiente</span>
+          <span style="font-size:12px; letter-spacing:0.04em; color:var(--secondary);">{{ t.skitPending }}</span>
         </div>
       </sc-if>
     </div>
@@ -245,12 +254,12 @@
   <section data-key="indice" ref="{{ refIndice }}" style="padding:clamp(40px,6vw,56px) clamp(24px,5vw,64px); border-top:1px solid var(--line);">
     <div class="reveal split-grid {{ revealClsIndice }}" style="{{ revealIndice }}; grid-template-columns:minmax(0,3fr) minmax(0,2fr); gap:clamp(32px,5vw,64px); align-items:start;">
       <div>
-        <div style="font-size:10px; letter-spacing:0.06em; color:var(--secondary); margin-bottom:20px;">DOSSIER</div>
-        <h2 style="font-size:clamp(24px,3vw,38px); line-height:1.15; letter-spacing:-0.02em; font-weight:400; margin:0 0 16px; max-width:520px;">No solo entendemos cómo construir una marca de vino.</h2>
-        <p style="font-size:14px; line-height:1.6; color:var(--secondary); max-width:480px; margin:0;">Entendemos cómo convertirla en un producto real y llevarla a distintos mercados.</p>
+        <div style="font-size:10px; letter-spacing:0.06em; color:var(--secondary); margin-bottom:20px;">{{ t.dossier }}</div>
+        <h2 style="font-size:clamp(24px,3vw,38px); line-height:1.15; letter-spacing:-0.02em; font-weight:400; margin:0 0 16px; max-width:520px;">{{ t.idxH2 }}</h2>
+        <p style="font-size:14px; line-height:1.6; color:var(--secondary); max-width:480px; margin:0;">{{ t.idxP }}</p>
       </div>
       <details class="index-disclosure" open="open">
-        <summary>ÍNDICE <span class="idx-chevron">⌄</span></summary>
+        <summary>{{ t.idxTitle }} <span class="idx-chevron">⌄</span></summary>
         <div class="index-list">
           <sc-for list="{{ tocItems }}" as="toc" hint-placeholder-count="6">
             <a href="{{ toc.href }}" onClick="{{ navToSection }}" data-key="{{ toc.key }}">
@@ -271,10 +280,10 @@
     <div class="reveal {{ revealClsQuienes }}" style="{{ revealQuienes }}">
       <div class="split-grid" style="grid-template-columns:minmax(0,3fr) minmax(0,2fr); gap:clamp(32px,5vw,64px); margin-bottom:clamp(48px,7vw,72px);">
         <div>
-          <div style="font-size:10px; letter-spacing:0.06em; color:var(--secondary); margin-bottom:20px;">QUIÉNES SOMOS</div>
-          <h2 style="font-size:clamp(28px,3.6vw,48px); line-height:1.1; letter-spacing:-0.03em; font-weight:400; margin:0 0 24px; max-width:560px;">No trabajamos solo sobre cómo se ve un vino.</h2>
+          <div style="font-size:10px; letter-spacing:0.06em; color:var(--secondary); margin-bottom:20px;">{{ t.qsLabel }}</div>
+          <h2 style="font-size:clamp(28px,3.6vw,48px); line-height:1.1; letter-spacing:-0.03em; font-weight:400; margin:0 0 24px; max-width:560px;">{{ t.qsH2 }}</h2>
         </div>
-        <p style="font-size:14px; line-height:1.6; color:var(--secondary); max-width:460px; margin:0;">CAVA es un equipo estratégico y creativo que ayuda a las marcas a comunicar con claridad. En la industria del vino hemos participado en la creación de marcas, packaging, proyectos OEM y comunicación para distintos mercados internacionales.</p>
+        <p style="font-size:14px; line-height:1.6; color:var(--secondary); max-width:460px; margin:0;">{{ t.qsP }}</p>
       </div>
       <div class="stagger-grid" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:clamp(32px,4vw,48px) 32px; margin-bottom:clamp(48px,7vw,72px);">
         <sc-for list="{{ dimensions }}" as="d" hint-placeholder-count="3">
@@ -285,7 +294,7 @@
           </div>
         </sc-for>
       </div>
-      <p style="font-size:clamp(19px,2.2vw,27px); line-height:1.3; letter-spacing:-0.01em; font-weight:400; margin:0 0 0 auto; max-width:760px; text-align:right; border-top:1px solid var(--line); padding-top:clamp(24px,3.5vw,32px);">Una buena etiqueta debe funcionar como marca, como producto y como herramienta comercial.</p>
+      <p style="font-size:clamp(19px,2.2vw,27px); line-height:1.3; letter-spacing:-0.01em; font-weight:400; margin:0 0 0 auto; max-width:760px; text-align:right; border-top:1px solid var(--line); padding-top:clamp(24px,3.5vw,32px);">{{ t.qsQuote }}</p>
     </div>
   </section>
 
@@ -293,18 +302,18 @@
   <section id="experiencia" data-key="experiencia" ref="{{ refExperiencia }}" style="padding:clamp(64px,10vw,120px) clamp(24px,5vw,64px); border-top:1px solid var(--line);">
     <div class="reveal {{ revealClsExperiencia }}" style="{{ revealExperiencia }}">
       <div style="text-align:center; max-width:680px; margin:0 auto clamp(40px,6vw,56px);">
-        <div style="font-size:10px; letter-spacing:0.06em; color:var(--secondary); margin-bottom:20px;">EXPERIENCIA Y CASOS</div>
-        <h2 style="font-size:clamp(28px,3.6vw,48px); line-height:1.1; letter-spacing:-0.03em; font-weight:400; margin:0 0 20px;">Experiencia construida junto a la industria.</h2>
-        <p style="font-size:14px; line-height:1.6; color:var(--secondary); margin:0;">Nuestra relación con distintas viñas se ha desarrollado durante años y en múltiples frentes: desde la creación de nuevas marcas hasta la operación cotidiana de portafolios existentes.</p>
+        <div style="font-size:10px; letter-spacing:0.06em; color:var(--secondary); margin-bottom:20px;">{{ t.expLabel }}</div>
+        <h2 style="font-size:clamp(28px,3.6vw,48px); line-height:1.1; letter-spacing:-0.03em; font-weight:400; margin:0 0 20px;">{{ t.expH2 }}</h2>
+        <p style="font-size:14px; line-height:1.6; color:var(--secondary); margin:0;">{{ t.expP }}</p>
       </div>
 
       <!-- CASO DESTACADO — PUNTÍ FERRER -->
       <div class="case-row">
         <div style="max-width:640px; margin-bottom:clamp(28px,4vw,36px);">
-          <div style="font-size:10px; letter-spacing:0.06em; color:var(--secondary); margin-bottom:14px;">CASO DESTACADO</div>
+          <div style="font-size:10px; letter-spacing:0.06em; color:var(--secondary); margin-bottom:14px;">{{ t.caseFeatured }}</div>
           <h3 style="font-size:clamp(26px,3vw,40px); font-weight:400; letter-spacing:-0.025em; margin:0 0 14px;">Puntí Ferrer</h3>
-          <p style="font-size:15px; line-height:1.6; color:var(--secondary); margin:0 0 12px;">Años de trabajo junto a Puntí Ferrer desarrollando marcas y productos para el mercado local e internacional.</p>
-          <div style="font-size:11px; letter-spacing:0.02em; color:var(--secondary);">Desarrollo de marca · Packaging · Proyectos OEM · Herramientas comerciales</div>
+          <p style="font-size:15px; line-height:1.6; color:var(--secondary); margin:0 0 12px;">{{ t.pfP }}</p>
+          <div style="font-size:11px; letter-spacing:0.02em; color:var(--secondary);">{{ t.pfTags }}</div>
         </div>
         <div class="img-strip-wrap" style="width:100vw; position:relative; left:50%; right:50%; margin-left:-50vw; margin-right:-50vw;">
           <div class="img-strip" style="display:flex; width:100%;">
@@ -342,10 +351,10 @@
       <div class="case-row">
         <div class="split-grid" style="grid-template-columns:minmax(0,2fr) minmax(0,3fr); gap:clamp(32px,5vw,64px); align-items:center;">
           <div>
-            <div style="font-size:10px; letter-spacing:0.06em; color:var(--secondary); margin-bottom:14px;">CASO DESTACADO</div>
+            <div style="font-size:10px; letter-spacing:0.06em; color:var(--secondary); margin-bottom:14px;">{{ t.caseFeatured }}</div>
             <h3 style="font-size:clamp(26px,3vw,40px); font-weight:400; letter-spacing:-0.025em; margin:0 0 14px;">Orgullo Cruzado</h3>
-            <p style="font-size:15px; line-height:1.6; color:var(--secondary); margin:0 0 20px;">Vino, identidad y comunidad: un caso real, construido en colaboración con el Club Deportivo Universidad Católica.</p>
-            <a href="/orgullo-cruzado" style="background:var(--text); color:var(--paper); border-radius:999px; padding:9px 16px; font-size:10px; letter-spacing:0.03em; text-decoration:none; display:inline-block; white-space:nowrap; transition:opacity 400ms cubic-bezier(.22,.61,.36,1);" style-hover="opacity:0.7;">Ver caso completo →</a>
+            <p style="font-size:15px; line-height:1.6; color:var(--secondary); margin:0 0 20px;">{{ t.ocP }}</p>
+            <a href="/orgullo-cruzado" style="background:var(--text); color:var(--paper); border-radius:999px; padding:9px 16px; font-size:10px; letter-spacing:0.03em; text-decoration:none; display:inline-block; white-space:nowrap; transition:opacity 400ms cubic-bezier(.22,.61,.36,1);" style-hover="opacity:0.7;">{{ t.ocBtn }}</a>
           </div>
           <a href="/orgullo-cruzado" style="display:block;">
             <image-slot id="oc-case-hero" src="{{ assets.ocHero }}" shape="rect" fit="cover" placeholder="Orgullo Cruzado" style="display:block; width:100%; aspect-ratio:8/5; background:var(--subtle); transition:opacity 300ms cubic-bezier(.22,.61,.36,1);" style-hover="opacity:0.85;"></image-slot>
@@ -356,10 +365,10 @@
       <!-- CASO — VALLE SECRETO -->
       <div class="case-row">
         <div style="max-width:640px; margin-bottom:clamp(28px,4vw,36px);">
-          <div style="font-size:10px; letter-spacing:0.06em; color:var(--secondary); margin-bottom:14px;">CASO</div>
+          <div style="font-size:10px; letter-spacing:0.06em; color:var(--secondary); margin-bottom:14px;">{{ t.caseLabel }}</div>
           <h3 style="font-size:clamp(22px,2.4vw,32px); font-weight:400; letter-spacing:-0.02em; margin:0 0 14px;">Valle Secreto</h3>
-          <p style="font-size:14px; line-height:1.6; color:var(--secondary); margin:0 0 12px;">CAVA acompaña de forma continua la operación de Valle Secreto: contraetiquetas, cajas, fichas, sitio web y adaptaciones de packaging para distintos mercados.</p>
-          <p style="font-size:14px; line-height:1.5; font-style:italic; color:var(--text); margin:0;">La construcción de una marca no termina cuando se entrega su identidad. También necesita ser operada y mantenida con coherencia.</p>
+          <p style="font-size:14px; line-height:1.6; color:var(--secondary); margin:0 0 12px;">{{ t.vsP }}</p>
+          <p style="font-size:14px; line-height:1.5; font-style:italic; color:var(--text); margin:0;">{{ t.vsQuote }}</p>
         </div>
         <div class="img-strip-wrap" style="width:100vw; position:relative; left:50%; right:50%; margin-left:-50vw; margin-right:-50vw;">
           <div class="img-strip" style="display:flex; width:100%; align-items:flex-start;">
@@ -375,10 +384,10 @@
       <!-- CASO — SANTA IRENE WINES -->
       <div class="case-row">
         <div style="max-width:640px; margin-bottom:clamp(28px,4vw,36px);">
-          <div style="font-size:10px; letter-spacing:0.06em; color:var(--secondary); margin-bottom:14px;">CASO</div>
+          <div style="font-size:10px; letter-spacing:0.06em; color:var(--secondary); margin-bottom:14px;">{{ t.caseLabel }}</div>
           <h3 style="font-size:clamp(22px,2.4vw,32px); font-weight:400; letter-spacing:-0.02em; margin:0 0 14px;">Santa Irene Wines</h3>
-          <p style="font-size:14px; line-height:1.6; color:var(--secondary); margin:0 0 12px;">Desarrollo de marcas y soporte creativo continuo: fichas, sitio web, adaptaciones, packaging y proyectos OEM para distintos mercados.</p>
-          <div style="font-size:12px; color:var(--secondary);">Marcas como Casa Vieja y El Cretino — Casa Vieja con presencia en Brasil.</div>
+          <p style="font-size:14px; line-height:1.6; color:var(--secondary); margin:0 0 12px;">{{ t.siP }}</p>
+          <div style="font-size:12px; color:var(--secondary);">{{ t.siNote }}</div>
         </div>
         <div class="img-strip-wrap" style="width:100vw; position:relative; left:50%; right:50%; margin-left:-50vw; margin-right:-50vw; margin-top:clamp(28px,4vw,36px);">
           <div class="img-strip" style="display:flex; width:100%;">
@@ -415,10 +424,10 @@
       <!-- CASO — LAPSOS DE ELQUI / DE SOL A SOL / AVENTURERO -->
       <div class="case-row">
         <div style="max-width:640px; margin-bottom:clamp(28px,4vw,36px);">
-          <div style="font-size:10px; letter-spacing:0.06em; color:var(--secondary); margin-bottom:14px;">CASO</div>
-          <h3 style="font-size:clamp(22px,2.4vw,32px); font-weight:400; letter-spacing:-0.02em; margin:0 0 14px;">Lapsos de Elqui, De Sol a Sol y Aventurero</h3>
-          <p style="font-size:14px; line-height:1.6; color:var(--secondary); margin:0 0 12px;">Desarrollo de marca y packaging para productores independientes en distintas zonas del país: Lapsos de Elqui en el norte, y De Sol a Sol y Aventurero en el sur de Chile.</p>
-          <div style="font-size:12px; color:var(--secondary);">Identidad de marca, sistema de etiquetas y packaging para cada proyecto.</div>
+          <div style="font-size:10px; letter-spacing:0.06em; color:var(--secondary); margin-bottom:14px;">{{ t.caseLabel }}</div>
+          <h3 style="font-size:clamp(22px,2.4vw,32px); font-weight:400; letter-spacing:-0.02em; margin:0 0 14px;">{{ t.leH3 }}</h3>
+          <p style="font-size:14px; line-height:1.6; color:var(--secondary); margin:0 0 12px;">{{ t.leP }}</p>
+          <div style="font-size:12px; color:var(--secondary);">{{ t.leNote }}</div>
         </div>
         <div class="img-strip-wrap" style="width:100vw; position:relative; left:50%; right:50%; margin-left:-50vw; margin-right:-50vw;">
           <div class="img-strip" style="display:flex; width:100%;">
@@ -468,8 +477,8 @@
 
       <!-- TAMBIÉN HEMOS TRABAJADO CON -->
       <div class="case-row" style="text-align:center;">
-        <div style="font-size:10px; letter-spacing:0.06em; color:var(--secondary); margin-bottom:14px;">TAMBIÉN HEMOS TRABAJADO CON</div>
-        <p style="font-size:13px; line-height:1.6; color:var(--secondary); margin:0 auto 16px; max-width:480px;">Parte de nuestra experiencia con viñas: desarrollo de productos, packaging, proyectos OEM y trabajo para distintos mercados internacionales.</p>
+        <div style="font-size:10px; letter-spacing:0.06em; color:var(--secondary); margin-bottom:14px;">{{ t.alsoLabel }}</div>
+        <p style="font-size:13px; line-height:1.6; color:var(--secondary); margin:0 auto 16px; max-width:480px;">{{ t.alsoP }}</p>
         <div class="flow-chain" style="justify-content:center;">
           <span class="step">SAN NICOLÁS WINES</span>
           <span class="step">VIÑA REQUINGUA</span>
@@ -481,8 +490,8 @@
 
       <!-- CIERRE CONVERSIÓN -->
       <div style="border-top:1px solid var(--line); padding-top:clamp(32px,5vw,44px); margin-top:clamp(16px,3vw,24px); display:flex; gap:24px; flex-wrap:wrap; align-items:center; justify-content:space-between;">
-        <p style="font-size:clamp(19px,2.2vw,26px); line-height:1.3; letter-spacing:-0.01em; font-weight:400; margin:0;">¿Tu marca podría ser el próximo caso?</p>
-        <a href="#contacto" onClick="{{ navToContacto }}" style="background:var(--text); color:var(--paper); border-radius:999px; padding:9px 16px; font-size:10px; letter-spacing:0.03em; text-decoration:none; display:inline-block; white-space:nowrap; transition:opacity 400ms cubic-bezier(.22,.61,.36,1);" style-hover="opacity:0.7;">Conversemos →</a>
+        <p style="font-size:clamp(19px,2.2vw,26px); line-height:1.3; letter-spacing:-0.01em; font-weight:400; margin:0;">{{ t.closeQ }}</p>
+        <a href="https://wa.me/56939582076?text={{ waMessage }}" target="_blank" rel="noopener" style="background:var(--text); color:var(--paper); border-radius:999px; padding:9px 16px; font-size:10px; letter-spacing:0.03em; text-decoration:none; display:inline-block; white-space:nowrap; transition:opacity 400ms cubic-bezier(.22,.61,.36,1);" style-hover="opacity:0.7;">{{ t.ctaTalk }}</a>
       </div>
     </div>
   </section>
@@ -490,9 +499,9 @@
   <!-- 03B RENDERS TDP BRASIL -->
   <section id="tdp-brasil" data-key="tdpBrasil" ref="{{ refTdpBrasil }}" style="padding:clamp(64px,10vw,120px) clamp(24px,5vw,64px) 0; border-top:1px solid var(--line);">
     <div class="reveal {{ revealClsTdpBrasil }}" style="{{ revealTdpBrasil }}">
-      <div style="font-size:10px; letter-spacing:0.06em; color:var(--secondary); margin-bottom:20px;">RENDERS · TDP BRASIL</div>
-      <h2 style="font-size:clamp(28px,3.6vw,48px); line-height:1.1; letter-spacing:-0.03em; font-weight:400; margin:0 0 20px; max-width:640px;">Renders desarrollados para TDP en Brasil.</h2>
-      <p style="font-size:14px; line-height:1.6; color:var(--secondary); max-width:560px; margin:0 0 clamp(40px,6vw,56px);">Un catálogo de renders 3D para distintas marcas desarrolladas junto a TDP, nuestro socio comercial en Brasil al que llegamos a través de Santa Irene: El Libertador, GO UP y Ola Po'.</p>
+      <div style="font-size:10px; letter-spacing:0.06em; color:var(--secondary); margin-bottom:20px;">{{ t.tdpLabel }}</div>
+      <h2 style="font-size:clamp(28px,3.6vw,48px); line-height:1.1; letter-spacing:-0.03em; font-weight:400; margin:0 0 20px; max-width:640px;">{{ t.tdpH2 }}</h2>
+      <p style="font-size:14px; line-height:1.6; color:var(--secondary); max-width:560px; margin:0 0 clamp(40px,6vw,56px);">{{ t.tdpP }}</p>
     </div>
     <div class="img-strip-wrap" style="width:100vw; position:relative; left:50%; right:50%; margin-left:-50vw; margin-right:-50vw; margin-top:clamp(40px,6vw,56px);">
       <div class="img-strip" style="display:flex; width:100%;">
@@ -544,9 +553,9 @@
     <div class="reveal {{ revealClsMercados }}" style="{{ revealMercados }}">
       <div class="split-grid" style="grid-template-columns:minmax(0,2fr) minmax(0,3fr); gap:clamp(32px,5vw,64px); align-items:center; margin-bottom:clamp(48px,7vw,72px); padding-bottom:clamp(40px,6vw,56px); border-bottom:1px solid var(--line);">
         <div>
-          <div style="font-size:10px; letter-spacing:0.06em; color:var(--secondary); margin-bottom:20px;">MERCADOS INTERNACIONALES Y OEM</div>
-          <h2 style="font-size:clamp(28px,3.6vw,48px); line-height:1.1; letter-spacing:-0.03em; font-weight:400; margin:0 0 24px; max-width:640px;">Diseñar para un mercado comienza por entenderlo.</h2>
-          <p style="font-size:14px; line-height:1.6; color:var(--secondary); max-width:480px; margin:0;">Una parte importante de nuestra experiencia en la industria ha estado vinculada a productos destinados a mercados internacionales.</p>
+          <div style="font-size:10px; letter-spacing:0.06em; color:var(--secondary); margin-bottom:20px;">{{ t.mkLabel }}</div>
+          <h2 style="font-size:clamp(28px,3.6vw,48px); line-height:1.1; letter-spacing:-0.03em; font-weight:400; margin:0 0 24px; max-width:640px;">{{ t.mkH2 }}</h2>
+          <p style="font-size:14px; line-height:1.6; color:var(--secondary); max-width:480px; margin:0;">{{ t.mkP }}</p>
         </div>
         <div style="display:flex; flex-wrap:wrap; gap:14px 10px; justify-content:flex-end; align-items:flex-end;">
           <sc-for list="{{ markets }}" as="m" hint-placeholder-count="10">
@@ -558,11 +567,11 @@
       <div class="split-grid" style="grid-template-columns:minmax(0,3fr) minmax(0,2fr); gap:clamp(32px,5vw,64px); margin-bottom:clamp(48px,7vw,72px);">
         <div>
           <div style="font-size:10px; letter-spacing:0.06em; color:var(--secondary); margin-bottom:14px;">CHINA / 2018</div>
-          <p style="font-size:14px; line-height:1.6; color:var(--secondary); margin:0; max-width:480px;">En 2018 viajamos junto a Matías Frenkel, de Viña Santa Irene, para visitar clientes y prospectos en Hong Kong, Shenzhen, Xiamen, Guangzhou y Shanghái. La experiencia permitió trabajar directamente sobre necesidades comerciales de compradores y mercados asiáticos.</p>
+          <p style="font-size:14px; line-height:1.6; color:var(--secondary); margin:0; max-width:480px;">{{ t.chinaP }}</p>
         </div>
         <div style="border-top:1px solid var(--line); padding-top:20px;">
           <div style="font-size:10px; letter-spacing:0.06em; color:var(--secondary); margin-bottom:14px;">LABELAPP / 2018</div>
-          <p style="font-size:13px; line-height:1.6; color:var(--secondary); margin:0;">Durante ese proceso desarrollamos Labelapp, un sistema pensado para acelerar la creación y visualización de ideas de etiquetas para proyectos comerciales y OEM: evidencia de una inquietud que sigue vigente sobre cómo conectar creatividad, velocidad y oportunidad comercial.</p>
+          <p style="font-size:13px; line-height:1.6; color:var(--secondary); margin:0;">{{ t.labelappP }}</p>
         </div>
       </div>
 
@@ -587,32 +596,32 @@
         <div style="font-size:10px; letter-spacing:0.06em; color:var(--secondary); margin-bottom:14px;">OEM</div>
         <div class="split-grid" style="grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:clamp(32px,5vw,64px); align-items:start; margin-bottom:clamp(40px,6vw,56px);">
           <div>
-            <h3 style="font-size:clamp(22px,2.6vw,34px); font-weight:400; letter-spacing:-0.02em; margin:0 0 20px; max-width:600px;">Productos creados para oportunidades concretas.</h3>
-            <p style="font-size:14px; line-height:1.6; color:var(--secondary); margin:0; max-width:560px;">El desarrollo OEM ha sido una constante en nuestro trabajo con viñas. Hemos participado en la creación de marcas y productos concebidos específicamente para clientes, segmentos, precios, mercados y oportunidades comerciales determinadas.</p>
+            <h3 style="font-size:clamp(22px,2.6vw,34px); font-weight:400; letter-spacing:-0.02em; margin:0 0 20px; max-width:600px;">{{ t.oemH3 }}</h3>
+            <p style="font-size:14px; line-height:1.6; color:var(--secondary); margin:0; max-width:560px;">{{ t.oemP }}</p>
           </div>
           <div style="display:grid; grid-template-columns:1fr 1fr; gap:4px clamp(16px,2.5vw,32px); text-align:right;">
             <div style="font-size:clamp(18px,2.2vw,28px); line-height:1.5; letter-spacing:-0.02em; font-weight:400;">
-              <div>Mercado</div>
-              <div><span style="color:var(--subtle);">+</span> Cliente</div>
-              <div><span style="color:var(--subtle);">+</span> Consumidor</div>
-              <div><span style="color:var(--subtle);">+</span> Vino</div>
-              <div><span style="color:var(--subtle);">+</span> Precio</div>
+              <div>{{ t.eqMarket }}</div>
+              <div><span style="color:var(--subtle);">+</span> {{ t.eqClient }}</div>
+              <div><span style="color:var(--subtle);">+</span> {{ t.eqConsumer }}</div>
+              <div><span style="color:var(--subtle);">+</span> {{ t.eqWine }}</div>
+              <div><span style="color:var(--subtle);">+</span> {{ t.eqPrice }}</div>
             </div>
             <div style="font-size:clamp(18px,2.2vw,28px); line-height:1.5; letter-spacing:-0.02em; font-weight:400;">
-              <div><span style="color:var(--subtle);">+</span> Marca</div>
-              <div><span style="color:var(--subtle);">+</span> Packaging</div>
-              <div><span style="color:var(--subtle);">+</span> Producción</div>
-              <div><span style="color:var(--subtle);">+</span> Logística</div>
-              <div style="font-weight:500;"><span style="color:var(--subtle); font-weight:400;">=</span> un producto OEM.</div>
+              <div><span style="color:var(--subtle);">+</span> {{ t.eqBrand }}</div>
+              <div><span style="color:var(--subtle);">+</span> {{ t.eqPackaging }}</div>
+              <div><span style="color:var(--subtle);">+</span> {{ t.eqProduction }}</div>
+              <div><span style="color:var(--subtle);">+</span> {{ t.eqLogistics }}</div>
+              <div style="font-weight:500;"><span style="color:var(--subtle); font-weight:400;">=</span> {{ t.eqResult }}</div>
             </div>
           </div>
         </div>
 
         <div style="display:flex; align-items:center; justify-content:space-between; gap:16px; margin-bottom:16px;">
-          <div style="font-size:10px; letter-spacing:0.06em; color:var(--secondary);">CATÁLOGO OEM — MARCAS DISPONIBLES PARA DESARROLLAR</div>
+          <div style="font-size:10px; letter-spacing:0.06em; color:var(--secondary);">{{ t.oemCatLabel }}</div>
           <div class="oem-nav" style="gap:8px;">
-            <button onClick="{{ scrollOemPrev }}" aria-label="Anterior" style="width:32px; height:32px; border-radius:999px; border:1px solid var(--line); background:none; color:var(--text); cursor:pointer; font-size:15px; line-height:1; padding:0; display:flex; align-items:center; justify-content:center; font-family:inherit;" style-hover="opacity:0.6;">‹</button>
-            <button onClick="{{ scrollOemNext }}" aria-label="Siguiente" style="width:32px; height:32px; border-radius:999px; border:1px solid var(--line); background:none; color:var(--text); cursor:pointer; font-size:15px; line-height:1; padding:0; display:flex; align-items:center; justify-content:center; font-family:inherit;" style-hover="opacity:0.6;">›</button>
+            <button onClick="{{ scrollOemPrev }}" aria-label="{{ t.ariaPrev }}" style="width:32px; height:32px; border-radius:999px; border:1px solid var(--line); background:none; color:var(--text); cursor:pointer; font-size:15px; line-height:1; padding:0; display:flex; align-items:center; justify-content:center; font-family:inherit;" style-hover="opacity:0.6;">‹</button>
+            <button onClick="{{ scrollOemNext }}" aria-label="{{ t.ariaNext }}" style="width:32px; height:32px; border-radius:999px; border:1px solid var(--line); background:none; color:var(--text); cursor:pointer; font-size:15px; line-height:1; padding:0; display:flex; align-items:center; justify-content:center; font-family:inherit;" style-hover="opacity:0.6;">›</button>
           </div>
         </div>
         <div ref="{{ oemStripRef }}" style="width:100vw; position:relative; left:50%; right:50%; margin-left:-50vw; margin-right:-50vw; overflow-x:auto; margin-bottom:clamp(40px,6vw,56px); -webkit-overflow-scrolling:touch;">
@@ -623,7 +632,7 @@
           </div>
         </div>
 
-        <p style="font-size:clamp(17px,1.8vw,22px); line-height:1.4; letter-spacing:-0.01em; font-weight:400; margin:0 auto; max-width:640px; text-align:center; border-top:1px solid var(--line); padding-top:clamp(24px,3.5vw,32px);">Un proyecto OEM no comienza preguntando cómo debería verse una etiqueta. Comienza entendiendo qué producto necesita existir, para quién y en qué contexto debe competir.</p>
+        <p style="font-size:clamp(17px,1.8vw,22px); line-height:1.4; letter-spacing:-0.01em; font-weight:400; margin:0 auto; max-width:640px; text-align:center; border-top:1px solid var(--line); padding-top:clamp(24px,3.5vw,32px);">{{ t.oemClose }}</p>
       </div>
     </div>
   </section>
@@ -631,9 +640,9 @@
   <!-- 05 DEL PRODUCTO A LA PRODUCCIÓN Y EXPORTACIÓN -->
   <section id="produccion" data-key="produccion" ref="{{ refProduccion }}" style="padding:clamp(64px,10vw,120px) clamp(24px,5vw,64px); border-top:1px solid var(--line);">
     <div class="reveal {{ revealClsProduccion }}" style="{{ revealProduccion }}">
-      <div style="font-size:10px; letter-spacing:0.06em; color:var(--secondary); margin-bottom:20px;">DEL PRODUCTO A LA PRODUCCIÓN Y EXPORTACIÓN</div>
-      <h2 style="font-size:clamp(28px,3.6vw,48px); line-height:1.1; letter-spacing:-0.03em; font-weight:400; margin:0 0 20px; max-width:640px;">El diseño no termina en el archivo.</h2>
-      <p style="font-size:14px; line-height:1.6; color:var(--secondary); max-width:560px; margin:0 0 clamp(40px,6vw,56px);">Nuestra experiencia con packaging no se limita a su expresión gráfica. Conocemos las decisiones, materiales, proveedores y procesos que permiten transformar una idea en un producto real.</p>
+      <div style="font-size:10px; letter-spacing:0.06em; color:var(--secondary); margin-bottom:20px;">{{ t.prodLabel }}</div>
+      <h2 style="font-size:clamp(28px,3.6vw,48px); line-height:1.1; letter-spacing:-0.03em; font-weight:400; margin:0 0 20px; max-width:640px;">{{ t.prodH2 }}</h2>
+      <p style="font-size:14px; line-height:1.6; color:var(--secondary); max-width:560px; margin:0 0 clamp(40px,6vw,56px);">{{ t.prodP }}</p>
 
       <div class="stagger-grid" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:clamp(28px,4vw,40px) 32px; margin-bottom:clamp(48px,7vw,72px);">
         <sc-for list="{{ productionAreas }}" as="p" hint-placeholder-count="7">
@@ -663,8 +672,8 @@
       </div>
 
       <div style="border-top:1px solid var(--line); padding-top:clamp(24px,3.5vw,32px);">
-        <p style="font-size:clamp(19px,2.2vw,27px); line-height:1.3; letter-spacing:-0.01em; font-weight:400; margin:0 0 12px auto; max-width:680px; text-align:right;">Diseñamos entendiendo lo que puede producirse.</p>
-        <p style="font-size:14px; line-height:1.6; color:var(--secondary); margin:0 0 0 auto; max-width:560px; text-align:right;">Eso nos permite conectar intención de marca, viabilidad técnica y realidad comercial.</p>
+        <p style="font-size:clamp(19px,2.2vw,27px); line-height:1.3; letter-spacing:-0.01em; font-weight:400; margin:0 0 12px auto; max-width:680px; text-align:right;">{{ t.prodClose1 }}</p>
+        <p style="font-size:14px; line-height:1.6; color:var(--secondary); margin:0 0 0 auto; max-width:560px; text-align:right;">{{ t.prodClose2 }}</p>
       </div>
     </div>
   </section>
@@ -672,9 +681,9 @@
   <!-- 06 FORMA DE TRABAJO -->
   <section id="trabajo" data-key="trabajo" ref="{{ refTrabajo }}" class="section-invert" style="padding:clamp(64px,10vw,120px) clamp(24px,5vw,64px); border-top:1px solid var(--line);">
     <div class="reveal {{ revealClsTrabajo }}" style="{{ revealTrabajo }}">
-      <div style="font-size:10px; letter-spacing:0.06em; color:var(--secondary); margin-bottom:20px;">FORMA DE TRABAJO</div>
-      <h2 style="font-size:clamp(28px,3.6vw,48px); line-height:1.1; letter-spacing:-0.03em; font-weight:400; margin:0 0 20px; max-width:640px;">Podemos entrar en distintos momentos del proceso.</h2>
-      <p style="font-size:14px; line-height:1.6; color:var(--secondary); max-width:560px; margin:0 0 clamp(40px,6vw,56px);">No todas las empresas necesitan lo mismo. Nuestro trabajo parte por entender qué necesita resolverse antes de definir qué debemos desarrollar.</p>
+      <div style="font-size:10px; letter-spacing:0.06em; color:var(--secondary); margin-bottom:20px;">{{ t.workLabel }}</div>
+      <h2 style="font-size:clamp(28px,3.6vw,48px); line-height:1.1; letter-spacing:-0.03em; font-weight:400; margin:0 0 20px; max-width:640px;">{{ t.workH2 }}</h2>
+      <p style="font-size:14px; line-height:1.6; color:var(--secondary); max-width:560px; margin:0 0 clamp(40px,6vw,56px);">{{ t.workP }}</p>
 
       <div class="stagger-grid" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:clamp(32px,4vw,48px) 32px; margin-bottom:clamp(48px,7vw,72px);">
         <sc-for list="{{ workModes }}" as="w" hint-placeholder-count="3">
@@ -686,9 +695,9 @@
         </sc-for>
       </div>
 
-      <p style="font-size:clamp(17px,1.8vw,22px); line-height:1.4; letter-spacing:-0.01em; font-weight:400; margin:0 0 clamp(48px,7vw,72px); max-width:680px; border-top:1px solid var(--line); padding-top:clamp(24px,3.5vw,32px);">Capacidad transversal: adaptar y desarrollar marcas, productos y herramientas comerciales para distintos mercados.</p>
+      <p style="font-size:clamp(17px,1.8vw,22px); line-height:1.4; letter-spacing:-0.01em; font-weight:400; margin:0 0 clamp(48px,7vw,72px); max-width:680px; border-top:1px solid var(--line); padding-top:clamp(24px,3.5vw,32px);">{{ t.workCap }}</p>
 
-      <div style="font-size:10px; letter-spacing:0.06em; color:var(--secondary); margin-bottom:20px;">METODOLOGÍA CAVA</div>
+      <div style="font-size:10px; letter-spacing:0.06em; color:var(--secondary); margin-bottom:20px;">{{ t.methLabel }}</div>
       <div class="stagger-grid" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:20px;">
         <sc-for list="{{ cavaSteps }}" as="c" hint-placeholder-count="4">
           <div>
@@ -705,18 +714,18 @@
   <section id="brasil" data-key="brasil" ref="{{ refBrasil }}" style="padding:clamp(48px,7vw,72px) clamp(24px,5vw,64px); border-top:1px solid var(--line);">
     <div class="reveal split-grid {{ revealClsBrasil }}" style="{{ revealBrasil }}; grid-template-columns:minmax(0,2fr) minmax(0,3fr); gap:clamp(32px,5vw,64px); align-items:start;">
       <div>
-        <div style="font-size:10px; letter-spacing:0.06em; color:var(--secondary); margin-bottom:14px;">BRASIL</div>
-        <h2 style="font-size:clamp(22px,2.6vw,34px); line-height:1.15; letter-spacing:-0.02em; font-weight:400; margin:0;">Una relación que seguimos profundizando.</h2>
+        <div style="font-size:10px; letter-spacing:0.06em; color:var(--secondary); margin-bottom:14px;">{{ t.brLabel }}</div>
+        <h2 style="font-size:clamp(22px,2.6vw,34px); line-height:1.15; letter-spacing:-0.02em; font-weight:400; margin:0;">{{ t.brH2 }}</h2>
       </div>
       <div>
-        <p style="font-size:14px; line-height:1.6; color:var(--secondary); margin:0 0 20px; max-width:520px;">Brasil forma parte de una experiencia internacional más amplia, pero progresivamente se ha convertido en un mercado relevante para CAVA. Hemos participado presencialmente en distintas instancias de la industria, y desarrollos como Casa Vieja y Memoria de Los Andes tienen presencia en el mercado brasileño.</p>
+        <p style="font-size:14px; line-height:1.6; color:var(--secondary); margin:0 0 20px; max-width:520px;">{{ t.brP1 }}</p>
         <div class="flow-chain" style="margin-bottom:20px;">
           <span class="step">PROWINE SÃO PAULO 2025</span>
           <span class="step">PROWINE SÃO PAULO 2026</span>
           <span class="step">APAS SHOW</span>
           <span class="step">WINE SOUTH AMERICA · BENTO GONÇALVES</span>
         </div>
-        <p style="font-size:13px; line-height:1.6; color:var(--secondary); margin:0; max-width:520px;">ProWine São Paulo 2026 es una oportunidad para continuar construyendo relaciones, entendiendo el mercado y detectando nuevos desafíos donde nuestra experiencia pueda aportar.</p>
+        <p style="font-size:13px; line-height:1.6; color:var(--secondary); margin:0; max-width:520px;">{{ t.brP2 }}</p>
       </div>
     </div>
     <div class="img-strip-wrap" style="width:100vw; position:relative; left:50%; right:50%; margin-left:-50vw; margin-right:-50vw; margin-top:clamp(32px,5vw,48px);">
@@ -753,14 +762,15 @@
   <section id="contacto" data-key="contacto" ref="{{ refContacto }}" style="position:relative; overflow:hidden; padding:clamp(56px,8vw,96px) clamp(24px,5vw,64px) clamp(40px,6vw,64px); border-top:1px solid var(--line);">
     <img src="assets/logos/cava-sintesis.png" alt="" class="theme-invert" style="position:absolute; top:50%; right:clamp(-40px,2vw,40px); transform:translateY(-50%); width:clamp(280px,32vw,440px); height:auto; opacity:0.04; pointer-events:none;">
     <div class="reveal {{ revealClsContacto }}" style="{{ revealContacto }}; position:relative;">
-      <h2 style="font-size:clamp(30px,4.4vw,60px); line-height:1.05; letter-spacing:-0.035em; font-weight:400; margin:0 0 20px; max-width:760px;">Conversemos.</h2>
+      <h2 style="font-size:clamp(30px,4.4vw,60px); line-height:1.05; letter-spacing:-0.035em; font-weight:400; margin:0 0 20px; max-width:760px;">{{ t.contactH2 }}</h2>
       <div style="display:flex; gap:clamp(24px,5vw,64px); flex-wrap:wrap; align-items:flex-end; justify-content:space-between; margin-bottom:clamp(32px,4.5vw,44px);">
-        <p style="font-size:14px; line-height:1.55; max-width:480px; color:var(--secondary); margin:0;">Si estás construyendo una nueva marca, desarrollando productos para distintos mercados, fortaleciendo un portafolio existente o necesitas un equipo capaz de acompañar su operación, podemos conversar.</p>
-        <a href="https://wa.me/56954621640?text={{ waMessageVino }}" target="_blank" style="background:var(--text); color:var(--paper); border-radius:999px; padding:9px 16px; font-size:10px; letter-spacing:0.03em; text-decoration:none; display:inline-block; white-space:nowrap; transition:opacity 400ms cubic-bezier(.22,.61,.36,1);" style-hover="opacity:0.7;">Hablemos →</a>
+        <p style="font-size:14px; line-height:1.55; max-width:480px; color:var(--secondary); margin:0;">{{ t.contactP }}</p>
+        <a href="https://wa.me/56939582076?text={{ waMessage }}" target="_blank" rel="noopener" style="background:var(--text); color:var(--paper); border-radius:999px; padding:9px 16px; font-size:10px; letter-spacing:0.03em; text-decoration:none; display:inline-block; white-space:nowrap; transition:opacity 400ms cubic-bezier(.22,.61,.36,1);" style-hover="opacity:0.7;">{{ t.waBtn }}</a>
       </div>
       <div style="display:flex; gap:20px; flex-wrap:wrap; font-size:11px; letter-spacing:0.03em; color:var(--secondary); border-top:1px solid var(--line); padding-top:20px;">
         <span>Santiago, Chile</span>
-        <span>São Paulo, Brasil · ProWine 2026</span>
+        <span>{{ t.contactSp }}</span>
+        <a href="https://wa.me/56939582076?text={{ waMessage }}" target="_blank" rel="noopener" style="text-decoration:none; color:var(--secondary);" style-hover="color:var(--text);">WhatsApp +56 9 3958 2076</a>
         <a href="mailto:contacto@cavaestudio.cl" style="text-decoration:none; color:var(--secondary);" style-hover="color:var(--text);">contacto@cavaestudio.cl</a>
       </div>
     </div>
@@ -773,7 +783,7 @@
       <a href="https://www.instagram.com/cava_estudio" target="_blank" style="text-decoration:none;" style-hover="color:var(--text);">Instagram</a>
       <a href="https://www.linkedin.com/company/cava-estudio/" target="_blank" style="text-decoration:none;" style-hover="color:var(--text);">LinkedIn</a>
     </div>
-    <span>Pensar / Decir / Hacer.</span>
+    <span>{{ t.footerTag }}</span>
   </footer>
 
 </div>
@@ -781,8 +791,334 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
-  state = { visible: { hero: true }, mobileMenuOpen: false, theme: (typeof localStorage !== 'undefined' && localStorage.getItem('cava-theme')) || (typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') };
+  state = { visible: { hero: true }, mobileMenuOpen: false, lang: this._initialLang(), theme: (typeof localStorage !== 'undefined' && localStorage.getItem('cava-theme')) || (typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') };
   _els = {};
+
+  // UI copy in the three languages the dossier is offered in. `es` mirrors the
+  // original hard-coded Spanish exactly; `pt` is Brazilian Portuguese.
+  _i18n = {
+    es: {
+      docTitle: "CAVA + Industria del vino | Branding, Packaging y OEM",
+      docDesc: "Experiencia de CAVA Estudio desarrollando marcas, packaging, proyectos OEM y herramientas comerciales para viñas y mercados internacionales.",
+      waMessage: "Hola CAVA, vi el dossier de la industria del vino y me gustaría conversar.",
+      navHome: "INICIO", navExp: "EXPERIENCIA", navMarkets: "MERCADOS", navContact: "CONTACTO",
+      ariaTheme: "Cambiar tema", ariaMenu: "Abrir menú", ariaLang: "Idioma", themeLight: "Claro", themeDark: "Oscuro",
+      heroEyebrow: "CAVA + INDUSTRIA DEL VINO",
+      heroH1a: "Del vino a la marca.", heroH1b: "De la presencia a la preferencia.",
+      heroP: "Desde 2011 trabajamos junto a viñas y marcas de vino, conectando estrategia, identidad, packaging, desarrollo de productos, herramientas comerciales y soporte continuo. Nuestra experiencia nos permite entender una marca desde su definición hasta su materialización y llegada al mercado.",
+      heroTag: "CAVA entiende la marca, el producto y el mercado.",
+      ctaTalk: "Conversemos →", ctaExp: "Ver experiencia",
+      skitLabel: "CAVA + INDUSTRIA DEL VINO / SKIT", skitPending: "Video Skit — pendiente",
+      dossier: "DOSSIER",
+      idxH2: "No solo entendemos cómo construir una marca de vino.",
+      idxP: "Entendemos cómo convertirla en un producto real y llevarla a distintos mercados.",
+      idxTitle: "ÍNDICE",
+      toc: [
+        ["Quiénes somos", "Marca, producto y mercado como una misma disciplina."],
+        ["Experiencia y casos", "Puntí Ferrer, Orgullo Cruzado, Valle Secreto, Santa Irene y más."],
+        ["Renders TDP Brasil", "El Libertador, GO UP y Ola Po’ — renders para TDP en Brasil."],
+        ["Mercados internacionales y OEM", "China, Labelapp y proyectos creados para oportunidades concretas."],
+        ["Del producto a la producción y exportación", "Botellas, cierres, etiquetas, cajas y maquila."],
+        ["Forma de trabajo", "Construir, fortalecer o acompañar, según el momento."],
+        ["Contacto", "Conversemos sobre tu marca, producto o mercado."]
+      ],
+      qsLabel: "QUIÉNES SOMOS",
+      qsH2: "No trabajamos solo sobre cómo se ve un vino.",
+      qsP: "CAVA es un equipo estratégico y creativo que ayuda a las marcas a comunicar con claridad. En la industria del vino hemos participado en la creación de marcas, packaging, proyectos OEM y comunicación para distintos mercados internacionales.",
+      dims: [
+        ["Marca", "Construcción de posicionamiento, identidad, narrativa y sistemas reconocibles."],
+        ["Producto", "Desarrollo de packaging entendiendo materiales, procesos, costos y posibilidades reales de producción."],
+        ["Mercado", "Adaptación y creación de productos para distintos clientes, segmentos, canales y países."]
+      ],
+      qsQuote: "Una buena etiqueta debe funcionar como marca, como producto y como herramienta comercial.",
+      expLabel: "EXPERIENCIA Y CASOS",
+      expH2: "Experiencia construida junto a la industria.",
+      expP: "Nuestra relación con distintas viñas se ha desarrollado durante años y en múltiples frentes: desde la creación de nuevas marcas hasta la operación cotidiana de portafolios existentes.",
+      caseFeatured: "CASO DESTACADO", caseLabel: "CASO",
+      pfP: "Años de trabajo junto a Puntí Ferrer desarrollando marcas y productos para el mercado local e internacional.",
+      pfTags: "Desarrollo de marca · Packaging · Proyectos OEM · Herramientas comerciales",
+      ocP: "Vino, identidad y comunidad: un caso real, construido en colaboración con el Club Deportivo Universidad Católica.",
+      ocBtn: "Ver caso completo →",
+      vsP: "CAVA acompaña de forma continua la operación de Valle Secreto: contraetiquetas, cajas, fichas, sitio web y adaptaciones de packaging para distintos mercados.",
+      vsQuote: "La construcción de una marca no termina cuando se entrega su identidad. También necesita ser operada y mantenida con coherencia.",
+      siP: "Desarrollo de marcas y soporte creativo continuo: fichas, sitio web, adaptaciones, packaging y proyectos OEM para distintos mercados.",
+      siNote: "Marcas como Casa Vieja y El Cretino — Casa Vieja con presencia en Brasil.",
+      leH3: "Lapsos de Elqui, De Sol a Sol y Aventurero",
+      leP: "Desarrollo de marca y packaging para productores independientes en distintas zonas del país: Lapsos de Elqui en el norte, y De Sol a Sol y Aventurero en el sur de Chile.",
+      leNote: "Identidad de marca, sistema de etiquetas y packaging para cada proyecto.",
+      alsoLabel: "TAMBIÉN HEMOS TRABAJADO CON",
+      alsoP: "Parte de nuestra experiencia con viñas: desarrollo de productos, packaging, proyectos OEM y trabajo para distintos mercados internacionales.",
+      closeQ: "¿Tu marca podría ser el próximo caso?",
+      tdpLabel: "RENDERS · TDP BRASIL",
+      tdpH2: "Renders desarrollados para TDP en Brasil.",
+      tdpP: "Un catálogo de renders 3D para distintas marcas desarrolladas junto a TDP, nuestro socio comercial en Brasil al que llegamos a través de Santa Irene: El Libertador, GO UP y Ola Po'.",
+      mkLabel: "MERCADOS INTERNACIONALES Y OEM",
+      mkH2: "Diseñar para un mercado comienza por entenderlo.",
+      mkP: "Una parte importante de nuestra experiencia en la industria ha estado vinculada a productos destinados a mercados internacionales.",
+      markets: ["China", "Japón", "Tailandia", "Vietnam", "India", "Europa", "Estados Unidos", "Colombia", "Perú", "Brasil"],
+      chinaP: "En 2018 viajamos junto a Matías Frenkel, de Viña Santa Irene, para visitar clientes y prospectos en Hong Kong, Shenzhen, Xiamen, Guangzhou y Shanghái. La experiencia permitió trabajar directamente sobre necesidades comerciales de compradores y mercados asiáticos.",
+      labelappP: "Durante ese proceso desarrollamos Labelapp, un sistema pensado para acelerar la creación y visualización de ideas de etiquetas para proyectos comerciales y OEM: evidencia de una inquietud que sigue vigente sobre cómo conectar creatividad, velocidad y oportunidad comercial.",
+      oemH3: "Productos creados para oportunidades concretas.",
+      oemP: "El desarrollo OEM ha sido una constante en nuestro trabajo con viñas. Hemos participado en la creación de marcas y productos concebidos específicamente para clientes, segmentos, precios, mercados y oportunidades comerciales determinadas.",
+      eqMarket: "Mercado", eqClient: "Cliente", eqConsumer: "Consumidor", eqWine: "Vino", eqPrice: "Precio",
+      eqBrand: "Marca", eqPackaging: "Packaging", eqProduction: "Producción", eqLogistics: "Logística", eqResult: "un producto OEM.",
+      oemCatLabel: "CATÁLOGO OEM — MARCAS DISPONIBLES PARA DESARROLLAR", ariaPrev: "Anterior", ariaNext: "Siguiente",
+      oemClose: "Un proyecto OEM no comienza preguntando cómo debería verse una etiqueta. Comienza entendiendo qué producto necesita existir, para quién y en qué contexto debe competir.",
+      prodLabel: "DEL PRODUCTO A LA PRODUCCIÓN Y EXPORTACIÓN",
+      prodH2: "El diseño no termina en el archivo.",
+      prodP: "Nuestra experiencia con packaging no se limita a su expresión gráfica. Conocemos las decisiones, materiales, proveedores y procesos que permiten transformar una idea en un producto real.",
+      prod: [
+        ["Botellas", "Formatos, pesos, colores, disponibilidad y relación con posicionamiento y mercado."],
+        ["Corchos y tapones", "Alternativas de cierre y criterios de aplicación según producto."],
+        ["Cápsulas", "Materialidades, formatos y distintos sistemas y posibilidades de impresión."],
+        ["Etiquetas", "Papeles, adhesivos, sistemas de impresión, relieves, folias y terminaciones especiales."],
+        ["Cajas", "Individuales, de dos, tres, seis o doce botellas: materialidades y sistemas de impresión."],
+        ["Producción", "Preparación de originales, validación de materiales, coordinación con proveedores, pruebas e implementación."],
+        ["Maquila y exportación", "Experiencia acompañando procesos desde el vino y sus componentes hasta el producto listo para carga en contenedor."]
+      ],
+      prodClose1: "Diseñamos entendiendo lo que puede producirse.",
+      prodClose2: "Eso nos permite conectar intención de marca, viabilidad técnica y realidad comercial.",
+      workLabel: "FORMA DE TRABAJO",
+      workH2: "Podemos entrar en distintos momentos del proceso.",
+      workP: "No todas las empresas necesitan lo mismo. Nuestro trabajo parte por entender qué necesita resolverse antes de definir qué debemos desarrollar.",
+      modes: [
+        { name: "Construir", desc: "Para nuevas marcas, productos, líneas o proyectos OEM.", items: "Estrategia · Naming · Identidad · Packaging · OEM · Herramientas de lanzamiento" },
+        { name: "Fortalecer", desc: "Para marcas existentes que necesitan mayor claridad, diferenciación o coherencia.", items: "Posicionamiento · Sistema visual · Evolución de packaging · Arquitectura de portafolio · Herramientas comerciales · Web · Comunicación" },
+        { name: "Acompañar", desc: "Para viñas, grupos e importadores con necesidades continuas.", items: "Soporte estratégico y creativo · Packaging · Adaptaciones · Presentaciones · Fichas · Contenido · Web · Materiales comerciales" }
+      ],
+      workCap: "Capacidad transversal: adaptar y desarrollar marcas, productos y herramientas comerciales para distintos mercados.",
+      methLabel: "METODOLOGÍA CAVA",
+      steps: [
+        ["Contexto", "Entender negocio, mercado, producto y oportunidad."],
+        ["Arquitectura", "Definir qué debemos construir y por qué."],
+        ["Visualización", "Transformar la estrategia en marca, producto y herramientas."],
+        ["Activación", "Llevarlo a producción, mercado y operación."]
+      ],
+      brLabel: "BRASIL",
+      brH2: "Una relación que seguimos profundizando.",
+      brP1: "Brasil forma parte de una experiencia internacional más amplia, pero progresivamente se ha convertido en un mercado relevante para CAVA. Hemos participado presencialmente en distintas instancias de la industria, y desarrollos como Casa Vieja y Memoria de Los Andes tienen presencia en el mercado brasileño.",
+      brP2: "ProWine São Paulo 2026 es una oportunidad para continuar construyendo relaciones, entendiendo el mercado y detectando nuevos desafíos donde nuestra experiencia pueda aportar.",
+      contactH2: "Conversemos.",
+      contactP: "Si estás construyendo una nueva marca, desarrollando productos para distintos mercados, fortaleciendo un portafolio existente o necesitas un equipo capaz de acompañar su operación, podemos conversar.",
+      waBtn: "Hablemos por WhatsApp →",
+      contactSp: "São Paulo, Brasil · ProWine 2026",
+      footerTag: "Pensar / Decir / Hacer."
+    },
+    pt: {
+      docTitle: "CAVA + Indústria do vinho | Branding, Embalagem e OEM",
+      docDesc: "Experiência da CAVA Estudio desenvolvendo marcas, embalagens, projetos OEM e ferramentas comerciais para vinícolas e mercados internacionais.",
+      waMessage: "Olá CAVA, vi o dossiê da indústria do vinho e gostaria de conversar.",
+      navHome: "INÍCIO", navExp: "EXPERIÊNCIA", navMarkets: "MERCADOS", navContact: "CONTATO",
+      ariaTheme: "Alterar tema", ariaMenu: "Abrir menu", ariaLang: "Idioma", themeLight: "Claro", themeDark: "Escuro",
+      heroEyebrow: "CAVA + INDÚSTRIA DO VINHO",
+      heroH1a: "Do vinho à marca.", heroH1b: "Da presença à preferência.",
+      heroP: "Desde 2011 trabalhamos junto a vinícolas e marcas de vinho, conectando estratégia, identidade, embalagem, desenvolvimento de produtos, ferramentas comerciais e suporte contínuo. Nossa experiência nos permite entender uma marca desde a sua definição até a sua materialização e chegada ao mercado.",
+      heroTag: "A CAVA entende a marca, o produto e o mercado.",
+      ctaTalk: "Vamos conversar →", ctaExp: "Ver experiência",
+      skitLabel: "CAVA + INDÚSTRIA DO VINHO / SKIT", skitPending: "Vídeo Skit — pendente",
+      dossier: "DOSSIÊ",
+      idxH2: "Não entendemos apenas como construir uma marca de vinho.",
+      idxP: "Entendemos como transformá-la em um produto real e levá-la a diferentes mercados.",
+      idxTitle: "ÍNDICE",
+      toc: [
+        ["Quem somos", "Marca, produto e mercado como uma mesma disciplina."],
+        ["Experiência e casos", "Puntí Ferrer, Orgullo Cruzado, Valle Secreto, Santa Irene e mais."],
+        ["Renders TDP Brasil", "El Libertador, GO UP e Ola Po’ — renders para a TDP no Brasil."],
+        ["Mercados internacionais e OEM", "China, Labelapp e projetos criados para oportunidades concretas."],
+        ["Do produto à produção e exportação", "Garrafas, vedações, rótulos, caixas e manufatura terceirizada."],
+        ["Forma de trabalho", "Construir, fortalecer ou acompanhar, conforme o momento."],
+        ["Contato", "Vamos conversar sobre a sua marca, produto ou mercado."]
+      ],
+      qsLabel: "QUEM SOMOS",
+      qsH2: "Não trabalhamos apenas com a aparência de um vinho.",
+      qsP: "A CAVA é uma equipe estratégica e criativa que ajuda as marcas a se comunicarem com clareza. Na indústria do vinho participamos da criação de marcas, embalagens, projetos OEM e comunicação para diversos mercados internacionais.",
+      dims: [
+        ["Marca", "Construção de posicionamento, identidade, narrativa e sistemas reconhecíveis."],
+        ["Produto", "Desenvolvimento de embalagens entendendo materiais, processos, custos e possibilidades reais de produção."],
+        ["Mercado", "Adaptação e criação de produtos para diferentes clientes, segmentos, canais e países."]
+      ],
+      qsQuote: "Um bom rótulo deve funcionar como marca, como produto e como ferramenta comercial.",
+      expLabel: "EXPERIÊNCIA E CASOS",
+      expH2: "Experiência construída junto à indústria.",
+      expP: "Nosso relacionamento com diferentes vinícolas se desenvolve há anos e em múltiplas frentes: da criação de novas marcas à operação cotidiana de portfólios existentes.",
+      caseFeatured: "CASO EM DESTAQUE", caseLabel: "CASO",
+      pfP: "Anos de trabalho junto à Puntí Ferrer desenvolvendo marcas e produtos para o mercado local e internacional.",
+      pfTags: "Desenvolvimento de marca · Embalagem · Projetos OEM · Ferramentas comerciais",
+      ocP: "Vinho, identidade e comunidade: um caso real, construído em colaboração com o Club Deportivo Universidad Católica.",
+      ocBtn: "Ver caso completo →",
+      vsP: "A CAVA acompanha de forma contínua a operação da Valle Secreto: contrarrótulos, caixas, fichas técnicas, site e adaptações de embalagem para diferentes mercados.",
+      vsQuote: "A construção de uma marca não termina quando sua identidade é entregue. Ela também precisa ser operada e mantida com coerência.",
+      siP: "Desenvolvimento de marcas e suporte criativo contínuo: fichas técnicas, site, adaptações, embalagem e projetos OEM para diferentes mercados.",
+      siNote: "Marcas como Casa Vieja e El Cretino — Casa Vieja com presença no Brasil.",
+      leH3: "Lapsos de Elqui, De Sol a Sol e Aventurero",
+      leP: "Desenvolvimento de marca e embalagem para produtores independentes em diferentes regiões do país: Lapsos de Elqui no norte, e De Sol a Sol e Aventurero no sul do Chile.",
+      leNote: "Identidade de marca, sistema de rótulos e embalagem para cada projeto.",
+      alsoLabel: "TAMBÉM TRABALHAMOS COM",
+      alsoP: "Parte da nossa experiência com vinícolas: desenvolvimento de produtos, embalagem, projetos OEM e trabalho para diversos mercados internacionais.",
+      closeQ: "A sua marca poderia ser o próximo caso?",
+      tdpLabel: "RENDERS · TDP BRASIL",
+      tdpH2: "Renders desenvolvidos para a TDP no Brasil.",
+      tdpP: "Um catálogo de renders 3D para diferentes marcas desenvolvidas junto à TDP, nossa parceira comercial no Brasil, a quem chegamos por meio da Santa Irene: El Libertador, GO UP e Ola Po'.",
+      mkLabel: "MERCADOS INTERNACIONAIS E OEM",
+      mkH2: "Projetar para um mercado começa por entendê-lo.",
+      mkP: "Uma parte importante da nossa experiência na indústria esteve ligada a produtos destinados a mercados internacionais.",
+      markets: ["China", "Japão", "Tailândia", "Vietnã", "Índia", "Europa", "Estados Unidos", "Colômbia", "Peru", "Brasil"],
+      chinaP: "Em 2018 viajamos com Matías Frenkel, da Viña Santa Irene, para visitar clientes e prospects em Hong Kong, Shenzhen, Xiamen, Guangzhou e Xangai. A experiência permitiu trabalhar diretamente sobre as necessidades comerciais de compradores e mercados asiáticos.",
+      labelappP: "Durante esse processo desenvolvemos o Labelapp, um sistema pensado para acelerar a criação e a visualização de ideias de rótulos para projetos comerciais e OEM: evidência de uma inquietação que segue atual sobre como conectar criatividade, velocidade e oportunidade comercial.",
+      oemH3: "Produtos criados para oportunidades concretas.",
+      oemP: "O desenvolvimento OEM tem sido uma constante no nosso trabalho com vinícolas. Participamos da criação de marcas e produtos concebidos especificamente para clientes, segmentos, preços, mercados e oportunidades comerciais determinadas.",
+      eqMarket: "Mercado", eqClient: "Cliente", eqConsumer: "Consumidor", eqWine: "Vinho", eqPrice: "Preço",
+      eqBrand: "Marca", eqPackaging: "Embalagem", eqProduction: "Produção", eqLogistics: "Logística", eqResult: "um produto OEM.",
+      oemCatLabel: "CATÁLOGO OEM — MARCAS DISPONÍVEIS PARA DESENVOLVER", ariaPrev: "Anterior", ariaNext: "Próximo",
+      oemClose: "Um projeto OEM não começa perguntando como um rótulo deveria parecer. Começa entendendo qual produto precisa existir, para quem e em que contexto deve competir.",
+      prodLabel: "DO PRODUTO À PRODUÇÃO E EXPORTAÇÃO",
+      prodH2: "O design não termina no arquivo.",
+      prodP: "Nossa experiência com embalagem não se limita à sua expressão gráfica. Conhecemos as decisões, materiais, fornecedores e processos que permitem transformar uma ideia em um produto real.",
+      prod: [
+        ["Garrafas", "Formatos, pesos, cores, disponibilidade e relação com posicionamento e mercado."],
+        ["Rolhas e tampas", "Alternativas de vedação e critérios de aplicação conforme o produto."],
+        ["Cápsulas", "Materiais, formatos e diferentes sistemas e possibilidades de impressão."],
+        ["Rótulos", "Papéis, adesivos, sistemas de impressão, relevos, hot stamping e acabamentos especiais."],
+        ["Caixas", "Individuais, para duas, três, seis ou doze garrafas: materiais e sistemas de impressão."],
+        ["Produção", "Preparação de arquivos originais, validação de materiais, coordenação com fornecedores, testes e implementação."],
+        ["Manufatura terceirizada e exportação", "Experiência acompanhando processos desde o vinho e seus componentes até o produto pronto para carregamento em contêiner."]
+      ],
+      prodClose1: "Projetamos entendendo o que pode ser produzido.",
+      prodClose2: "Isso nos permite conectar intenção de marca, viabilidade técnica e realidade comercial.",
+      workLabel: "FORMA DE TRABALHO",
+      workH2: "Podemos entrar em diferentes momentos do processo.",
+      workP: "Nem todas as empresas precisam da mesma coisa. Nosso trabalho começa entendendo o que precisa ser resolvido antes de definir o que devemos desenvolver.",
+      modes: [
+        { name: "Construir", desc: "Para novas marcas, produtos, linhas ou projetos OEM.", items: "Estratégia · Naming · Identidade · Embalagem · OEM · Ferramentas de lançamento" },
+        { name: "Fortalecer", desc: "Para marcas existentes que precisam de mais clareza, diferenciação ou coerência.", items: "Posicionamento · Sistema visual · Evolução de embalagem · Arquitetura de portfólio · Ferramentas comerciais · Web · Comunicação" },
+        { name: "Acompanhar", desc: "Para vinícolas, grupos e importadores com necessidades contínuas.", items: "Suporte estratégico e criativo · Embalagem · Adaptações · Apresentações · Fichas técnicas · Conteúdo · Web · Materiais comerciais" }
+      ],
+      workCap: "Capacidade transversal: adaptar e desenvolver marcas, produtos e ferramentas comerciais para diferentes mercados.",
+      methLabel: "METODOLOGIA CAVA",
+      steps: [
+        ["Contexto", "Entender negócio, mercado, produto e oportunidade."],
+        ["Arquitetura", "Definir o que devemos construir e por quê."],
+        ["Visualização", "Transformar a estratégia em marca, produto e ferramentas."],
+        ["Ativação", "Levar à produção, ao mercado e à operação."]
+      ],
+      brLabel: "BRASIL",
+      brH2: "Uma relação que seguimos aprofundando.",
+      brP1: "O Brasil faz parte de uma experiência internacional mais ampla, mas progressivamente se tornou um mercado relevante para a CAVA. Participamos presencialmente de diferentes eventos da indústria, e desenvolvimentos como Casa Vieja e Memoria de Los Andes têm presença no mercado brasileiro.",
+      brP2: "A ProWine São Paulo 2026 é uma oportunidade para continuar construindo relacionamentos, entendendo o mercado e identificando novos desafios onde a nossa experiência possa contribuir.",
+      contactH2: "Vamos conversar.",
+      contactP: "Se você está construindo uma nova marca, desenvolvendo produtos para diferentes mercados, fortalecendo um portfólio existente ou precisa de uma equipe capaz de acompanhar a operação, podemos conversar.",
+      waBtn: "Fale conosco no WhatsApp →",
+      contactSp: "São Paulo, Brasil · ProWine 2026",
+      footerTag: "Pensar / Dizer / Fazer."
+    },
+    en: {
+      docTitle: "CAVA + the Wine Industry | Branding, Packaging and OEM",
+      docDesc: "CAVA Estudio’s experience developing brands, packaging, OEM projects and commercial tools for wineries and international markets.",
+      waMessage: "Hello CAVA, I saw the wine industry dossier and would like to talk.",
+      navHome: "HOME", navExp: "EXPERIENCE", navMarkets: "MARKETS", navContact: "CONTACT",
+      ariaTheme: "Toggle theme", ariaMenu: "Open menu", ariaLang: "Language", themeLight: "Light", themeDark: "Dark",
+      heroEyebrow: "CAVA + THE WINE INDUSTRY",
+      heroH1a: "From wine to brand.", heroH1b: "From presence to preference.",
+      heroP: "Since 2011 we have worked alongside wineries and wine brands, connecting strategy, identity, packaging, product development, commercial tools and ongoing support. Our experience lets us understand a brand from its definition through to its materialization and arrival in the market.",
+      heroTag: "CAVA understands the brand, the product and the market.",
+      ctaTalk: "Let’s talk →", ctaExp: "See our experience",
+      skitLabel: "CAVA + THE WINE INDUSTRY / SKIT", skitPending: "Skit video — pending",
+      dossier: "DOSSIER",
+      idxH2: "We don’t just understand how to build a wine brand.",
+      idxP: "We understand how to turn it into a real product and take it to different markets.",
+      idxTitle: "INDEX",
+      toc: [
+        ["Who we are", "Brand, product and market as a single discipline."],
+        ["Experience and case studies", "Puntí Ferrer, Orgullo Cruzado, Valle Secreto, Santa Irene and more."],
+        ["TDP Brazil renders", "El Libertador, GO UP and Ola Po’ — renders for TDP in Brazil."],
+        ["International markets and OEM", "China, Labelapp and projects created for specific opportunities."],
+        ["From product to production and export", "Bottles, closures, labels, boxes and contract manufacturing."],
+        ["How we work", "Build, strengthen or support, depending on the moment."],
+        ["Contact", "Let’s talk about your brand, product or market."]
+      ],
+      qsLabel: "WHO WE ARE",
+      qsH2: "We don’t only work on how a wine looks.",
+      qsP: "CAVA is a strategic and creative team that helps brands communicate with clarity. In the wine industry we have taken part in creating brands, packaging, OEM projects and communication for a range of international markets.",
+      dims: [
+        ["Brand", "Building positioning, identity, narrative and recognizable systems."],
+        ["Product", "Packaging development grounded in materials, processes, costs and real production possibilities."],
+        ["Market", "Adapting and creating products for different clients, segments, channels and countries."]
+      ],
+      qsQuote: "A good label has to work as a brand, as a product and as a commercial tool.",
+      expLabel: "EXPERIENCE AND CASE STUDIES",
+      expH2: "Experience built alongside the industry.",
+      expP: "Our relationship with different wineries has developed over years and on multiple fronts: from creating new brands to the day-to-day operation of existing portfolios.",
+      caseFeatured: "FEATURED CASE", caseLabel: "CASE",
+      pfP: "Years of work alongside Puntí Ferrer developing brands and products for the local and international market.",
+      pfTags: "Brand development · Packaging · OEM projects · Commercial tools",
+      ocP: "Wine, identity and community: a real case, built in collaboration with Club Deportivo Universidad Católica.",
+      ocBtn: "See the full case →",
+      vsP: "CAVA continuously supports the operation of Valle Secreto: back labels, boxes, spec sheets, website and packaging adaptations for different markets.",
+      vsQuote: "Building a brand doesn’t end when its identity is delivered. It also needs to be operated and maintained consistently.",
+      siP: "Brand development and ongoing creative support: spec sheets, website, adaptations, packaging and OEM projects for different markets.",
+      siNote: "Brands such as Casa Vieja and El Cretino — Casa Vieja with a presence in Brazil.",
+      leH3: "Lapsos de Elqui, De Sol a Sol and Aventurero",
+      leP: "Brand and packaging development for independent producers in different parts of the country: Lapsos de Elqui in the north, and De Sol a Sol and Aventurero in the south of Chile.",
+      leNote: "Brand identity, label system and packaging for each project.",
+      alsoLabel: "WE HAVE ALSO WORKED WITH",
+      alsoP: "Part of our experience with wineries: product development, packaging, OEM projects and work for a range of international markets.",
+      closeQ: "Could your brand be the next case?",
+      tdpLabel: "RENDERS · TDP BRAZIL",
+      tdpH2: "Renders developed for TDP in Brazil.",
+      tdpP: "A catalog of 3D renders for different brands developed with TDP, our commercial partner in Brazil, whom we reached through Santa Irene: El Libertador, GO UP and Ola Po'.",
+      mkLabel: "INTERNATIONAL MARKETS AND OEM",
+      mkH2: "Designing for a market starts with understanding it.",
+      mkP: "An important part of our experience in the industry has been tied to products destined for international markets.",
+      markets: ["China", "Japan", "Thailand", "Vietnam", "India", "Europe", "United States", "Colombia", "Peru", "Brazil"],
+      chinaP: "In 2018 we travelled with Matías Frenkel of Viña Santa Irene to visit clients and prospects in Hong Kong, Shenzhen, Xiamen, Guangzhou and Shanghai. The experience allowed us to work directly on the commercial needs of Asian buyers and markets.",
+      labelappP: "During that process we developed Labelapp, a system designed to speed up the creation and visualization of label ideas for commercial and OEM projects: evidence of a concern that still holds today about how to connect creativity, speed and commercial opportunity.",
+      oemH3: "Products created for specific opportunities.",
+      oemP: "OEM development has been a constant in our work with wineries. We have taken part in creating brands and products conceived specifically for particular clients, segments, price points, markets and commercial opportunities.",
+      eqMarket: "Market", eqClient: "Client", eqConsumer: "Consumer", eqWine: "Wine", eqPrice: "Price",
+      eqBrand: "Brand", eqPackaging: "Packaging", eqProduction: "Production", eqLogistics: "Logistics", eqResult: "an OEM product.",
+      oemCatLabel: "OEM CATALOG — BRANDS AVAILABLE TO DEVELOP", ariaPrev: "Previous", ariaNext: "Next",
+      oemClose: "An OEM project doesn’t start by asking how a label should look. It starts by understanding what product needs to exist, for whom, and in what context it has to compete.",
+      prodLabel: "FROM PRODUCT TO PRODUCTION AND EXPORT",
+      prodH2: "Design doesn’t end at the file.",
+      prodP: "Our experience with packaging is not limited to its graphic expression. We know the decisions, materials, suppliers and processes that turn an idea into a real product.",
+      prod: [
+        ["Bottles", "Formats, weights, colors, availability and relationship with positioning and market."],
+        ["Corks and stoppers", "Closure alternatives and application criteria depending on the product."],
+        ["Capsules", "Materials, formats and different printing systems and possibilities."],
+        ["Labels", "Papers, adhesives, printing systems, embossing, foils and special finishes."],
+        ["Boxes", "Single-bottle, or for two, three, six or twelve bottles: materials and printing systems."],
+        ["Production", "Artwork preparation, materials validation, supplier coordination, testing and implementation."],
+        ["Contract manufacturing and export", "Experience guiding processes from the wine and its components through to the product ready for container loading."]
+      ],
+      prodClose1: "We design understanding what can be produced.",
+      prodClose2: "That allows us to connect brand intent, technical feasibility and commercial reality.",
+      workLabel: "HOW WE WORK",
+      workH2: "We can step in at different points in the process.",
+      workP: "Not every company needs the same thing. Our work starts by understanding what needs to be solved before defining what we should develop.",
+      modes: [
+        { name: "Build", desc: "For new brands, products, lines or OEM projects.", items: "Strategy · Naming · Identity · Packaging · OEM · Launch tools" },
+        { name: "Strengthen", desc: "For existing brands that need more clarity, differentiation or coherence.", items: "Positioning · Visual system · Packaging evolution · Portfolio architecture · Commercial tools · Web · Communication" },
+        { name: "Support", desc: "For wineries, groups and importers with ongoing needs.", items: "Strategic and creative support · Packaging · Adaptations · Presentations · Spec sheets · Content · Web · Commercial materials" }
+      ],
+      workCap: "Cross-cutting capability: adapting and developing brands, products and commercial tools for different markets.",
+      methLabel: "CAVA METHODOLOGY",
+      steps: [
+        ["Context", "Understand the business, market, product and opportunity."],
+        ["Architecture", "Define what we should build and why."],
+        ["Visualization", "Turn strategy into brand, product and tools."],
+        ["Activation", "Take it to production, market and operation."]
+      ],
+      brLabel: "BRAZIL",
+      brH2: "A relationship we keep deepening.",
+      brP1: "Brazil is part of a broader international experience, but it has progressively become a relevant market for CAVA. We have taken part in person in different industry events, and developments such as Casa Vieja and Memoria de Los Andes have a presence in the Brazilian market.",
+      brP2: "ProWine São Paulo 2026 is an opportunity to keep building relationships, understanding the market and identifying new challenges where our experience can contribute.",
+      contactH2: "Let’s talk.",
+      contactP: "If you are building a new brand, developing products for different markets, strengthening an existing portfolio or need a team able to support its operation, we can talk.",
+      waBtn: "Chat with us on WhatsApp →",
+      contactSp: "São Paulo, Brazil · ProWine 2026",
+      footerTag: "Think / Say / Do."
+    }
+  };
 
   // Central asset registry — every image this dossier needs, keyed by name.
   // Real material reused from published case studies where it exists;
@@ -900,6 +1236,45 @@ class Component extends DCLogic {
     return this['_ref_' + key];
   }
 
+  _initialLang() {
+    const ok = (v) => v === 'es' || v === 'pt' || v === 'en';
+    try {
+      const q = new URLSearchParams(window.location.search).get('lang');
+      if (q && ok(q.toLowerCase().slice(0, 2))) return q.toLowerCase().slice(0, 2);
+      const saved = localStorage.getItem('cava-lang');
+      if (ok(saved)) return saved;
+      if (((navigator.language || '') + '').toLowerCase().indexOf('pt') === 0) return 'pt';
+    } catch (e) {}
+    return 'es';
+  }
+
+  _applyLangMeta(l) {
+    try {
+      const t = this._i18n[l];
+      document.documentElement.lang = l === 'pt' ? 'pt-BR' : l;
+      document.title = t.docTitle;
+      const d = document.querySelector('meta[name="description"]');
+      if (d) d.setAttribute('content', t.docDesc);
+    } catch (e) {}
+  }
+
+  setLang(l) {
+    try { localStorage.setItem('cava-lang', l); } catch (e) {}
+    try {
+      const u = new URL(window.location.href);
+      if (l === 'es') u.searchParams.delete('lang'); else u.searchParams.set('lang', l);
+      window.history.replaceState(null, '', u.toString());
+    } catch (e) {}
+    this._applyLangMeta(l);
+    this.setState({ lang: l });
+  }
+
+  _langBtnStyle(active) {
+    return 'background:none; border:none; border-bottom:1px solid ' + (active ? 'var(--text)' : 'transparent') +
+      '; padding:8px 6px 4px; margin:0; cursor:pointer; font-family:inherit; font-size:10px; letter-spacing:0.06em; color:' +
+      (active ? 'var(--text)' : 'var(--secondary)') + ';';
+  }
+
   scrollToKey(key) {
     const el = this._els[key];
     if (!el) return;
@@ -934,8 +1309,15 @@ class Component extends DCLogic {
     window.addEventListener('scroll', this._revealScrollHandler, { passive: true });
     window.addEventListener('resize', this._revealScrollHandler, { passive: true });
     recheck();
+    this._applyLangMeta(this.state.lang);
 
     [0, 300, 1000].forEach((ms) => setTimeout(() => this._fixImageSlotAlt(), ms));
+  }
+
+  componentDidUpdate() {
+    // The helmet re-asserts its static <title> on every render, so the
+    // translated title/description are re-applied after each update.
+    if (this.state.lang !== 'es' || document.documentElement.lang !== 'es') this._applyLangMeta(this.state.lang);
   }
 
   componentWillUnmount() {
@@ -960,8 +1342,20 @@ class Component extends DCLogic {
   renderVals() {
     const dark = this.state.theme === 'dark';
     const a = this._assets;
+    const lang = this.state.lang;
+    const t = this._i18n[lang] || this._i18n.es;
     return {
-      themeLabel: dark ? 'Claro' : 'Oscuro',
+      t,
+      setLangEs: () => this.setLang('es'),
+      setLangPt: () => this.setLang('pt'),
+      setLangEn: () => this.setLang('en'),
+      langEsStyle: this._langBtnStyle(lang === 'es'),
+      langPtStyle: this._langBtnStyle(lang === 'pt'),
+      langEnStyle: this._langBtnStyle(lang === 'en'),
+      langEsPressed: String(lang === 'es'),
+      langPtPressed: String(lang === 'pt'),
+      langEnPressed: String(lang === 'en'),
+      themeLabel: dark ? t.themeLight : t.themeDark,
       themeDotLeft: dark ? '13px' : '1px',
       toggleTheme: () => this.setState((s) => {
         const next = s.theme === 'dark' ? 'light' : 'dark';
@@ -976,7 +1370,7 @@ class Component extends DCLogic {
       navToExperiencia: (e) => { e.preventDefault(); this.setState({ mobileMenuOpen: false }); this.scrollToKey('experiencia'); },
       navToMercados: (e) => { e.preventDefault(); this.setState({ mobileMenuOpen: false }); this.scrollToKey('mercados'); },
       navToContacto: (e) => { e.preventDefault(); this.setState({ mobileMenuOpen: false }); this.scrollToKey('contacto'); },
-      waMessageVino: encodeURIComponent('Hola CAVA, vi el dossier de la industria del vino y me gustaría conversar.'),
+      waMessage: encodeURIComponent(t.waMessage),
       assets: a,
       revealHero: this.reveal('hero'),
       revealSkit: this.reveal('skit'),
@@ -1043,25 +1437,13 @@ class Component extends DCLogic {
       refBrasil: this.mkRef('brasil'),
       refContacto: this.mkRef('contacto'),
       tocItems: [
-        { n: '01', label: 'Quiénes somos', key: 'quienes', href: '#quienes', desc: 'Marca, producto y mercado como una misma disciplina.' },
-        { n: '02', label: 'Experiencia y casos', key: 'experiencia', href: '#experiencia', desc: 'Puntí Ferrer, Orgullo Cruzado, Valle Secreto, Santa Irene y más.' },
-        { n: '03', label: 'Renders TDP Brasil', key: 'tdpBrasil', href: '#tdp-brasil', desc: 'El Libertador, GO UP y Ola Po’ — renders para TDP en Brasil.' },
-        { n: '04', label: 'Mercados internacionales y OEM', key: 'mercados', href: '#mercados', desc: 'China, Labelapp y proyectos creados para oportunidades concretas.' },
-        { n: '05', label: 'Del producto a la producción y exportación', key: 'produccion', href: '#produccion', desc: 'Botellas, cierres, etiquetas, cajas y maquila.' },
-        { n: '06', label: 'Forma de trabajo', key: 'trabajo', href: '#trabajo', desc: 'Construir, fortalecer o acompañar, según el momento.' },
-        { n: '07', label: 'Contacto', key: 'contacto', href: '#contacto', desc: 'Conversemos sobre tu marca, producto o mercado.' }
-      ],
-      dimensions: [
-        { n: '01', name: 'Marca', desc: 'Construcción de posicionamiento, identidad, narrativa y sistemas reconocibles.' },
-        { n: '02', name: 'Producto', desc: 'Desarrollo de packaging entendiendo materiales, procesos, costos y posibilidades reales de producción.' },
-        { n: '03', name: 'Mercado', desc: 'Adaptación y creación de productos para distintos clientes, segmentos, canales y países.' }
-      ],
-      markets: [
-        { name: 'China', big: true }, { name: 'Japón' }, { name: 'Tailandia' }, { name: 'Vietnam' }, { name: 'India' },
-        { name: 'Europa' }, { name: 'Estados Unidos' }, { name: 'Colombia' }, { name: 'Perú' }, { name: 'Brasil', big: true }
-      ].map((m) => ({
-        name: m.name,
-        style: m.big
+        ['quienes', '#quienes'], ['experiencia', '#experiencia'], ['tdpBrasil', '#tdp-brasil'], ['mercados', '#mercados'],
+        ['produccion', '#produccion'], ['trabajo', '#trabajo'], ['contacto', '#contacto']
+      ].map(([key, href], i) => ({ n: '0' + (i + 1), label: t.toc[i][0], key, href, desc: t.toc[i][1] })),
+      dimensions: t.dims.map(([name, desc], i) => ({ n: '0' + (i + 1), name, desc })),
+      markets: t.markets.map((name, i) => ({
+        name,
+        style: (i === 0 || i === t.markets.length - 1)
           ? 'font-size:16px; font-weight:500; letter-spacing:0.01em; color:var(--text); background:var(--line); border-radius:999px; padding:14px 24px; white-space:nowrap;'
           : 'font-size:13px; letter-spacing:0.02em; color:var(--text); background:var(--line); border-radius:999px; padding:10px 18px; white-space:nowrap;'
       })),
@@ -1145,15 +1527,7 @@ class Component extends DCLogic {
         { id: 'oem-cat-124', img: 'assets/BRANDBOOK-ETIQUETAS-VSI/124-NOCHE-LUNA.webp', label: 'Noche Luna' },
         { id: 'oem-cat-125', img: 'assets/BRANDBOOK-ETIQUETAS-VSI/125-TARDE.webp', label: 'Tarde' }
       ],
-      productionAreas: [
-        { n: '01', name: 'Botellas', desc: 'Formatos, pesos, colores, disponibilidad y relación con posicionamiento y mercado.' },
-        { n: '02', name: 'Corchos y tapones', desc: 'Alternativas de cierre y criterios de aplicación según producto.' },
-        { n: '03', name: 'Cápsulas', desc: 'Materialidades, formatos y distintos sistemas y posibilidades de impresión.' },
-        { n: '04', name: 'Etiquetas', desc: 'Papeles, adhesivos, sistemas de impresión, relieves, folias y terminaciones especiales.' },
-        { n: '05', name: 'Cajas', desc: 'Individuales, de dos, tres, seis o doce botellas: materialidades y sistemas de impresión.' },
-        { n: '06', name: 'Producción', desc: 'Preparación de originales, validación de materiales, coordinación con proveedores, pruebas e implementación.' },
-        { n: '07', name: 'Maquila y exportación', desc: 'Experiencia acompañando procesos desde el vino y sus componentes hasta el producto listo para carga en contenedor.' }
-      ],
+      productionAreas: t.prod.map(([name, desc], i) => ({ n: '0' + (i + 1), name, desc })),
       vsDocImages: [
         { id: 'vs-specsheet', img: a.vsSpecsheet, label: 'Ficha técnica de etiqueta', style: 'display:block; width:100%; height:100%; aspect-ratio:3/2; background:var(--subtle);' },
         { id: 'vs-brochure', img: a.vsBrochure, label: 'Brochure de experiencias', style: 'display:block; width:100%; height:100%; aspect-ratio:3/2; background:var(--subtle);' },
@@ -1201,17 +1575,8 @@ class Component extends DCLogic {
       brasilImagesRow4: [
         { id: 'brasil-5614', img: a.brasil5614, label: 'Equipo TDP Wines' }
       ],
-      workModes: [
-        { name: 'Construir', desc: 'Para nuevas marcas, productos, líneas o proyectos OEM.', items: 'Estrategia · Naming · Identidad · Packaging · OEM · Herramientas de lanzamiento' },
-        { name: 'Fortalecer', desc: 'Para marcas existentes que necesitan mayor claridad, diferenciación o coherencia.', items: 'Posicionamiento · Sistema visual · Evolución de packaging · Arquitectura de portafolio · Herramientas comerciales · Web · Comunicación' },
-        { name: 'Acompañar', desc: 'Para viñas, grupos e importadores con necesidades continuas.', items: 'Soporte estratégico y creativo · Packaging · Adaptaciones · Presentaciones · Fichas · Contenido · Web · Materiales comerciales' }
-      ],
-      cavaSteps: [
-        { letter: 'C', name: 'Contexto', desc: 'Entender negocio, mercado, producto y oportunidad.' },
-        { letter: 'A', name: 'Arquitectura', desc: 'Definir qué debemos construir y por qué.' },
-        { letter: 'V', name: 'Visualización', desc: 'Transformar la estrategia en marca, producto y herramientas.' },
-        { letter: 'A', name: 'Activación', desc: 'Llevarlo a producción, mercado y operación.' }
-      ]
+      workModes: t.modes,
+      cavaSteps: t.steps.map(([name, desc]) => ({ letter: name.charAt(0), name, desc }))
     };
   }
 }
