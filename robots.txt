@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://cava-estudio-web.vercel.app/sitemap.xml
+Sitemap: https://cavaestudio.cl/sitemap.xml

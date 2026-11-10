@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://cava-estudio-web.vercel.app/</loc>
+    <loc>https://cavaestudio.cl/</loc>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://cava-estudio-web.vercel.app/agro</loc>
+    <loc>https://cavaestudio.cl/agro</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://cava-estudio-web.vercel.app/orgullo-cruzado</loc>
+    <loc>https://cavaestudio.cl/orgullo-cruzado</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://cava-estudio-web.vercel.app/smileandmove</loc>
+    <loc>https://cavaestudio.cl/smileandmove</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://cava-estudio-web.vercel.app/contacto</loc>
+    <loc>https://cavaestudio.cl/contacto</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://cava-estudio-web.vercel.app/industria-del-vino</loc>
+    <loc>https://cavaestudio.cl/industria-del-vino</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
