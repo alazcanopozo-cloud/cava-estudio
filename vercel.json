@@ -1,20 +1,104 @@
 {
   "redirects": [
-    { "source": "/:path*", "has": [{ "type": "host", "value": "www.cavaestudio.cl" }], "destination": "https://cavaestudio.cl/:path*", "permanent": true },
-    { "source": "/:path*", "has": [{ "type": "host", "value": "cava-estudio-web.vercel.app" }], "destination": "https://cavaestudio.cl/:path*", "permanent": true },
-    { "source": "/CAVA%20Estudio.dc.html", "destination": "/", "permanent": true },
-    { "source": "/CAVA%20Agro.dc.html", "destination": "/agro", "permanent": true },
-    { "source": "/CAVA%20Orgullo%20Cruzado.dc.html", "destination": "/orgullo-cruzado", "permanent": true },
-    { "source": "/CAVA%20Smile%20Move.dc.html", "destination": "/smileandmove", "permanent": true },
-    { "source": "/CAVA%20Contacto.dc.html", "destination": "/contacto", "permanent": true },
-    { "source": "/CAVA%20Vino.dc.html", "destination": "/industria-del-vino", "permanent": true }
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.cavaestudio.cl"
+        }
+      ],
+      "destination": "https://cavaestudio.cl/",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "cava-estudio-web.vercel.app"
+        }
+      ],
+      "destination": "https://cavaestudio.cl/",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.cavaestudio.cl"
+        }
+      ],
+      "destination": "https://cavaestudio.cl/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "cava-estudio-web.vercel.app"
+        }
+      ],
+      "destination": "https://cavaestudio.cl/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/CAVA%20Estudio.dc.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/CAVA%20Agro.dc.html",
+      "destination": "/agro",
+      "permanent": true
+    },
+    {
+      "source": "/CAVA%20Orgullo%20Cruzado.dc.html",
+      "destination": "/orgullo-cruzado",
+      "permanent": true
+    },
+    {
+      "source": "/CAVA%20Smile%20Move.dc.html",
+      "destination": "/smileandmove",
+      "permanent": true
+    },
+    {
+      "source": "/CAVA%20Contacto.dc.html",
+      "destination": "/contacto",
+      "permanent": true
+    },
+    {
+      "source": "/CAVA%20Vino.dc.html",
+      "destination": "/industria-del-vino",
+      "permanent": true
+    }
   ],
   "rewrites": [
-    { "source": "/", "destination": "/CAVA%20Estudio.dc.html" },
-    { "source": "/agro", "destination": "/CAVA%20Agro.dc.html" },
-    { "source": "/orgullo-cruzado", "destination": "/CAVA%20Orgullo%20Cruzado.dc.html" },
-    { "source": "/smileandmove", "destination": "/CAVA%20Smile%20Move.dc.html" },
-    { "source": "/contacto", "destination": "/CAVA%20Contacto.dc.html" },
-    { "source": "/industria-del-vino", "destination": "/CAVA%20Vino.dc.html" }
+    {
+      "source": "/",
+      "destination": "/CAVA%20Estudio.dc.html"
+    },
+    {
+      "source": "/agro",
+      "destination": "/CAVA%20Agro.dc.html"
+    },
+    {
+      "source": "/orgullo-cruzado",
+      "destination": "/CAVA%20Orgullo%20Cruzado.dc.html"
+    },
+    {
+      "source": "/smileandmove",
+      "destination": "/CAVA%20Smile%20Move.dc.html"
+    },
+    {
+      "source": "/contacto",
+      "destination": "/CAVA%20Contacto.dc.html"
+    },
+    {
+      "source": "/industria-del-vino",
+      "destination": "/CAVA%20Vino.dc.html"
+    }
   ]
 }
